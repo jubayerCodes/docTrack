@@ -1,0 +1,80 @@
+# ==============================================================================
+# DocTrack - Git Ignore Configuration
+# ==============================================================================
+
+# 1. Dependencies
+node_modules/
+.pnp
+.pnp.js
+jspm_packages/
+web_modules/
+
+# 2. Environment Variables, Keys, & Security Sensitive Files
+.env
+.env.*
+*.env
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+*.secret
+credentials.json
+secrets.json
+service-account*.json
+client_secret*.json
+id_rsa*
+id_ed25519*
+
+# 3. Build & Compiled Outputs
+dist/
+build/
+out/
+.next/
+.turbo/
+*.tsbuildinfo
+
+# 4. Logs & Diagnostic Files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# 5. Testing & Code Coverage
+coverage/
+.nyc_output/
+
+# 6. Database / Local Storage Dumps
+*.sqlite
+*.sqlite3
+*.db
+dump.rdb
+
+# 7. Caches & Temporary Files
+.cache/
+.eslintcache
+.stylelintcache
+tmp/
+temp/
+
+# 8. Operating System & Editor Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
