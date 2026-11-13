@@ -54,14 +54,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f4f9] flex flex-col justify-center items-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-[#f3f4f9] flex flex-col justify-center items-center p-3.5 sm:p-6 relative overflow-hidden">
       {/* Background Decorative Ambient Blobs */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#2c9a8b]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-32 -left-32 w-72 sm:w-96 h-72 sm:h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -right-32 w-72 sm:w-96 h-72 sm:h-96 bg-[#2c9a8b]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="w-full max-w-[440px] z-10 space-y-6">
+      <div className="w-full max-w-[440px] z-10 space-y-5 sm:space-y-6">
         {/* Brand Header */}
-        <div className="text-center space-y-2">
+        <div className="text-center space-y-1.5 sm:space-y-2">
           <div className="inline-flex items-center gap-2 mb-1">
             <div className="flex items-center gap-1 flex-shrink-0 -rotate-12">
               <span className="w-3.5 h-8 rounded-full bg-primary block shadow-sm" />
@@ -71,14 +71,14 @@ export default function LoginPage() {
               DocTrack
             </span>
           </div>
-          <h1 className="text-xl font-bold text-ink">Clinical Administration Portal</h1>
+          <h1 className="text-lg sm:text-xl font-bold text-ink">Clinical Administration Portal</h1>
           <p className="text-xs text-textSecondary max-w-sm mx-auto">
             Secure authentication for authorized physicians, clinical directors, and care network administrators.
           </p>
         </div>
 
         {/* Login Card */}
-        <div className="bg-white rounded-modal border border-border shadow-modal p-6 sm:p-8 space-y-5">
+        <div className="bg-white rounded-modal border border-border shadow-modal p-5 sm:p-8 space-y-4 sm:space-y-5">
           {/* Quick Demo Login Option */}
           <div className="bg-primary-soft/60 border border-primary/20 rounded-control p-3 flex items-center justify-between gap-3">
             <div className="flex items-center gap-2 overflow-hidden">

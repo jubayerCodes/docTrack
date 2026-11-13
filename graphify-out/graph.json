@@ -6061,7 +6061,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L217",
+      "source_location": "L198",
       "weight": 1.0
     },
     {
@@ -6073,7 +6073,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L226",
+      "source_location": "L207",
       "weight": 1.0
     },
     {
@@ -6085,7 +6085,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L233",
+      "source_location": "L362",
       "weight": 1.0
     },
     {
@@ -6181,7 +6181,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L234",
+      "source_location": "L216",
       "weight": 1.0
     },
     {
@@ -6193,7 +6193,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L243",
+      "source_location": "L225",
       "weight": 1.0
     },
     {
@@ -6205,7 +6205,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L290",
+      "source_location": "L408",
       "weight": 1.0
     },
     {
@@ -6289,7 +6289,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L283",
+      "source_location": "L264",
       "weight": 1.0
     },
     {
@@ -6301,7 +6301,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L292",
+      "source_location": "L273",
       "weight": 1.0
     },
     {
@@ -6313,7 +6313,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L369",
+      "source_location": "L366",
       "weight": 1.0
     },
     {
@@ -6469,7 +6469,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/components/ui/ActionMenu.tsx",
-      "source_location": "L93",
+      "source_location": "L99",
       "weight": 1.0
     },
     {
@@ -17160,5 +17160,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "7c05f002cc0f2bd0e8fea5791acf7e7d750376f6"
+  "built_at_commit": "9c836533439f4cf8efb7d167eb58a37c700ca5ce"
 }

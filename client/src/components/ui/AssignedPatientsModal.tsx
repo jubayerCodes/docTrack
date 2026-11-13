@@ -68,30 +68,30 @@ export const AssignedPatientsModal: React.FC = () => {
               return (
                 <div
                   key={session._id}
-                  className="flex items-center justify-between p-3.5 rounded-card bg-white border border-border hover:border-primary/30 transition-all shadow-sm"
+                  className="flex items-center justify-between p-3 sm:p-3.5 rounded-card bg-white border border-border hover:border-primary/30 transition-all shadow-sm gap-2"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
                     {/* Patient Initials Circle */}
-                    <div className="w-9 h-9 rounded-full bg-primary-soft text-primary font-bold text-xs flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary-soft text-primary font-bold text-xs flex items-center justify-center flex-shrink-0">
                       {getInitials(patientName)}
                     </div>
 
                     <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <p className="text-xs font-bold text-ink truncate">{patientName}</p>
+                      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                        <p className="text-xs font-bold text-ink truncate max-w-[140px] sm:max-w-none">{patientName}</p>
                         {patientAge && (
-                          <span className="text-[11px] text-textMuted font-medium">
+                          <span className="text-[10px] sm:text-[11px] text-textMuted font-medium">
                             ({patientAge})
                           </span>
                         )}
                         <StatusBadge status={session.status} />
                       </div>
 
-                      <div className="flex items-center gap-3 text-[11px] text-textSecondary mt-0.5">
-                        <span className="truncate font-medium text-ink">
+                      <div className="flex flex-wrap items-center gap-1.5 sm:gap-3 text-[10px] sm:text-[11px] text-textSecondary mt-0.5">
+                        <span className="truncate font-medium text-ink max-w-[140px] sm:max-w-none">
                           {session.condition}
                         </span>
-                        <span className="text-textSubtle">•</span>
+                        <span className="text-textSubtle hidden sm:inline">•</span>
                         <span className="flex items-center gap-1 text-textMuted flex-shrink-0">
                           <Clock className="w-3 h-3 text-primary" />
                           {session.appointmentAt}
@@ -111,7 +111,7 @@ export const AssignedPatientsModal: React.FC = () => {
                     }
                     disabled={disassociateSession.isPending}
                     title="Remove from doctor's list"
-                    className="w-8 h-8 rounded-control border border-transparent hover:border-red-200 hover:bg-semantic-dangerBg text-textMuted hover:text-semantic-danger flex items-center justify-center transition-colors flex-shrink-0 ml-2"
+                    className="w-8 h-8 rounded-control border border-transparent hover:border-red-200 hover:bg-semantic-dangerBg text-textMuted hover:text-semantic-danger flex items-center justify-center transition-colors flex-shrink-0 ml-1"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -121,16 +121,17 @@ export const AssignedPatientsModal: React.FC = () => {
           </div>
         )}
 
-        <div className="flex items-center justify-between pt-4 border-t border-border">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-4 border-t border-border gap-3">
           <p className="text-xs text-textMuted">
             Total Active Caseload:{' '}
             <span className="font-bold text-ink">{sessions.length}</span>
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             <Button
               type="button"
               variant="outline"
               size="sm"
+              className="flex-1 sm:flex-initial"
               onClick={() => {
                 if (selectedDoctorForPatients) {
                   const doc = { ...selectedDoctorForPatients };
@@ -142,7 +143,7 @@ export const AssignedPatientsModal: React.FC = () => {
               <UserPlus className="w-3.5 h-3.5 mr-1 text-primary" />
               <span>+ Assign Patient</span>
             </Button>
-            <Button variant="secondary" size="sm" onClick={closeAssignedPatients}>
+            <Button variant="secondary" size="sm" onClick={closeAssignedPatients} className="flex-1 sm:flex-initial">
               Close
             </Button>
           </div>

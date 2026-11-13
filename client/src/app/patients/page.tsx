@@ -93,7 +93,7 @@ export default function PatientsPage() {
   return (
     <div className="space-y-6">
       {/* Top Header Row */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
           <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary mb-1">
             Clinical Records
@@ -107,7 +107,7 @@ export default function PatientsPage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="primary" onClick={openCreatePatient}>
+          <Button variant="primary" onClick={openCreatePatient} className="w-full sm:w-auto">
             <UserPlus className="w-3.5 h-3.5" />
             <span>+ Register Patient</span>
           </Button>
@@ -115,9 +115,9 @@ export default function PatientsPage() {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="p-4 rounded-card bg-surface border border-border shadow-card space-y-3 sm:space-y-0 sm:flex sm:items-center sm:justify-between sm:gap-4">
+      <div className="p-3.5 sm:p-4 rounded-card bg-surface border border-border shadow-card flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
         {/* Search input */}
-        <div className="relative flex-1 min-w-[220px]">
+        <div className="relative w-full md:w-80">
           {isSearching ? (
             <Loader2 className="w-4 h-4 text-primary animate-spin absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           ) : (
@@ -136,8 +136,8 @@ export default function PatientsPage() {
         </div>
 
         {/* Dropdowns */}
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="w-[150px]">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto">
+          <div className="w-full sm:w-36">
             <SelectDropdown
               options={GENDER_OPTIONS}
               value={selectedGender}
@@ -148,7 +148,7 @@ export default function PatientsPage() {
             />
           </div>
 
-          <div className="flex items-center gap-1.5 w-[220px]">
+          <div className="flex items-center gap-1.5 w-full sm:w-56">
             <div className="flex-1">
               <SelectDropdown
                 options={SORT_OPTIONS}
@@ -183,7 +183,7 @@ export default function PatientsPage() {
               size="sm"
               onClick={handleResetFilters}
               title="Reset all filters"
-              className="text-textMuted hover:text-ink px-2.5"
+              className="text-textMuted hover:text-ink px-2.5 self-start sm:self-auto"
             >
               <RotateCcw className="w-3.5 h-3.5 mr-1" />
               <span>Reset</span>
@@ -192,8 +192,126 @@ export default function PatientsPage() {
         </div>
       </div>
 
-      {/* Patients Table Container */}
-      <div className="rounded-card bg-surface border border-border shadow-card overflow-hidden">
+      {/* Mobile Card View (< 768px) */}
+      <div className="md:hidden space-y-3">
+        {isLoading && !responseData ? (
+          <div className="p-8 text-center text-xs text-textMuted rounded-card bg-surface border border-border">
+            Loading patient records...
+          </div>
+        ) : isError ? (
+          <div className="p-8 text-center text-xs text-semantic-danger rounded-card bg-surface border border-border">
+            Failed to load patients: {(error as Error)?.message || 'Internal Error'}
+          </div>
+        ) : patients.length === 0 ? (
+          <div className="p-8 text-center text-xs text-textMuted rounded-card bg-surface border border-border">
+            {isSearching ? 'Searching patient records...' : 'No patients found matching your search or filters.'}
+          </div>
+        ) : (
+          patients.map((patient) => {
+            const sessionsCount = patient.totalSessions ?? 0;
+
+            return (
+              <div
+                key={patient._id}
+                className={cn(
+                  'p-4 rounded-card bg-surface border border-border shadow-card space-y-3 transition-all',
+                  isSearching && 'opacity-75'
+                )}
+              >
+                {/* Header: Avatar, Name, Age/Gender, Action Menu */}
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-full bg-primary-soft text-primary font-bold text-xs flex items-center justify-center flex-shrink-0 border border-primary/10">
+                      {getInitials(patient.name)}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-bold text-ink text-sm leading-tight truncate">
+                        {patient.name}
+                      </p>
+                      <div className="flex items-center gap-1.5 mt-1 text-[11px] text-textMuted">
+                        <span>{patient.age} yrs</span>
+                        <span>•</span>
+                        <span className="capitalize">{patient.gender}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ActionMenu
+                    items={[
+                      {
+                        label: 'Schedule Session',
+                        icon: <CalendarPlus className="w-3.5 h-3.5 text-primary" />,
+                        onClick: () =>
+                          openScheduleSession({
+                            patientId: patient._id,
+                            patientName: patient.name,
+                          }),
+                      },
+                      {
+                        label: 'Edit Profile',
+                        icon: <Edit3 className="w-3.5 h-3.5 text-textMuted" />,
+                        onClick: () => openEditPatient(patient),
+                      },
+                      {
+                        label: 'Delete Patient',
+                        icon: <Trash2 className="w-3.5 h-3.5 text-semantic-danger" />,
+                        variant: 'danger',
+                        onClick: () => setPatientToDelete(patient),
+                      },
+                    ]}
+                  />
+                </div>
+
+                {/* Contact and Metadata */}
+                <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="flex flex-wrap items-center gap-3 text-[11px]">
+                    {patient.phone ? (
+                      <a
+                        href={`tel:${patient.phone}`}
+                        className="text-textSecondary hover:text-primary flex items-center gap-1 font-medium"
+                      >
+                        <Phone className="w-3 h-3 text-textMuted" />
+                        <span>{patient.phone}</span>
+                      </a>
+                    ) : (
+                      <span className="text-textSubtle italic text-[10px]">No phone</span>
+                    )}
+
+                    {patient.email ? (
+                      <a
+                        href={`mailto:${patient.email}`}
+                        className="text-textMuted hover:text-primary flex items-center gap-1"
+                      >
+                        <Mail className="w-3 h-3 text-textMuted" />
+                        <span className="truncate max-w-[140px]">{patient.email}</span>
+                      </a>
+                    ) : null}
+                  </div>
+
+                  {/* Sessions Count Pill */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openScheduleSession({
+                        patientId: patient._id,
+                        patientName: patient.name,
+                      })
+                    }
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-primary-soft text-primary border border-primary/15 hover:bg-primary-soft/80 ml-auto"
+                    title="Click to schedule encounter"
+                  >
+                    <Layers className="w-3 h-3 text-primary" />
+                    <span>{sessionsCount} {sessionsCount === 1 ? 'Session' : 'Sessions'}</span>
+                  </button>
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      {/* Patients Desktop / Laptop Table Container (md+) */}
+      <div className="hidden md:block rounded-card bg-surface border border-border shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -327,17 +445,17 @@ export default function PatientsPage() {
             </tbody>
           </table>
         </div>
+      </div>
 
-        {/* Pagination Controls */}
-        <div className="px-4 sm:px-6 pb-4">
-          <PaginationBar
-            currentPage={meta.page || 1}
-            totalPages={meta.totalPages || 1}
-            totalItems={meta.total || 0}
-            limit={meta.limit || 8}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
-        </div>
+      {/* Pagination Controls (Shared for mobile and desktop) */}
+      <div className="rounded-card bg-surface border border-border shadow-card p-3.5 sm:px-6">
+        <PaginationBar
+          currentPage={meta.page || 1}
+          totalPages={meta.totalPages || 1}
+          totalItems={meta.total || 0}
+          limit={meta.limit || 8}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
       </div>
 
       {/* Modals */}

@@ -125,7 +125,7 @@ export default function SessionsPage() {
   return (
     <div className="space-y-6">
       {/* Top Header Row */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
           <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary mb-1">
             Clinical Encounters
@@ -139,7 +139,7 @@ export default function SessionsPage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="primary" onClick={() => openScheduleSession()}>
+          <Button variant="primary" onClick={() => openScheduleSession()} className="w-full sm:w-auto">
             <CalendarPlus className="w-3.5 h-3.5" />
             <span>+ Schedule Session</span>
           </Button>
@@ -147,9 +147,9 @@ export default function SessionsPage() {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="p-4 rounded-card bg-surface border border-border shadow-card space-y-3 sm:space-y-0 sm:flex sm:items-center sm:justify-between sm:gap-4">
+      <div className="p-3.5 sm:p-4 rounded-card bg-surface border border-border shadow-card flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
         {/* Search input */}
-        <div className="relative flex-1 min-w-[220px]">
+        <div className="relative w-full md:w-80">
           {isSearching ? (
             <Loader2 className="w-4 h-4 text-primary animate-spin absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           ) : (
@@ -168,8 +168,8 @@ export default function SessionsPage() {
         </div>
 
         {/* Dropdowns */}
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="w-[160px]">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto">
+          <div className="w-full sm:w-40">
             <SelectDropdown
               options={CONDITION_OPTIONS}
               value={selectedCondition}
@@ -180,7 +180,7 @@ export default function SessionsPage() {
             />
           </div>
 
-          <div className="w-[140px]">
+          <div className="w-full sm:w-36">
             <SelectDropdown
               options={STATUS_OPTIONS}
               value={selectedStatus}
@@ -191,7 +191,7 @@ export default function SessionsPage() {
             />
           </div>
 
-          <div className="flex items-center gap-1.5 w-[220px]">
+          <div className="flex items-center gap-1.5 w-full sm:w-56">
             <div className="flex-1">
               <SelectDropdown
                 options={SORT_OPTIONS}
@@ -226,7 +226,7 @@ export default function SessionsPage() {
               size="sm"
               onClick={handleResetFilters}
               title="Reset all filters"
-              className="text-textMuted hover:text-ink px-2.5"
+              className="text-textMuted hover:text-ink px-2.5 self-start sm:self-auto"
             >
               <RotateCcw className="w-3.5 h-3.5 mr-1" />
               <span>Reset</span>
@@ -235,8 +235,145 @@ export default function SessionsPage() {
         </div>
       </div>
 
-      {/* Sessions Table Container */}
-      <div className="rounded-card bg-surface border border-border shadow-card overflow-hidden">
+      {/* Mobile Card View (< 768px) */}
+      <div className="md:hidden space-y-3">
+        {isLoading && !responseData ? (
+          <div className="p-8 text-center text-xs text-textMuted rounded-card bg-surface border border-border">
+            Loading clinical encounter records...
+          </div>
+        ) : isError ? (
+          <div className="p-8 text-center text-xs text-semantic-danger rounded-card bg-surface border border-border">
+            Failed to load sessions: {(error as Error)?.message || 'Internal Error'}
+          </div>
+        ) : sessions.length === 0 ? (
+          <div className="p-8 text-center text-xs text-textMuted rounded-card bg-surface border border-border">
+            {isSearching ? 'Searching clinical encounters...' : 'No clinical sessions found matching your search or filters.'}
+          </div>
+        ) : (
+          sessions.map((session) => {
+            const patient = (typeof session.patientId === 'object' ? session.patientId : null) as IPatient | null;
+            const doctor = (typeof session.doctorId === 'object' ? session.doctorId : null) as IDoctor | null;
+
+            const patientName = patient?.name || 'Unknown Patient';
+            const patientAge = patient?.age ? `${patient.age} yrs` : '';
+            const patientGender = patient?.gender || '';
+
+            return (
+              <div
+                key={session._id}
+                className={cn(
+                  'p-4 rounded-card bg-surface border border-border shadow-card space-y-3 transition-all',
+                  isSearching && 'opacity-75'
+                )}
+              >
+                {/* Header: Avatar, Patient Name, StatusBadge, ActionMenu */}
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-full bg-primary-soft text-primary font-bold text-xs flex items-center justify-center flex-shrink-0 border border-primary/10">
+                      {getInitials(patientName)}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-bold text-ink text-sm leading-tight truncate">
+                        {patientName}
+                      </p>
+                      <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-textMuted">
+                        {patientAge && <span>{patientAge}</span>}
+                        {patientAge && patientGender && <span>•</span>}
+                        {patientGender && <span className="capitalize">{patientGender}</span>}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <StatusBadge status={session.status} />
+                    <ActionMenu
+                      items={[
+                        ...(session.status !== 'active'
+                          ? [
+                              {
+                                label: 'Set as Active',
+                                icon: <PlayCircle className="w-3.5 h-3.5 text-emerald-600" />,
+                                onClick: () => handleStatusChange(session._id, 'active'),
+                              },
+                            ]
+                          : []),
+                        ...(session.status !== 'completed'
+                          ? [
+                              {
+                                label: 'Mark as Completed',
+                                icon: <CheckCircle2 className="w-3.5 h-3.5 text-primary" />,
+                                onClick: () => handleStatusChange(session._id, 'completed'),
+                              },
+                            ]
+                          : []),
+                        ...(session.status !== 'cancelled'
+                          ? [
+                              {
+                                label: 'Cancel Session',
+                                icon: <XCircle className="w-3.5 h-3.5 text-amber-600" />,
+                                onClick: () => handleStatusChange(session._id, 'cancelled'),
+                              },
+                            ]
+                          : []),
+                        {
+                          label: 'Delete Session',
+                          icon: <Trash2 className="w-3.5 h-3.5 text-semantic-danger" />,
+                          variant: 'danger',
+                          onClick: () => setSessionToDelete(session),
+                        },
+                      ]}
+                    />
+                  </div>
+                </div>
+
+                {/* Attending Doctor & Condition */}
+                <div className="space-y-1.5 pt-1 text-xs">
+                  {doctor?.name ? (
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-textMuted flex items-center gap-1">
+                        <Stethoscope className="w-3.5 h-3.5 text-primary" />
+                        <span>Doctor:</span>
+                      </span>
+                      <span className="font-semibold text-ink">{doctor.name}</span>
+                      <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary-soft text-primary border border-primary/15">
+                        {doctor.specialization}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-[11px] text-textSubtle italic">Unassigned Practitioner</span>
+                  )}
+
+                  <div className="flex items-center gap-1.5 text-textSecondary font-medium">
+                    <Activity className="w-3.5 h-3.5 text-[#2c9a8b] flex-shrink-0" />
+                    <span className="truncate">{session.condition}</span>
+                  </div>
+
+                  {session.notes && (
+                    <p className="text-[11px] text-textMuted italic bg-surface-subtle p-2 rounded-control">
+                      {session.notes}
+                    </p>
+                  )}
+                </div>
+
+                {/* Footer: Appointment Date & Time */}
+                <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px]">
+                  <div className="flex items-center gap-1 text-ink font-semibold">
+                    <Clock className="w-3.5 h-3.5 text-primary" />
+                    <span>{session.appointmentAt || '10:00 AM'}</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-textMuted">
+                    <Calendar className="w-3.5 h-3.5 text-textSubtle" />
+                    <span>{formatDate(session.sessionDate || session.createdAt)}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      {/* Desktop / Laptop Sessions Table Container (md+) */}
+      <div className="hidden md:block rounded-card bg-surface border border-border shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -425,17 +562,17 @@ export default function SessionsPage() {
             </tbody>
           </table>
         </div>
+      </div>
 
-        {/* Pagination Controls */}
-        <div className="px-4 sm:px-6 pb-4">
-          <PaginationBar
-            currentPage={meta.page || 1}
-            totalPages={meta.totalPages || 1}
-            totalItems={meta.total || 0}
-            limit={meta.limit || 8}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
-        </div>
+      {/* Pagination Controls (Shared for mobile and desktop) */}
+      <div className="rounded-card bg-surface border border-border shadow-card p-3.5 sm:px-6">
+        <PaginationBar
+          currentPage={meta.page || 1}
+          totalPages={meta.totalPages || 1}
+          totalItems={meta.total || 0}
+          limit={meta.limit || 8}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
       </div>
 
       {/* Modals */}

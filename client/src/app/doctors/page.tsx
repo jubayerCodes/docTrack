@@ -89,7 +89,7 @@ export default function DoctorsPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
           <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-primary mb-1">
             Care Network
@@ -105,7 +105,7 @@ export default function DoctorsPage() {
         <Button
           onClick={openCreateDoctor}
           variant="primary"
-          className="self-start sm:self-auto"
+          className="w-full sm:w-auto self-stretch sm:self-auto"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>Add Doctor</span>
@@ -113,7 +113,7 @@ export default function DoctorsPage() {
       </div>
 
       {/* Filter & Search Toolbar */}
-      <div className="p-3.5 rounded-card bg-surface border border-border shadow-card flex flex-col md:flex-row items-center justify-between gap-3">
+      <div className="p-3.5 rounded-card bg-surface border border-border shadow-card flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
         {/* Search Input */}
         <div className="relative w-full md:w-80">
           {isSearching ? (
@@ -134,8 +134,8 @@ export default function DoctorsPage() {
         </div>
 
         {/* Dropdowns */}
-        <div className="flex items-center gap-2.5 w-full md:w-auto">
-          <div className="w-full md:w-48">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto">
+          <div className="w-full sm:w-48">
             <SelectDropdown
               options={SPECIALIZATION_FILTERS}
               value={selectedSpecialty}
@@ -146,7 +146,7 @@ export default function DoctorsPage() {
             />
           </div>
 
-          <div className="w-full md:w-56 flex items-center gap-1.5">
+          <div className="w-full sm:w-56 flex items-center gap-1.5">
             <div className="flex-1">
               <SelectDropdown
                 options={SORT_OPTIONS}
@@ -174,8 +174,137 @@ export default function DoctorsPage() {
         </div>
       </div>
 
-      {/* Doctors Table Container */}
-      <div className="rounded-card bg-surface border border-border shadow-card overflow-hidden">
+      {/* Mobile Card View (< 768px) */}
+      <div className="md:hidden space-y-3">
+        {isLoading && !data ? (
+          <div className="p-8 text-center text-xs text-textMuted rounded-card bg-surface border border-border">
+            Loading doctors directory...
+          </div>
+        ) : isError ? (
+          <div className="p-8 text-center text-xs text-semantic-danger rounded-card bg-surface border border-border">
+            Failed to load doctors: {(error as Error)?.message || 'Internal Error'}
+          </div>
+        ) : doctors.length === 0 ? (
+          <div className="p-8 text-center text-xs text-textMuted rounded-card bg-surface border border-border">
+            {isSearching ? 'Searching doctors directory...' : 'No doctors found matching your search or filters.'}
+          </div>
+        ) : (
+          doctors.map((doctor) => {
+            const activePatients = doctor.activePatientsCount || 0;
+
+            return (
+              <div
+                key={doctor._id}
+                className={cn(
+                  'p-4 rounded-card bg-surface border border-border shadow-card space-y-3 transition-all',
+                  isSearching && 'opacity-75'
+                )}
+              >
+                {/* Header: Avatar, Name, Specialization, Action Menu */}
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-full bg-primary-soft text-primary font-bold text-xs flex items-center justify-center flex-shrink-0 border border-primary/10">
+                      {getInitials(doctor.name)}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-bold text-ink text-sm leading-tight truncate">
+                        {doctor.name}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-1.5 mt-1">
+                        <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary-soft text-primary">
+                          {doctor.specialization}
+                        </span>
+                        <span className="text-[10px] text-textMuted truncate">
+                          {doctor.hospital}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ActionMenu
+                    items={[
+                      {
+                        label: 'View Patients',
+                        icon: <UserPlus className="w-3.5 h-3.5 text-primary" />,
+                        onClick: () =>
+                          openAssignedPatients({
+                            id: doctor._id,
+                            name: doctor.name,
+                            specialization: doctor.specialization,
+                          }),
+                      },
+                      {
+                        label: 'Assign Patient',
+                        icon: <CalendarPlus className="w-3.5 h-3.5 text-[#2c9a8b]" />,
+                        onClick: () =>
+                          openAssignPatient({
+                            id: doctor._id,
+                            name: doctor.name,
+                            specialization: doctor.specialization,
+                          }),
+                      },
+                      {
+                        label: 'Edit Profile',
+                        icon: <Edit3 className="w-3.5 h-3.5 text-textMuted" />,
+                        onClick: () => alert(`Edit profile for ${doctor.name}`),
+                      },
+                      {
+                        label: 'Delete Doctor',
+                        icon: <Trash2 className="w-3.5 h-3.5 text-semantic-danger" />,
+                        variant: 'danger',
+                        onClick: () => setDoctorToDelete(doctor),
+                      },
+                    ]}
+                  />
+                </div>
+
+                {/* Contact & Active Caseload Row */}
+                <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="flex flex-wrap items-center gap-3 text-[11px]">
+                    {doctor.phone && (
+                      <a
+                        href={`tel:${doctor.phone}`}
+                        className="text-textSecondary hover:text-primary flex items-center gap-1 font-medium"
+                      >
+                        <Phone className="w-3 h-3 text-textMuted" />
+                        <span>{doctor.phone}</span>
+                      </a>
+                    )}
+                    {doctor.email && (
+                      <a
+                        href={`mailto:${doctor.email}`}
+                        className="text-textMuted hover:text-primary flex items-center gap-1"
+                      >
+                        <Mail className="w-3 h-3 text-textMuted" />
+                        <span className="truncate max-w-[150px]">{doctor.email}</span>
+                      </a>
+                    )}
+                  </div>
+
+                  {/* Active caseload count button */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openAssignedPatients({
+                        id: doctor._id,
+                        name: doctor.name,
+                        specialization: doctor.specialization,
+                      })
+                    }
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-primary hover:underline bg-primary-soft/60 px-2.5 py-1 rounded-control ml-auto"
+                  >
+                    <span>{activePatients} Patients</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      {/* Desktop / Laptop Doctors Table Container (md+) */}
+      <div className="hidden md:block rounded-card bg-surface border border-border shadow-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -331,17 +460,17 @@ export default function DoctorsPage() {
             </tbody>
           </table>
         </div>
+      </div>
 
-        {/* Pagination Controls */}
-        <div className="px-4 sm:px-6 pb-4">
-          <PaginationBar
-            currentPage={meta.page || 1}
-            totalPages={meta.totalPages || 1}
-            totalItems={meta.total || 0}
-            limit={meta.limit || 8}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
-        </div>
+      {/* Pagination Controls (Shared for both mobile and desktop) */}
+      <div className="rounded-card bg-surface border border-border shadow-card p-3.5 sm:px-6">
+        <PaginationBar
+          currentPage={meta.page || 1}
+          totalPages={meta.totalPages || 1}
+          totalItems={meta.total || 0}
+          limit={meta.limit || 8}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
       </div>
 
       {/* Modals */}

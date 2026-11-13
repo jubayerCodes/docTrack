@@ -58,12 +58,13 @@ export const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-border">
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-2.5 pt-3 border-t border-border">
           <Button
             type="button"
             variant="secondary"
             onClick={onClose}
             disabled={isLoading}
+            className="w-full sm:w-auto"
           >
             {cancelText}
           </Button>
@@ -72,6 +73,7 @@ export const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
             variant="destructive"
             onClick={onConfirm}
             isLoading={isLoading}
+            className="w-full sm:w-auto"
           >
             <Trash2 className="w-3.5 h-3.5 mr-1" />
             {confirmText}

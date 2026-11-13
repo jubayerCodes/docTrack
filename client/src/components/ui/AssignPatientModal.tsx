@@ -274,11 +274,11 @@ export const AssignPatientModal: React.FC = () => {
         </div>
 
         {/* Footer Actions */}
-        <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-border">
-          <Button type="button" variant="secondary" onClick={closeAssignPatient}>
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-2.5 pt-3 border-t border-border">
+          <Button type="button" variant="secondary" onClick={closeAssignPatient} className="w-full sm:w-auto">
             Cancel
           </Button>
-          <Button type="submit" variant="primary" isLoading={assignSession.isPending}>
+          <Button type="submit" variant="primary" isLoading={assignSession.isPending} className="w-full sm:w-auto">
             Assign Session
           </Button>
         </div>

@@ -94,20 +94,21 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
           <Button
             variant="outline"
             size="sm"
             onClick={() => refetch()}
             isLoading={isFetching}
             title="Refresh analytics data"
+            className="flex-1 sm:flex-initial"
           >
             <RotateCcw className="w-3.5 h-3.5 mr-1" />
             <span>Sync Live Data</span>
           </Button>
 
-          <Link href="/doctors">
-            <Button variant="primary" size="sm">
+          <Link href="/doctors" className="flex-1 sm:flex-initial">
+            <Button variant="primary" size="sm" className="w-full">
               <Stethoscope className="w-3.5 h-3.5 mr-1" />
               <span>Doctor Directory</span>
               <ArrowRight className="w-3.5 h-3.5 ml-1" />
@@ -117,7 +118,7 @@ export default function DashboardPage() {
       </div>
 
       {/* KPI Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* Card 1: Total Doctors */}
         <div className="p-4 sm:p-5 rounded-card bg-surface border border-border shadow-card hover:border-primary/30 transition-all flex flex-col justify-between">
           <div className="flex items-center justify-between">
@@ -211,9 +212,9 @@ export default function DashboardPage() {
       </div>
 
       {/* Middle Row: Caseload Bar Chart & Specialty Donut Chart */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 min-w-0">
         {/* Top Doctors Caseload Bar Chart */}
-        <div className="lg:col-span-7 p-5 rounded-card bg-surface border border-border shadow-card flex flex-col justify-between">
+        <div className="lg:col-span-7 p-4 sm:p-5 rounded-card bg-surface border border-border shadow-card flex flex-col justify-between min-w-0">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-sm font-heading font-bold text-ink">
@@ -228,7 +229,7 @@ export default function DashboardPage() {
             </span>
           </div>
 
-          <div className="h-64 sm:h-72 w-full pt-2">
+          <div className="h-64 sm:h-72 w-full pt-2 min-w-0">
             {isLoading ? (
               <div className="h-full flex items-center justify-center text-xs text-textMuted">
                 Loading aggregation metrics...
@@ -291,7 +292,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Specialization Distribution Donut */}
-        <div className="lg:col-span-5 p-5 rounded-card bg-surface border border-border shadow-card flex flex-col justify-between">
+        <div className="lg:col-span-5 p-4 sm:p-5 rounded-card bg-surface border border-border shadow-card flex flex-col justify-between min-w-0">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-sm font-heading font-bold text-ink">
@@ -306,7 +307,7 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="h-64 sm:h-72 w-full flex items-center justify-center">
+          <div className="h-64 sm:h-72 w-full flex items-center justify-center min-w-0">
             {isLoading ? (
               <div className="text-xs text-textMuted">Loading breakdown...</div>
             ) : specialtyData.length === 0 ? (
@@ -359,11 +360,11 @@ export default function DashboardPage() {
       </div>
 
       {/* Bottom Row: 14-Day Encounter Timeline Area Chart */}
-      <div className="p-5 rounded-card bg-surface border border-border shadow-card">
+      <div className="p-4 sm:p-5 rounded-card bg-surface border border-border shadow-card min-w-0">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
           <div>
             <h2 className="text-sm font-heading font-bold text-ink">
-              Encounter Volume & Consultation Trends
+              Encounter Volume &amp; Consultation Trends
             </h2>
             <p className="text-xs text-textSecondary">
               Daily volume of completed clinical consultations vs scheduled upcoming appointments.
@@ -382,7 +383,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="h-64 sm:h-72 w-full pt-2">
+        <div className="h-64 sm:h-72 w-full pt-2 min-w-0">
           {isLoading ? (
             <div className="h-full flex items-center justify-center text-xs text-textMuted">
               Loading temporal trends...

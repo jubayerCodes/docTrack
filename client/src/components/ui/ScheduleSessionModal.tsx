@@ -325,11 +325,11 @@ export const ScheduleSessionModal: React.FC = () => {
         </div>
 
         {/* Form Actions */}
-        <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-border">
-          <Button type="button" variant="secondary" onClick={handleClose}>
+        <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-2.5 pt-4 border-t border-border">
+          <Button type="button" variant="secondary" onClick={handleClose} className="w-full sm:w-auto">
             Cancel
           </Button>
-          <Button type="submit" variant="primary" isLoading={assignSession.isPending}>
+          <Button type="submit" variant="primary" isLoading={assignSession.isPending} className="w-full sm:w-auto">
             Schedule Session
           </Button>
         </div>
