@@ -133,9 +133,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       router.replace('/doctors');
       return { success: true };
-    } catch (err: any) {
+    } catch (err: unknown) {
       setIsLoading(false);
-      return { success: false, error: err?.message || 'Login failed unexpectedly. Please try again.' };
+      const message = err instanceof Error ? err.message : 'Login failed unexpectedly. Please try again.';
+      return { success: false, error: message };
     }
   };
 

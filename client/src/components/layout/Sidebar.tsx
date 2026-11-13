@@ -1,10 +1,19 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Stethoscope, UserCheck, ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  LayoutDashboard,
+  Stethoscope,
+  UserCheck,
+  ChevronLeft,
+  ChevronRight,
+  LogOut,
+  Loader2,
+} from 'lucide-react';
 import { useUIStore } from '@/store/useUIStore';
+import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 
 interface NavItem {
@@ -23,6 +32,19 @@ const navItems: NavItem[] = [
 export const Sidebar: React.FC = () => {
   const pathname = usePathname();
   const { sidebarCollapsed, toggleSidebar } = useUIStore();
+  const { logout } = useAuth();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      await logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
 
   return (
     <aside
@@ -93,7 +115,7 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
 
-      {/* Footer Info & Collapse Toggle */}
+      {/* Footer Info, Logout Button & Collapse Toggle */}
       <div className="p-3 border-t border-[#292a44] space-y-2">
         {!sidebarCollapsed && (
           <div className="bg-[#18192b] rounded-lg p-2.5 border border-[#262740]">
@@ -105,6 +127,34 @@ export const Sidebar: React.FC = () => {
           </div>
         )}
 
+        {/* Primary Logout Button */}
+        <button
+          onClick={handleLogout}
+          type="button"
+          disabled={isLoggingOut}
+          title={sidebarCollapsed ? 'Logout' : undefined}
+          aria-label="Logout of DocTrack"
+          className={cn(
+            'w-full flex items-center rounded-lg text-xs font-medium transition-all group border border-transparent',
+            'text-[#999ba8] hover:text-rose-300 hover:bg-rose-500/10 hover:border-rose-500/20 active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none',
+            sidebarCollapsed
+              ? 'h-9 justify-center'
+              : 'h-9 px-3 gap-2.5 justify-start'
+          )}
+        >
+          {isLoggingOut ? (
+            <Loader2 className="w-4 h-4 flex-shrink-0 text-rose-400 animate-spin" />
+          ) : (
+            <LogOut className="w-4 h-4 flex-shrink-0 text-[#777b8d] group-hover:text-rose-400 transition-colors" />
+          )}
+          {!sidebarCollapsed && (
+            <span className="truncate">
+              {isLoggingOut ? 'Logging out...' : 'Logout'}
+            </span>
+          )}
+        </button>
+
+        {/* Sidebar Collapse/Expand Toggle */}
         <button
           onClick={toggleSidebar}
           type="button"

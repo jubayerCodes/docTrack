@@ -3,9 +3,25 @@
 import React from 'react';
 import { PanelLeft, Search, Bell } from 'lucide-react';
 import { useUIStore } from '@/store/useUIStore';
+import { useAuth } from '@/hooks/useAuth';
 
 export const TopBar: React.FC = () => {
   const { toggleSidebar } = useUIStore();
+  const { user } = useAuth();
+
+  // Compute initials and displayName
+  const displayName =
+    (user?.user_metadata?.name as string) ||
+    (user?.email ? user.email.split('@')[0] : 'Admin System');
+
+  const initials = displayName
+    .split(' ')
+    .filter(Boolean)
+    .map((part) => part[0]?.toUpperCase())
+    .slice(0, 2)
+    .join('') || 'AD';
+
+  const userRole = (user?.user_metadata?.role as string) || 'Chief Administrator';
 
   return (
     <header className="sticky top-0 z-30 h-14 bg-surface border-b border-border px-4 sm:px-6 flex items-center justify-between">
@@ -55,14 +71,21 @@ export const TopBar: React.FC = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-primary absolute top-2 right-2" />
         </button>
 
-        {/* Administrator Avatar */}
+        {/* Administrator Profile Details */}
         <div className="flex items-center gap-2 pl-2 border-l border-border">
-          <div className="w-8 h-8 rounded-full bg-primary-soft text-primary font-bold text-xs flex items-center justify-center border border-primary/20">
-            AD
+          <div
+            title={user?.email || 'Administrator'}
+            className="w-8 h-8 rounded-full bg-primary-soft text-primary font-bold text-xs flex items-center justify-center border border-primary/20 select-none"
+          >
+            {initials}
           </div>
           <div className="hidden lg:block text-left">
-            <p className="text-xs font-bold text-ink leading-tight">Admin System</p>
-            <p className="text-[10px] text-textMuted leading-tight">Chief Administrator</p>
+            <p className="text-xs font-bold text-ink leading-tight capitalize truncate max-w-[130px]">
+              {displayName}
+            </p>
+            <p className="text-[10px] text-textMuted leading-tight capitalize truncate max-w-[130px]">
+              {userRole}
+            </p>
           </div>
         </div>
       </div>
