@@ -5,9 +5,10 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "rimraf dist && tsc",
+    "build": "tsc",
     "start": "node dist/server.js",
-    "seed": "ts-node-dev --transpile-only src/seed/seeder.ts"
+    "seed": "ts-node-dev --transpile-only src/seed/seeder.ts",
+    "test:cases": "ts-node-dev --transpile-only src/test/run_8_test_cases.ts"
   },
   "keywords": [
     "doctrack",
@@ -33,7 +34,6 @@
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.14.12",
-    "rimraf": "^5.0.7",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.5.4"
   }

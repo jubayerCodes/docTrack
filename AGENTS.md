@@ -33,3 +33,12 @@ This project has an active graphify knowledge graph located at `graphify-out/`.
 - **Continuous Graph Maintenance**: After creating, modifying, or refactoring code files, run `graphify update .` to keep `graphify-out/graph.json` synchronized (local AST extraction, 0 API cost).
 - **Git Commit Sync**: Git `post-commit` and `post-checkout` hooks are installed to automatically update the knowledge graph on git commits.
 
+---
+
+## 5. Playwright MCP Tool Restriction
+
+- **Explicit User Command Required**: Do NOT use the Playwright MCP server or any of its tools (`browser_*`) without a direct, explicit instruction from the user.
+- **Testing Only**: When explicitly commanded, the Playwright MCP is reserved strictly for testing and verification workflows.
+- **No Autonomous Invocations**: Never proactively launch, navigate, or test via Playwright tools unless specifically instructed by the user.
+
+
