@@ -12,8 +12,11 @@ export const getSessions = catchAsync(async (req: Request, res: Response) => {
     statusCode: 200,
     success: true,
     message: 'Sessions retrieved successfully',
-    meta: {
+    meta: result.meta || {
+      page: Number(req.query.page) || 1,
+      limit: Number(req.query.limit) || 10,
       total: result.count,
+      totalPages: Math.ceil(result.count / (Number(req.query.limit) || 10)) || 1,
     },
     data: result.sessions,
   });

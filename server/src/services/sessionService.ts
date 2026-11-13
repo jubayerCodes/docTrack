@@ -3,6 +3,7 @@ import { PatientSession, IPatientSession } from '../models/PatientSession';
 import { Patient } from '../models/Patient';
 import { Doctor } from '../models/Doctor';
 import { AppError } from '../utils/AppError';
+import { escapeRegex } from '../utils/escapeRegex';
 
 export interface IAssignSessionPayload {
   doctorId?: string;
@@ -144,23 +145,93 @@ export const updateSessionInDB = async (sessionId: string, payload: Partial<IPat
 };
 
 export const getSessionsFromDB = async (queryParams: Record<string, any>) => {
-  const filter: any = {};
+  const page = Number(queryParams.page) || 1;
+  const limit = Number(queryParams.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  const q = (queryParams.q || '').trim();
+  const status = (queryParams.status || '').trim();
+  const condition = (queryParams.condition || '').trim();
+
+  const match: any = {};
   if (queryParams.doctorId && mongoose.Types.ObjectId.isValid(queryParams.doctorId)) {
-    filter.doctorId = queryParams.doctorId;
+    match.doctorId = new mongoose.Types.ObjectId(queryParams.doctorId);
   }
   if (queryParams.patientId && mongoose.Types.ObjectId.isValid(queryParams.patientId)) {
-    filter.patientId = queryParams.patientId;
+    match.patientId = new mongoose.Types.ObjectId(queryParams.patientId);
   }
-  if (queryParams.status) {
-    filter.status = queryParams.status;
+  if (status && status !== 'All Statuses') {
+    match.status = status;
+  }
+  if (condition && condition !== 'All Conditions') {
+    match.condition = { $regex: escapeRegex(condition), $options: 'i' };
   }
 
-  const sessions = await PatientSession.find(filter)
-    .populate('patientId', 'name phone email age gender')
-    .populate('doctorId', 'name specialization hospital')
-    .sort({ sessionDate: -1 });
+  const pipeline: any[] = [
+    { $match: match },
+    {
+      $lookup: {
+        from: 'patients',
+        localField: 'patientId',
+        foreignField: '_id',
+        as: 'patientId',
+      },
+    },
+    { $unwind: { path: '$patientId', preserveNullAndEmptyArrays: true } },
+    {
+      $lookup: {
+        from: 'doctors',
+        localField: 'doctorId',
+        foreignField: '_id',
+        as: 'doctorId',
+      },
+    },
+    { $unwind: { path: '$doctorId', preserveNullAndEmptyArrays: true } },
+  ];
 
-  return { count: sessions.length, sessions };
+  if (q) {
+    const safeQ = escapeRegex(q);
+    pipeline.push({
+      $match: {
+        $or: [
+          { 'patientId.name': { $regex: safeQ, $options: 'i' } },
+          { 'patientId.phone': { $regex: safeQ, $options: 'i' } },
+          { 'patientId.email': { $regex: safeQ, $options: 'i' } },
+          { 'doctorId.name': { $regex: safeQ, $options: 'i' } },
+          { 'doctorId.specialization': { $regex: safeQ, $options: 'i' } },
+          { condition: { $regex: safeQ, $options: 'i' } },
+          { notes: { $regex: safeQ, $options: 'i' } },
+        ],
+      },
+    });
+  }
+
+  pipeline.push({
+    $facet: {
+      metadata: [{ $count: 'total' }],
+      data: [
+        { $sort: { sessionDate: -1, createdAt: -1 } },
+        { $skip: skip },
+        { $limit: limit },
+      ],
+    },
+  });
+
+  const result = await PatientSession.aggregate(pipeline);
+  const total = result[0]?.metadata[0]?.total || 0;
+  const sessions = result[0]?.data || [];
+
+  return {
+    count: total,
+    total,
+    meta: {
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit) || 1,
+    },
+    sessions,
+  };
 };
 
 export const getSessionByIdFromDB = async (sessionId: string) => {

@@ -8,107 +8,81 @@ export interface IPatientQueryParams {
   page?: number;
   limit?: number;
   q?: string;
+  gender?: string;
+  sort?: string;
   condition?: string;
   status?: string;
 }
 
 export const getAllPatientsFromDB = async (queryParams: IPatientQueryParams) => {
-  const page = queryParams.page || 1;
-  const limit = queryParams.limit || 10;
+  const page = Number(queryParams.page) || 1;
+  const limit = Number(queryParams.limit) || 10;
   const skip = (page - 1) * limit;
 
   const q = (queryParams.q || '').trim();
-  const condition = (queryParams.condition || '').trim();
-  const status = (queryParams.status || '').trim();
+  const gender = (queryParams.gender || '').trim();
+  const sort = (queryParams.sort || 'newest').trim();
 
-  const pipeline: any[] = [];
+  const match: any = {};
 
   // Filter patients by name, phone, or email if search query is provided
   if (q) {
     const safeQ = escapeRegex(q);
-    pipeline.push({
-      $match: {
-        $or: [
-          { name: { $regex: safeQ, $options: 'i' } },
-          { phone: { $regex: safeQ, $options: 'i' } },
-          { email: { $regex: safeQ, $options: 'i' } },
+    match.$or = [
+      { name: { $regex: safeQ, $options: 'i' } },
+      { phone: { $regex: safeQ, $options: 'i' } },
+      { email: { $regex: safeQ, $options: 'i' } },
+    ];
+  }
+
+  // Filter by demographic gender if specified
+  if (gender && gender !== 'All Genders') {
+    match.gender = gender;
+  }
+
+  // Sorting logic
+  let sortCriteria: any = { createdAt: -1 };
+  if (sort === 'alpha') {
+    sortCriteria = { name: 1 };
+  } else if (sort === 'oldest') {
+    sortCriteria = { createdAt: 1 };
+  }
+
+  const pipeline: any[] = [
+    { $match: match },
+    // Lookup associated clinical sessions to compute totalSessions count
+    {
+      $lookup: {
+        from: 'patientsessions',
+        localField: '_id',
+        foreignField: 'patientId',
+        as: 'sessions',
+      },
+    },
+    {
+      $facet: {
+        metadata: [{ $count: 'total' }],
+        data: [
+          { $sort: sortCriteria },
+          { $skip: skip },
+          { $limit: limit },
+          {
+            $project: {
+              _id: 1,
+              name: 1,
+              phone: 1,
+              email: 1,
+              age: 1,
+              gender: 1,
+              createdAt: 1,
+              updatedAt: 1,
+              totalSessions: { $size: '$sessions' },
+            },
+          },
         ],
       },
-    });
-  }
-
-  // Lookup latest clinical session for each patient
-  pipeline.push({
-    $lookup: {
-      from: 'patientsessions',
-      let: { pId: '$_id' },
-      pipeline: [
-        { $match: { $expr: { $eq: ['$patientId', '$$pId'] } } },
-        { $sort: { sessionDate: -1, createdAt: -1 } },
-        { $limit: 1 },
-        {
-          $lookup: {
-            from: 'doctors',
-            localField: 'doctorId',
-            foreignField: '_id',
-            as: 'doctor',
-          },
-        },
-        { $unwind: { path: '$doctor', preserveNullAndEmptyArrays: true } },
-      ],
-      as: 'latestSession',
     },
-  });
-
-  pipeline.push({
-    $unwind: { path: '$latestSession', preserveNullAndEmptyArrays: true },
-  });
-
-  // Apply condition and status filters on the joined session
-  const matchSessionFilters: any = {};
-  if (condition && condition !== 'All Conditions') {
-    matchSessionFilters['latestSession.condition'] = { $regex: escapeRegex(condition), $options: 'i' };
-  }
-  if (status && status !== 'All Statuses') {
-    matchSessionFilters['latestSession.status'] = status;
-  }
-
-  if (Object.keys(matchSessionFilters).length > 0) {
-    pipeline.push({ $match: matchSessionFilters });
-  }
-
-  // Facet for pagination & metadata
-  pipeline.push({
-    $facet: {
-      metadata: [{ $count: 'total' }],
-      data: [
-        { $sort: { createdAt: -1 } },
-        { $skip: skip },
-        { $limit: limit },
-        {
-          $project: {
-            _id: 1,
-            name: 1,
-            phone: 1,
-            email: 1,
-            age: 1,
-            gender: 1,
-            createdAt: 1,
-            assignedDoctor: {
-              id: '$latestSession.doctor._id',
-              name: '$latestSession.doctor.name',
-              specialization: '$latestSession.doctor.specialization',
-            },
-            currentCondition: '$latestSession.condition',
-            appointmentAt: '$latestSession.appointmentAt',
-            sessionDate: '$latestSession.sessionDate',
-            status: { $ifNull: ['$latestSession.status', 'scheduled'] },
-            sessionId: '$latestSession._id',
-          },
-        },
-      ],
-    },
-  });
+  ];
 
   const result = await Patient.aggregate(pipeline);
   const total = result[0]?.metadata[0]?.total || 0;

@@ -17,6 +17,7 @@ export interface IPatient {
   email?: string;
   age: number;
   gender: string;
+  totalSessions?: number;
   assignedDoctor?: {
     id: string;
     name: string;
