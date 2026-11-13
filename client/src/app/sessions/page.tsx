@@ -252,6 +252,12 @@ export default function SessionsPage() {
                                 <span>{patient.phone}</span>
                               </p>
                             )}
+                            {patient?.email && (
+                              <p className="text-[10px] text-textMuted flex items-center gap-1 mt-0.5">
+                                <Mail className="w-2.5 h-2.5 text-textMuted" />
+                                <span className="truncate max-w-[140px]">{patient.email}</span>
+                              </p>
+                            )}
                           </div>
                         </div>
                       </td>

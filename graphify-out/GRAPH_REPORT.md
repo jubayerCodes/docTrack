@@ -1,16 +1,16 @@
 # Graph Report - DocTrack  (2026-11-13)
 
 ## Corpus Check
-- 84 files · ~36,821 words
+- 84 files · ~36,768 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 513 nodes · 913 edges · 28 communities (21 shown, 7 thin omitted)
+- 512 nodes · 912 edges · 27 communities (20 shown, 7 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f4c69044`
+- Built from commit: `27d2c483`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,7 +20,6 @@
 - sendResponse
 - devDependencies
 - dependencies
-- server/package.json
 - compilerOptions
 - compilerOptions
 - useAnalytics.ts
@@ -31,7 +30,7 @@
 - postcss.config.mjs
 - next.config.mjs
 - tailwind.config.ts
-- dependencies
+- server/package.json
 - 2. Agreed Technical Decisions
 - DocTrack Design System
 - Doctor Tracker (DocTrack) — Healthcare Administration & Clinical Caseload Portal
@@ -69,19 +68,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (28 total, 7 thin omitted)
+## Communities (27 total, 7 thin omitted)
 
 ### Community 0 - "doctors/page.tsx"
 Cohesion: 0.08
 Nodes (65): DoctorsPage(), SORT_OPTIONS, SPECIALIZATION_FILTERS, GENDER_OPTIONS, PatientsPage(), SORT_OPTIONS, CONDITION_OPTIONS, SessionsPage() (+57 more)
 
 ### Community 1 - "sessionService.ts"
-Cohesion: 0.08
-Nodes (40): mongoose, Doctor, DoctorSchema, IDoctor, IPatient, Patient, PatientSchema, IPatientSession (+32 more)
+Cohesion: 0.07
+Nodes (46): doctrack, healthcare, mongoose, typescript, keywords, Doctor, DoctorSchema, IDoctor (+38 more)
 
 ### Community 2 - "sendResponse"
-Cohesion: 0.06
-Nodes (49): express, app, createApp(), connectDB(), supabase, supabaseAdmin, AnalyticsController, getAnalyticsSummary (+41 more)
+Cohesion: 0.07
+Nodes (47): express, app, createApp(), connectDB(), supabase, supabaseAdmin, AnalyticsController, getAnalyticsSummary (+39 more)
 
 ### Community 3 - "devDependencies"
 Cohesion: 0.08
@@ -91,17 +90,13 @@ Nodes (25): devDependencies, eslint, eslint-config-next, postcss, tailwindcss, @
 Cohesion: 0.09
 Nodes (23): dependencies, clsx, lucide-react, next, react, react-dom, recharts, @supabase/ssr (+15 more)
 
-### Community 5 - "server/package.json"
-Cohesion: 0.10
-Nodes (19): doctrack, healthcare, typescript, author, description, devDependencies, ts-node-dev, keywords (+11 more)
-
 ### Community 6 - "compilerOptions"
 Cohesion: 0.08
 Nodes (25): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+17 more)
 
 ### Community 7 - "compilerOptions"
-Cohesion: 0.10
-Nodes (19): dist, ES2022, src/**/*, src/test/**/*, compilerOptions, esModuleInterop, forceConsistentCasingInFileNames, lib (+11 more)
+Cohesion: 0.11
+Nodes (18): dist, ES2022, src/**/*, compilerOptions, esModuleInterop, forceConsistentCasingInFileNames, lib, module (+10 more)
 
 ### Community 8 - "useAnalytics.ts"
 Cohesion: 0.13
@@ -119,9 +114,9 @@ Nodes (4): ITestResult, logResult(), results, runTests()
 Cohesion: 0.50
 Nodes (3): extends, next/core-web-vitals, next/typescript
 
-### Community 17 - "dependencies"
-Cohesion: 0.07
-Nodes (27): cookie-parser, cors, dotenv, express, jsonwebtoken, mongoose, dependencies, cookie-parser (+19 more)
+### Community 17 - "server/package.json"
+Cohesion: 0.05
+Nodes (42): cookie-parser, cors, dotenv, express, jsonwebtoken, mongoose, author, dependencies (+34 more)
 
 ### Community 18 - "2. Agreed Technical Decisions"
 Cohesion: 0.08
@@ -148,24 +143,24 @@ Cohesion: 0.50
 Nodes (3): Deploy on Vercel, Getting Started, Learn More
 
 ## Knowledge Gaps
-- **231 isolated node(s):** `next/core-web-vitals`, `next/typescript`, `nextConfig`, `name`, `version` (+226 more)
+- **230 isolated node(s):** `next/core-web-vitals`, `next/typescript`, `nextConfig`, `name`, `version` (+225 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `keywords` connect `server/package.json` to `sessionService.ts`, `sendResponse`?**
+- **Why does `keywords` connect `sessionService.ts` to `server/package.json`, `sendResponse`?**
   _High betweenness centrality (0.044) - this node is a cross-community bridge._
-- **Why does `express` connect `sendResponse` to `server/package.json`?**
-  _High betweenness centrality (0.030) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `server/package.json`?**
-  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+- **Why does `express` connect `sendResponse` to `sessionService.ts`?**
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `mongoose` connect `sessionService.ts` to `sendResponse`?**
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
 - **What connects `next/core-web-vitals`, `next/typescript`, `nextConfig` to the rest of the system?**
-  _231 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _230 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `doctors/page.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.0766541822721598 - nodes in this community are weakly interconnected._
 - **Should `sessionService.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.0784313725490196 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06641604010025062 - nodes in this community are weakly interconnected._
 - **Should `sendResponse` be split into smaller, more focused modules?**
-  _Cohesion score 0.06436487638533675 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0673903211216644 - nodes in this community are weakly interconnected._

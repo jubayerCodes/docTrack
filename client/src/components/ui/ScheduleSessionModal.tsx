@@ -74,11 +74,10 @@ export const ScheduleSessionModal: React.FC = () => {
         setSelectedPatientId(scheduleSessionContext.patientId);
         setActiveTab('existing');
       }
-    } else if (isScheduleSessionOpen) {
-      if (doctorOptions.length > 0 && !selectedDoctorId) {
-        setSelectedDoctorId(doctorOptions[0].value);
-      }
+    } else if (isScheduleSessionOpen && doctorOptions.length > 0) {
+      setSelectedDoctorId((prev) => prev || doctorOptions[0].value);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isScheduleSessionOpen, scheduleSessionContext, doctorOptions.length]);
 
   if (!isScheduleSessionOpen) return null;
