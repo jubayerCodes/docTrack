@@ -43,16 +43,17 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
   }
 
   return (
-    <div className="min-h-screen bg-appBackground text-ink">
+    <div className="min-h-screen bg-appBackground text-ink flex flex-col">
       <Sidebar />
       <div
         className={cn(
           'flex flex-col min-h-screen transition-all duration-200',
-          sidebarCollapsed ? 'ml-16' : 'ml-[220px]'
+          'ml-0',
+          sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-[220px]'
         )}
       >
         <TopBar />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1600px] w-full mx-auto">
+        <main className="flex-1 p-3.5 sm:p-5 lg:p-8 max-w-[1600px] w-full mx-auto min-w-0">
           {children}
         </main>
       </div>

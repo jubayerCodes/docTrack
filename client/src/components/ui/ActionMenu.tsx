@@ -34,10 +34,16 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ items, ariaLabel = 'Acti
       const menuHeight = items.length * 36 + 16;
       const spaceBelow = window.innerHeight - rect.bottom;
       const openUpwards = spaceBelow < menuHeight && rect.top > menuHeight;
+      const menuWidth = 176;
+
+      const calculatedLeft = Math.min(
+        Math.max(8, rect.right - menuWidth),
+        typeof window !== 'undefined' ? window.innerWidth - menuWidth - 8 : 12
+      );
 
       setCoords({
-        top: openUpwards ? rect.top - menuHeight : rect.bottom + 4,
-        left: Math.max(12, rect.right - 160),
+        top: openUpwards ? Math.max(8, rect.top - menuHeight) : rect.bottom + 4,
+        left: calculatedLeft,
         openUpwards,
       });
     }

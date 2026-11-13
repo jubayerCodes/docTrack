@@ -136,7 +136,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
       {/* Calendar Popover */}
       {isOpen && (
-        <div className="absolute left-0 top-[calc(100%+4px)] z-50 w-72 rounded-control bg-surface border border-border shadow-dropdown p-3 animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute left-0 sm:left-auto right-auto sm:right-0 md:left-0 md:right-auto top-[calc(100%+4px)] z-50 w-72 max-w-[calc(100vw-2rem)] rounded-control bg-surface border border-border shadow-dropdown p-3 animate-in fade-in zoom-in-95 duration-150">
           {/* Header */}
           <div className="flex items-center justify-between mb-2 pb-2 border-b border-border">
             <span className="text-xs font-bold text-ink">

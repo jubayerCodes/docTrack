@@ -49,7 +49,7 @@ export const Modal: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-[#1a1b2d]/50 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
@@ -59,19 +59,21 @@ export const Modal: React.FC<ModalProps> = ({
       {/* Modal Dialog */}
       <div
         className={cn(
-          'relative w-full bg-surface rounded-modal border border-border shadow-modal p-6 sm:p-7 z-10 animate-in zoom-in-95 duration-200',
+          'relative w-full bg-surface rounded-modal border border-border shadow-modal z-10',
+          'max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-3rem)] flex flex-col my-auto',
+          'p-4 sm:p-6 md:p-7 animate-in zoom-in-95 duration-200',
           maxWidths[maxWidth]
         )}
       >
         {/* Header */}
-        <div className="flex items-start justify-between mb-5">
+        <div className="flex items-start justify-between mb-4 pb-1 flex-shrink-0">
           <div>
             {eyebrow && (
               <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-primary mb-1">
                 {eyebrow}
               </p>
             )}
-            <h2 className="text-lg sm:text-xl font-heading font-bold text-ink">
+            <h2 className="text-base sm:text-xl font-heading font-bold text-ink">
               {title}
             </h2>
             {description && (
@@ -80,15 +82,15 @@ export const Modal: React.FC<ModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-control flex items-center justify-center text-textMuted hover:text-ink hover:bg-surface-subtle transition-colors"
+            className="w-8 h-8 rounded-control flex items-center justify-center text-textMuted hover:text-ink hover:bg-surface-subtle transition-colors flex-shrink-0 ml-3"
             aria-label="Close modal"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Body */}
-        <div>{children}</div>
+        {/* Scrollable Body */}
+        <div className="flex-1 overflow-y-auto pr-1 -mr-1">{children}</div>
       </div>
     </div>
   );

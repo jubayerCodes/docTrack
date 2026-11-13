@@ -6,6 +6,11 @@ interface UIState {
   toggleSidebar: () => void;
   setSidebarCollapsed: (collapsed: boolean) => void;
 
+  // Mobile drawer state
+  mobileSidebarOpen: boolean;
+  toggleMobileSidebar: () => void;
+  setMobileSidebarOpen: (open: boolean) => void;
+
   // Doctor modal states
   isCreateDoctorOpen: boolean;
   openCreateDoctor: () => void;
@@ -53,6 +58,10 @@ export const useUIStore = create<UIState>((set) => ({
   sidebarCollapsed: false,
   toggleSidebar: () => set((state) => ({ sidebarCollapsed: !state.sidebarCollapsed })),
   setSidebarCollapsed: (collapsed: boolean) => set({ sidebarCollapsed: collapsed }),
+
+  mobileSidebarOpen: false,
+  toggleMobileSidebar: () => set((state) => ({ mobileSidebarOpen: !state.mobileSidebarOpen })),
+  setMobileSidebarOpen: (open: boolean) => set({ mobileSidebarOpen: open }),
 
   isCreateDoctorOpen: false,
   openCreateDoctor: () => set({ isCreateDoctorOpen: true }),

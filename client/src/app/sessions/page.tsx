@@ -15,6 +15,9 @@ import {
   PlayCircle,
   Phone,
   Mail,
+  Loader2,
+  ArrowUpNarrowWide,
+  ArrowDownNarrowWide,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { SelectDropdown } from '@/components/ui/SelectDropdown';
@@ -22,10 +25,12 @@ import { PaginationBar } from '@/components/ui/PaginationBar';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { ActionMenu } from '@/components/ui/ActionMenu';
 import { ScheduleSessionModal } from '@/components/ui/ScheduleSessionModal';
+import { ConfirmDeleteModal } from '@/components/ui/ConfirmDeleteModal';
 import { useSessions, useSessionMutations } from '@/hooks/useSessions';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useUIStore } from '@/store/useUIStore';
-import { getInitials, formatDate } from '@/lib/utils';
+import { getInitials, formatDate, cn } from '@/lib/utils';
+import { toggleSortOrder, isSortAscending } from '@/lib/sortUtils';
 import { IPatientSession, IPatient, IDoctor } from '@/types';
 
 const CONDITION_OPTIONS = [
@@ -49,24 +54,41 @@ const STATUS_OPTIONS = [
   { label: 'Cancelled', value: 'cancelled' },
 ];
 
+const SORT_OPTIONS = [
+  { label: 'Date: Newest First (Desc)', value: 'date-desc' },
+  { label: 'Date: Oldest First (Asc)', value: 'date-asc' },
+  { label: 'Patient: A → Z (Asc)', value: 'patient-asc' },
+  { label: 'Patient: Z → A (Desc)', value: 'patient-desc' },
+  { label: 'Doctor: A → Z (Asc)', value: 'doctor-asc' },
+  { label: 'Doctor: Z → A (Desc)', value: 'doctor-desc' },
+  { label: 'Status: A → Z (Asc)', value: 'status-asc' },
+  { label: 'Status: Z → A (Desc)', value: 'status-desc' },
+];
+
 export default function SessionsPage() {
   const [searchQuery, setSearchQuery] = useState('');
-  const debouncedSearch = useDebounce(searchQuery, 350);
+  const debouncedSearch = useDebounce(searchQuery, 250);
+  const isDebouncing = searchQuery.trim() !== debouncedSearch.trim();
 
   const [selectedCondition, setSelectedCondition] = useState('All Conditions');
   const [selectedStatus, setSelectedStatus] = useState('All Statuses');
+  const [selectedSort, setSelectedSort] = useState('date-desc');
   const [currentPage, setCurrentPage] = useState(1);
+  const [sessionToDelete, setSessionToDelete] = useState<IPatientSession | null>(null);
 
   const { openScheduleSession } = useUIStore();
   const { updateSession, deleteSession } = useSessionMutations();
 
-  const { data: responseData, isLoading, isError, error } = useSessions({
+  const { data: responseData, isLoading, isFetching, isError, error } = useSessions({
     page: currentPage,
     limit: 8,
     q: debouncedSearch,
     condition: selectedCondition,
     status: selectedStatus,
+    sort: selectedSort,
   });
+
+  const isSearching = isDebouncing || isFetching;
 
   const sessions = (responseData?.data as IPatientSession[]) || [];
   const meta = responseData?.meta || { page: 1, limit: 8, total: 0, totalPages: 1 };
@@ -75,7 +97,18 @@ export default function SessionsPage() {
     setSearchQuery('');
     setSelectedCondition('All Conditions');
     setSelectedStatus('All Statuses');
+    setSelectedSort('date-desc');
     setCurrentPage(1);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!sessionToDelete) return;
+    try {
+      await deleteSession.mutateAsync(sessionToDelete._id);
+      setSessionToDelete(null);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to delete session');
+    }
   };
 
   const handleStatusChange = async (sessionId: string, newStatus: IPatientSession['status']) => {
@@ -86,23 +119,6 @@ export default function SessionsPage() {
       });
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to update encounter status');
-    }
-  };
-
-  const handleDeleteSession = async (session: IPatientSession) => {
-    const patientObj = session.patientId as IPatient;
-    const patientName = patientObj?.name || 'this patient';
-
-    if (
-      confirm(
-        `Are you sure you want to delete this clinical session for ${patientName}? The patient master profile will remain intact.`
-      )
-    ) {
-      try {
-        await deleteSession.mutateAsync(session._id);
-      } catch (err) {
-        alert(err instanceof Error ? err.message : 'Failed to delete session');
-      }
     }
   };
 
@@ -134,7 +150,11 @@ export default function SessionsPage() {
       <div className="p-4 rounded-card bg-surface border border-border shadow-card space-y-3 sm:space-y-0 sm:flex sm:items-center sm:justify-between sm:gap-4">
         {/* Search input */}
         <div className="relative flex-1 min-w-[220px]">
-          <Search className="w-4 h-4 text-textMuted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          {isSearching ? (
+            <Loader2 className="w-4 h-4 text-primary animate-spin absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          ) : (
+            <Search className="w-4 h-4 text-textMuted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          )}
           <input
             type="text"
             placeholder="Search by patient, doctor, condition, diagnosis..."
@@ -149,7 +169,7 @@ export default function SessionsPage() {
 
         {/* Dropdowns */}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="w-[170px]">
+          <div className="w-[160px]">
             <SelectDropdown
               options={CONDITION_OPTIONS}
               value={selectedCondition}
@@ -160,7 +180,7 @@ export default function SessionsPage() {
             />
           </div>
 
-          <div className="w-[150px]">
+          <div className="w-[140px]">
             <SelectDropdown
               options={STATUS_OPTIONS}
               value={selectedStatus}
@@ -171,7 +191,36 @@ export default function SessionsPage() {
             />
           </div>
 
-          {(searchQuery || selectedCondition !== 'All Conditions' || selectedStatus !== 'All Statuses') && (
+          <div className="flex items-center gap-1.5 w-[220px]">
+            <div className="flex-1">
+              <SelectDropdown
+                options={SORT_OPTIONS}
+                value={selectedSort}
+                onChange={(val) => {
+                  setSelectedSort(val);
+                  setCurrentPage(1);
+                }}
+              />
+            </div>
+            <button
+              type="button"
+              onClick={() => setSelectedSort((curr) => toggleSortOrder(curr))}
+              title={
+                isSortAscending(selectedSort)
+                  ? 'Ascending order (Click to switch to Descending)'
+                  : 'Descending order (Click to switch to Ascending)'
+              }
+              className="h-9 px-2 rounded-control border border-border bg-surface hover:bg-surface-subtle text-textSecondary hover:text-ink flex items-center justify-center transition-colors flex-shrink-0"
+            >
+              {isSortAscending(selectedSort) ? (
+                <ArrowUpNarrowWide className="w-4 h-4 text-primary" />
+              ) : (
+                <ArrowDownNarrowWide className="w-4 h-4 text-primary" />
+              )}
+            </button>
+          </div>
+
+          {(searchQuery || selectedCondition !== 'All Conditions' || selectedStatus !== 'All Statuses' || selectedSort !== 'date-desc') && (
             <Button
               variant="ghost"
               size="sm"
@@ -201,7 +250,7 @@ export default function SessionsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {isLoading ? (
+              {isLoading && !responseData ? (
                 <tr>
                   <td colSpan={6} className="py-16 text-center text-xs text-textMuted">
                     Loading clinical encounter records...
@@ -216,7 +265,7 @@ export default function SessionsPage() {
               ) : sessions.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="py-16 text-center text-xs text-textMuted">
-                    No clinical sessions found matching your search or filters.
+                    {isSearching ? 'Searching clinical encounters...' : 'No clinical sessions found matching your search or filters.'}
                   </td>
                 </tr>
               ) : (
@@ -231,7 +280,10 @@ export default function SessionsPage() {
                   return (
                     <tr
                       key={session._id}
-                      className="hover:bg-surface-subtle/70 transition-colors group text-xs text-ink"
+                      className={cn(
+                        "hover:bg-surface-subtle/70 transition-all duration-150 group text-xs text-ink",
+                        isSearching && "opacity-75"
+                      )}
                     >
                       {/* Patient Profile */}
                       <td className="py-3.5 px-4 sm:px-6">
@@ -360,7 +412,7 @@ export default function SessionsPage() {
                                 label: 'Delete Session',
                                 icon: <Trash2 className="w-3.5 h-3.5 text-semantic-danger" />,
                                 variant: 'danger',
-                                onClick: () => handleDeleteSession(session),
+                                onClick: () => setSessionToDelete(session),
                               },
                             ]}
                           />
@@ -388,6 +440,23 @@ export default function SessionsPage() {
 
       {/* Modals */}
       <ScheduleSessionModal />
+
+      {/* Confirmation Modal for Session Deletion */}
+      <ConfirmDeleteModal
+        isOpen={Boolean(sessionToDelete)}
+        onClose={() => setSessionToDelete(null)}
+        onConfirm={handleConfirmDelete}
+        isLoading={deleteSession.isPending}
+        title="Delete Clinical Session"
+        itemType="clinical session for"
+        itemName={
+          typeof sessionToDelete?.patientId === 'object' && sessionToDelete?.patientId
+            ? (sessionToDelete.patientId as IPatient).name
+            : 'this encounter'
+        }
+        description="Are you sure you want to delete this clinical session? The patient's master record will remain intact."
+        confirmText="Delete Session"
+      />
     </div>
   );
 }

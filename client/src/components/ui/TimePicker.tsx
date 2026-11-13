@@ -76,7 +76,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
       {/* Popover Menu */}
       {isOpen && (
-        <div className="absolute left-0 top-[calc(100%+4px)] z-50 w-64 max-h-64 overflow-y-auto rounded-control bg-surface border border-border shadow-dropdown p-1.5 animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute left-0 sm:left-auto right-auto sm:right-0 md:left-0 md:right-auto top-[calc(100%+4px)] z-50 w-64 max-w-[calc(100vw-2rem)] max-h-64 overflow-y-auto rounded-control bg-surface border border-border shadow-dropdown p-1.5 animate-in fade-in zoom-in-95 duration-150">
           <p className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-textMuted border-b border-border mb-1">
             Standard 30-min Slots
           </p>
