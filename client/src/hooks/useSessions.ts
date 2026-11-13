@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { apiClient } from '../lib/apiClient';
 import { IPatientSession } from '../types';
 
@@ -10,6 +10,7 @@ export interface ISessionFilters {
   status?: string;
   doctorId?: string;
   patientId?: string;
+  sort?: string;
 }
 
 export function useSessions(filters: ISessionFilters = {}) {
@@ -21,6 +22,7 @@ export function useSessions(filters: ISessionFilters = {}) {
     status = '',
     doctorId = '',
     patientId = '',
+    sort = 'date-desc',
   } = filters;
 
   const queryParams = new URLSearchParams();
@@ -35,13 +37,15 @@ export function useSessions(filters: ISessionFilters = {}) {
   }
   if (doctorId) queryParams.set('doctorId', doctorId);
   if (patientId) queryParams.set('patientId', patientId);
+  if (sort) queryParams.set('sort', sort);
 
   return useQuery({
-    queryKey: ['sessions', { page, limit, q, condition, status, doctorId, patientId }],
+    queryKey: ['sessions', { page, limit, q, condition, status, doctorId, patientId, sort }],
     queryFn: async () => {
       const res = await apiClient.get<IPatientSession[]>(`/sessions?${queryParams.toString()}`);
       return res;
     },
+    placeholderData: keepPreviousData,
   });
 }
 

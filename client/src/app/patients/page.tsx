@@ -12,6 +12,9 @@ import {
   RotateCcw,
   CalendarPlus,
   Layers,
+  Loader2,
+  ArrowUpNarrowWide,
+  ArrowDownNarrowWide,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { SelectDropdown } from '@/components/ui/SelectDropdown';
@@ -20,10 +23,12 @@ import { ActionMenu } from '@/components/ui/ActionMenu';
 import { CreatePatientModal } from '@/components/ui/CreatePatientModal';
 import { EditPatientModal } from '@/components/ui/EditPatientModal';
 import { ScheduleSessionModal } from '@/components/ui/ScheduleSessionModal';
+import { ConfirmDeleteModal } from '@/components/ui/ConfirmDeleteModal';
 import { usePatients, usePatientMutations } from '@/hooks/usePatients';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useUIStore } from '@/store/useUIStore';
-import { getInitials, formatDate } from '@/lib/utils';
+import { getInitials, formatDate, cn } from '@/lib/utils';
+import { toggleSortOrder, isSortAscending } from '@/lib/sortUtils';
 import { IPatient } from '@/types';
 
 const GENDER_OPTIONS = [
@@ -34,29 +39,36 @@ const GENDER_OPTIONS = [
 ];
 
 const SORT_OPTIONS = [
-  { label: 'Sort: Newest First', value: 'newest' },
-  { label: 'Sort: Oldest First', value: 'oldest' },
-  { label: 'Sort: Name (A-Z)', value: 'alpha' },
+  { label: 'Registered: Newest First (Desc)', value: 'newest' },
+  { label: 'Registered: Oldest First (Asc)', value: 'oldest' },
+  { label: 'Name: A → Z (Asc)', value: 'name-asc' },
+  { label: 'Name: Z → A (Desc)', value: 'name-desc' },
+  { label: 'Age: Youngest First (Asc)', value: 'age-asc' },
+  { label: 'Age: Oldest First (Desc)', value: 'age-desc' },
 ];
 
 export default function PatientsPage() {
   const [searchQuery, setSearchQuery] = useState('');
-  const debouncedSearch = useDebounce(searchQuery, 350);
+  const debouncedSearch = useDebounce(searchQuery, 250);
+  const isDebouncing = searchQuery.trim() !== debouncedSearch.trim();
 
   const [selectedGender, setSelectedGender] = useState('All Genders');
   const [selectedSort, setSelectedSort] = useState('newest');
   const [currentPage, setCurrentPage] = useState(1);
+  const [patientToDelete, setPatientToDelete] = useState<IPatient | null>(null);
 
   const { openCreatePatient, openEditPatient, openScheduleSession } = useUIStore();
   const { deletePatient } = usePatientMutations();
 
-  const { data: responseData, isLoading, isError, error } = usePatients({
+  const { data: responseData, isLoading, isFetching, isError, error } = usePatients({
     page: currentPage,
     limit: 8,
     q: debouncedSearch,
     gender: selectedGender,
     sort: selectedSort,
   });
+
+  const isSearching = isDebouncing || isFetching;
 
   const patients = (responseData?.data as IPatient[]) || [];
   const meta = responseData?.meta || { page: 1, limit: 8, total: 0, totalPages: 1 };
@@ -68,13 +80,13 @@ export default function PatientsPage() {
     setCurrentPage(1);
   };
 
-  const handleDeletePatient = async (patient: IPatient) => {
-    if (confirm(`Are you sure you want to delete patient ${patient.name}? This will remove their profile and all associated clinical encounters.`)) {
-      try {
-        await deletePatient.mutateAsync(patient._id);
-      } catch (err) {
-        alert(err instanceof Error ? err.message : 'Failed to delete patient');
-      }
+  const handleConfirmDelete = async () => {
+    if (!patientToDelete) return;
+    try {
+      await deletePatient.mutateAsync(patientToDelete._id);
+      setPatientToDelete(null);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to delete patient');
     }
   };
 

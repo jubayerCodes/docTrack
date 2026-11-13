@@ -20,7 +20,7 @@ export default function LoginPage() {
   // If already authenticated, redirect immediately
   React.useEffect(() => {
     if (isAuthenticated) {
-      router.replace('/doctors');
+      router.replace('/dashboard');
     }
   }, [isAuthenticated, router]);
 

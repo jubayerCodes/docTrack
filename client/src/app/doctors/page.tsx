@@ -1,7 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Plus, Search, Trash2, Edit3, UserPlus, Phone, Mail, CalendarPlus } from 'lucide-react';
+import {
+  Plus,
+  Search,
+  Trash2,
+  Edit3,
+  UserPlus,
+  Phone,
+  Mail,
+  CalendarPlus,
+  Loader2,
+  ArrowUpNarrowWide,
+  ArrowDownNarrowWide,
+} from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { SelectDropdown } from '@/components/ui/SelectDropdown';
 import { ActionMenu } from '@/components/ui/ActionMenu';
@@ -9,10 +21,12 @@ import { PaginationBar } from '@/components/ui/PaginationBar';
 import { CreateDoctorModal } from '@/components/ui/CreateDoctorModal';
 import { AssignedPatientsModal } from '@/components/ui/AssignedPatientsModal';
 import { AssignPatientModal } from '@/components/ui/AssignPatientModal';
+import { ConfirmDeleteModal } from '@/components/ui/ConfirmDeleteModal';
 import { useDoctors, useDoctorMutations } from '@/hooks/useDoctors';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useUIStore } from '@/store/useUIStore';
-import { getInitials, formatDate } from '@/lib/utils';
+import { getInitials, formatDate, cn } from '@/lib/utils';
+import { toggleSortOrder, isSortAscending } from '@/lib/sortUtils';
 import { IDoctor } from '@/types';
 
 const SPECIALIZATION_FILTERS = [
@@ -28,9 +42,12 @@ const SPECIALIZATION_FILTERS = [
 ];
 
 const SORT_OPTIONS = [
-  { label: 'Sort: Newest First', value: 'newest' },
-  { label: 'Sort: Name (A-Z)', value: 'alpha' },
-  { label: 'Sort: Active Caseload', value: 'patients' },
+  { label: 'Date: Newest First (Desc)', value: 'newest' },
+  { label: 'Date: Oldest First (Asc)', value: 'oldest' },
+  { label: 'Name: A → Z (Asc)', value: 'name-asc' },
+  { label: 'Name: Z → A (Desc)', value: 'name-desc' },
+  { label: 'Caseload: High → Low (Desc)', value: 'patients-desc' },
+  { label: 'Caseload: Low → High (Asc)', value: 'patients-asc' },
 ];
 
 export default function DoctorsPage() {
@@ -38,10 +55,12 @@ export default function DoctorsPage() {
   const [selectedSpecialty, setSelectedSpecialty] = useState('All Specializations');
   const [selectedSort, setSelectedSort] = useState('newest');
   const [currentPage, setCurrentPage] = useState(1);
+  const [doctorToDelete, setDoctorToDelete] = useState<IDoctor | null>(null);
 
-  const debouncedSearch = useDebounce(searchQuery, 300);
+  const debouncedSearch = useDebounce(searchQuery, 250);
+  const isDebouncing = searchQuery.trim() !== debouncedSearch.trim();
 
-  const { data, isLoading, isError, error } = useDoctors({
+  const { data, isLoading, isFetching, isError, error } = useDoctors({
     page: currentPage,
     limit: 8,
     q: debouncedSearch,
@@ -49,15 +68,21 @@ export default function DoctorsPage() {
     sort: selectedSort,
   });
 
+  const isSearching = isDebouncing || isFetching;
+
   const { deleteDoctor } = useDoctorMutations();
   const { openCreateDoctor, openAssignedPatients, openAssignPatient } = useUIStore();
 
   const doctors = data?.data || [];
   const meta = data?.meta || { page: 1, limit: 8, total: 0, totalPages: 1 };
 
-  const handleDeleteDoctor = async (doctor: IDoctor) => {
-    if (confirm(`Are you sure you want to delete ${doctor.name}? This will disassociate any active encounters.`)) {
-      await deleteDoctor.mutateAsync(doctor._id);
+  const handleConfirmDelete = async () => {
+    if (!doctorToDelete) return;
+    try {
+      await deleteDoctor.mutateAsync(doctorToDelete._id);
+      setDoctorToDelete(null);
+    } catch {
+      // Error is handled in mutation
     }
   };
 
@@ -91,7 +116,11 @@ export default function DoctorsPage() {
       <div className="p-3.5 rounded-card bg-surface border border-border shadow-card flex flex-col md:flex-row items-center justify-between gap-3">
         {/* Search Input */}
         <div className="relative w-full md:w-80">
-          <Search className="w-3.5 h-3.5 text-textMuted absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          {isSearching ? (
+            <Loader2 className="w-3.5 h-3.5 text-primary animate-spin absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          ) : (
+            <Search className="w-3.5 h-3.5 text-textMuted absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          )}
           <input
             type="text"
             placeholder="Search doctor by name, hospital, phone..."
@@ -117,12 +146,30 @@ export default function DoctorsPage() {
             />
           </div>
 
-          <div className="w-full md:w-44">
-            <SelectDropdown
-              options={SORT_OPTIONS}
-              value={selectedSort}
-              onChange={(val) => setSelectedSort(val)}
-            />
+          <div className="w-full md:w-56 flex items-center gap-1.5">
+            <div className="flex-1">
+              <SelectDropdown
+                options={SORT_OPTIONS}
+                value={selectedSort}
+                onChange={(val) => setSelectedSort(val)}
+              />
+            </div>
+            <button
+              type="button"
+              onClick={() => setSelectedSort((curr) => toggleSortOrder(curr))}
+              title={
+                isSortAscending(selectedSort)
+                  ? 'Ascending order (Click to switch to Descending)'
+                  : 'Descending order (Click to switch to Ascending)'
+              }
+              className="h-9 px-2 rounded-control border border-border bg-surface hover:bg-surface-subtle text-textSecondary hover:text-ink flex items-center justify-center transition-colors flex-shrink-0"
+            >
+              {isSortAscending(selectedSort) ? (
+                <ArrowUpNarrowWide className="w-4 h-4 text-primary" />
+              ) : (
+                <ArrowDownNarrowWide className="w-4 h-4 text-primary" />
+              )}
+            </button>
           </div>
         </div>
       </div>
@@ -142,10 +189,10 @@ export default function DoctorsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {isLoading ? (
+              {isLoading && !data ? (
                 <tr>
                   <td colSpan={6} className="py-16 text-center text-xs text-textMuted">
-                    Loading doctors directory from MongoDB Atlas...
+                    Loading doctors directory...
                   </td>
                 </tr>
               ) : isError ? (
@@ -157,7 +204,7 @@ export default function DoctorsPage() {
               ) : doctors.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="py-16 text-center text-xs text-textMuted">
-                    No doctors found matching your search or filters.
+                    {isSearching ? 'Searching doctors directory...' : 'No doctors found matching your search or filters.'}
                   </td>
                 </tr>
               ) : (
@@ -167,7 +214,10 @@ export default function DoctorsPage() {
                   return (
                     <tr
                       key={doctor._id}
-                      className="hover:bg-surface-subtle/70 transition-colors group text-xs text-ink"
+                      className={cn(
+                        "hover:bg-surface-subtle/70 transition-all duration-150 group text-xs text-ink",
+                        isSearching && "opacity-75"
+                      )}
                     >
                       {/* Doctor Profile */}
                       <td className="py-3.5 px-4 sm:px-6">
@@ -268,7 +318,7 @@ export default function DoctorsPage() {
                                 label: 'Delete Doctor',
                                 icon: <Trash2 className="w-3.5 h-3.5 text-semantic-danger" />,
                                 variant: 'danger',
-                                onClick: () => handleDeleteDoctor(doctor),
+                                onClick: () => setDoctorToDelete(doctor),
                               },
                             ]}
                           />
@@ -298,6 +348,19 @@ export default function DoctorsPage() {
       <CreateDoctorModal />
       <AssignedPatientsModal />
       <AssignPatientModal />
+
+      {/* Confirmation Modal for Doctor Deletion */}
+      <ConfirmDeleteModal
+        isOpen={Boolean(doctorToDelete)}
+        onClose={() => setDoctorToDelete(null)}
+        onConfirm={handleConfirmDelete}
+        isLoading={deleteDoctor.isPending}
+        title="Delete Doctor Profile"
+        itemType="doctor"
+        itemName={doctorToDelete?.name}
+        description={`Are you sure you want to delete ${doctorToDelete?.name}? This will permanently remove their profile and disassociate all active clinical encounters.`}
+        confirmText="Delete Doctor"
+      />
     </div>
   );
 }

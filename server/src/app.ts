@@ -12,15 +12,19 @@ export const createApp = (): Application => {
   const app: Application = express();
 
   // CORS configuration
-  const allowedOrigins = [
-    process.env.CLIENT_URL || 'http://localhost:3000',
-  ];
+  const clientUrl = (process.env.CLIENT_URL || 'http://localhost:3000').replace(/\/$/, '');
+  const allowedOrigins = [clientUrl, 'http://localhost:3000'];
 
   app.use(
     cors({
       origin: (origin, callback) => {
         if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1 || process.env.DEV_MODE === 'true') {
+        const normalized = origin.replace(/\/$/, '');
+        if (
+          allowedOrigins.includes(normalized) ||
+          normalized.endsWith('.vercel.app') ||
+          process.env.DEV_MODE === 'true'
+        ) {
           return callback(null, true);
         }
         return callback(new Error('Not allowed by CORS'));

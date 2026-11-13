@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal } from './Modal';
 import { Button } from './Button';
 import { StatusBadge } from './StatusBadge';
+import { ConfirmDeleteModal } from './ConfirmDeleteModal';
 import { Trash2, Clock, UserPlus } from 'lucide-react';
 import { useUIStore } from '@/store/useUIStore';
 import { useDoctorPatients, useDisassociateSession } from '@/hooks/useDoctors';
@@ -14,17 +15,24 @@ export const AssignedPatientsModal: React.FC = () => {
   const { selectedDoctorForPatients, closeAssignedPatients, openAssignPatient } = useUIStore();
   const { data, isLoading } = useDoctorPatients(selectedDoctorForPatients?.id);
   const disassociateSession = useDisassociateSession();
+  const [sessionToDisassociate, setSessionToDisassociate] = useState<{
+    id: string;
+    patientName: string;
+  } | null>(null);
 
   if (!selectedDoctorForPatients) return null;
 
-  const handleDisassociate = async (sessionId: string) => {
-    if (!confirm('Are you sure you want to remove this patient session from the doctor? The patient master record will remain intact.')) {
-      return;
+  const handleConfirmDisassociate = async () => {
+    if (!sessionToDisassociate || !selectedDoctorForPatients) return;
+    try {
+      await disassociateSession.mutateAsync({
+        doctorId: selectedDoctorForPatients.id,
+        sessionId: sessionToDisassociate.id,
+      });
+      setSessionToDisassociate(null);
+    } catch {
+      // Error handled by mutation
     }
-    await disassociateSession.mutateAsync({
-      doctorId: selectedDoctorForPatients.id,
-      sessionId,
-    });
   };
 
   const sessions = data?.sessions || [];
@@ -95,7 +103,12 @@ export const AssignedPatientsModal: React.FC = () => {
                   {/* Disassociate Action: Trash icon */}
                   <button
                     type="button"
-                    onClick={() => handleDisassociate(session._id)}
+                    onClick={() =>
+                      setSessionToDisassociate({
+                        id: session._id,
+                        patientName,
+                      })
+                    }
                     disabled={disassociateSession.isPending}
                     title="Remove from doctor's list"
                     className="w-8 h-8 rounded-control border border-transparent hover:border-red-200 hover:bg-semantic-dangerBg text-textMuted hover:text-semantic-danger flex items-center justify-center transition-colors flex-shrink-0 ml-2"
@@ -135,6 +148,18 @@ export const AssignedPatientsModal: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <ConfirmDeleteModal
+        isOpen={Boolean(sessionToDisassociate)}
+        onClose={() => setSessionToDisassociate(null)}
+        onConfirm={handleConfirmDisassociate}
+        isLoading={disassociateSession.isPending}
+        title="Disassociate Encounter"
+        itemType="caseload encounter for"
+        itemName={sessionToDisassociate?.patientName}
+        description={`Remove this active encounter from ${selectedDoctorForPatients.name}'s caseload. The primary patient record will remain intact.`}
+        confirmText="Remove Encounter"
+      />
     </Modal>
   );
 };

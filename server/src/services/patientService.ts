@@ -42,10 +42,18 @@ export const getAllPatientsFromDB = async (queryParams: IPatientQueryParams) => 
 
   // Sorting logic
   let sortCriteria: any = { createdAt: -1 };
-  if (sort === 'alpha') {
+  if (sort === 'alpha' || sort === 'name-asc') {
     sortCriteria = { name: 1 };
-  } else if (sort === 'oldest') {
+  } else if (sort === 'alpha-desc' || sort === 'name-desc') {
+    sortCriteria = { name: -1 };
+  } else if (sort === 'oldest' || sort === 'date-asc') {
     sortCriteria = { createdAt: 1 };
+  } else if (sort === 'newest' || sort === 'date-desc') {
+    sortCriteria = { createdAt: -1 };
+  } else if (sort === 'age-asc') {
+    sortCriteria = { age: 1 };
+  } else if (sort === 'age-desc') {
+    sortCriteria = { age: -1 };
   }
 
   const pipeline: any[] = [

@@ -108,7 +108,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (!user && !isLoginPage) {
       router.replace('/login');
     } else if (user && isLoginPage) {
-      router.replace('/doctors');
+      router.replace('/dashboard');
     }
   }, [user, isLoading, pathname, router]);
 
@@ -131,7 +131,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         syncAccessCookie(data.session.access_token, data.session.expires_in);
       }
 
-      router.replace('/doctors');
+      router.replace('/dashboard');
       return { success: true };
     } catch (err: unknown) {
       setIsLoading(false);

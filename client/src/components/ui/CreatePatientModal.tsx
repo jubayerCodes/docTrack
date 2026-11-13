@@ -75,7 +75,7 @@ export const CreatePatientModal: React.FC = () => {
       onClose={handleClose}
       eyebrow="Master Directory"
       title="Register New Patient"
-      description="Create a primary medical record in the central hospital database."
+      description="Create a primary medical record in the central clinical records system."
       maxWidth="md"
     >
       <form onSubmit={handleSubmit} className="space-y-4">

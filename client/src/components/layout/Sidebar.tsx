@@ -56,7 +56,7 @@ export const Sidebar: React.FC = () => {
       {/* Brand Header */}
       <div>
         <div className="h-14 px-4 flex items-center justify-between border-b border-[#292a44]">
-          <Link href="/doctors" className="flex items-center gap-2.5 overflow-hidden">
+          <Link href="/dashboard" className="flex items-center gap-2.5 overflow-hidden">
             {/* Brand Logo: dual rounded marks (purple + teal) */}
             <div className="flex items-center gap-1 flex-shrink-0 -rotate-12">
               <span className="w-2.5 h-6 rounded-full bg-primary block" />
@@ -82,8 +82,8 @@ export const Sidebar: React.FC = () => {
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive =
-                item.href === '/doctors'
-                  ? pathname === '/doctors' || pathname === '/'
+                item.href === '/dashboard'
+                  ? pathname === '/dashboard' || pathname === '/'
                   : pathname.startsWith(item.href);
 
               return (

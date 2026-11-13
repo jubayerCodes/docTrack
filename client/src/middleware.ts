@@ -45,10 +45,10 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // 2. Authenticated users trying to visit /login -> redirect to portal
-  if (user && isLoginPage) {
+  // 2. Authenticated users trying to visit /login or / -> redirect to dashboard
+  if (user && (isLoginPage || pathname === '/')) {
     const portalUrl = request.nextUrl.clone();
-    portalUrl.pathname = '/doctors';
+    portalUrl.pathname = '/dashboard';
     return NextResponse.redirect(portalUrl);
   }
 

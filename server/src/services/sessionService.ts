@@ -90,7 +90,7 @@ export const createSessionInDB = async (
     condition,
     sessionDate: sessionDate ? new Date(sessionDate) : new Date(),
     appointmentAt: appointmentAt || '10:00 AM',
-    status: status || 'scheduled',
+    status: 'scheduled', // Always scheduled initially on creation
     notes: notes || '',
   });
 
@@ -152,6 +152,25 @@ export const getSessionsFromDB = async (queryParams: Record<string, any>) => {
   const q = (queryParams.q || '').trim();
   const status = (queryParams.status || '').trim();
   const condition = (queryParams.condition || '').trim();
+  const sort = (queryParams.sort || 'date-desc').trim();
+
+  // Sorting options with explicit ASC and DESC options
+  let sortCriteria: any = { sessionDate: -1, createdAt: -1 };
+  if (sort === 'date-asc' || sort === 'oldest') {
+    sortCriteria = { sessionDate: 1, createdAt: 1 };
+  } else if (sort === 'patient-asc') {
+    sortCriteria = { 'patientId.name': 1 };
+  } else if (sort === 'patient-desc') {
+    sortCriteria = { 'patientId.name': -1 };
+  } else if (sort === 'doctor-asc') {
+    sortCriteria = { 'doctorId.name': 1 };
+  } else if (sort === 'doctor-desc') {
+    sortCriteria = { 'doctorId.name': -1 };
+  } else if (sort === 'status-asc') {
+    sortCriteria = { status: 1 };
+  } else if (sort === 'status-desc') {
+    sortCriteria = { status: -1 };
+  }
 
   const match: any = {};
   if (queryParams.doctorId && mongoose.Types.ObjectId.isValid(queryParams.doctorId)) {
@@ -210,7 +229,7 @@ export const getSessionsFromDB = async (queryParams: Record<string, any>) => {
     $facet: {
       metadata: [{ $count: 'total' }],
       data: [
-        { $sort: { sessionDate: -1, createdAt: -1 } },
+        { $sort: sortCriteria },
         { $skip: skip },
         { $limit: limit },
       ],

@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { apiClient } from '../lib/apiClient';
 import { IDoctor, IPatientSession } from '../types';
 
@@ -28,6 +28,7 @@ export function useDoctors(filters: IDoctorFilters = {}) {
       const res = await apiClient.get<IDoctor[]>(`/doctors?${queryParams.toString()}`);
       return res;
     },
+    placeholderData: keepPreviousData,
   });
 }
 

@@ -40,8 +40,12 @@ export const getAllDoctorsFromDB = async (queryParams: IDoctorQueryParams) => {
 
   // Determine sort order
   let sortStage: any = { createdAt: -1 };
-  if (sortBy === 'alpha') {
+  if (sortBy === 'oldest' || sortBy === 'date-asc') {
+    sortStage = { createdAt: 1 };
+  } else if (sortBy === 'alpha' || sortBy === 'name-asc') {
     sortStage = { name: 1 };
+  } else if (sortBy === 'alpha-desc' || sortBy === 'name-desc') {
+    sortStage = { name: -1 };
   }
 
   // Aggregation pipeline to join active patient sessions and count caseload
@@ -78,7 +82,9 @@ export const getAllDoctorsFromDB = async (queryParams: IDoctorQueryParams) => {
     },
   ];
 
-  if (sortBy === 'patients') {
+  if (sortBy === 'patients-asc') {
+    aggregationPipeline.push({ $sort: { activePatientsCount: 1, name: 1 } });
+  } else if (sortBy === 'patients' || sortBy === 'patients-desc') {
     aggregationPipeline.push({ $sort: { activePatientsCount: -1, name: 1 } });
   } else {
     aggregationPipeline.push({ $sort: sortStage });

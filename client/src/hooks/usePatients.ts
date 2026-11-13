@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { apiClient } from '../lib/apiClient';
 import { IPatient, IPatientSession } from '../types';
 
@@ -38,6 +38,7 @@ export function usePatients(filters: IPatientFilters = {}) {
       const res = await apiClient.get<IPatient[]>(`/patients?${queryParams.toString()}`);
       return res;
     },
+    placeholderData: keepPreviousData,
   });
 }
 

@@ -1,14 +1,5 @@
 # Doctor Tracker (DocTrack) — Healthcare Administration & Clinical Caseload Portal
 
-[![Next.js](https://img.shields.io/badge/Next.js-14.2_App_Router-black?style=flat&logo=next.js)](https://nextjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?style=flat&logo=node.js)](https://nodejs.org/)
-[![Express.js](https://img.shields.io/badge/Express.js-4.19-000000?style=flat&logo=express)](https://expressjs.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas_Indexed-47A248?style=flat&logo=mongodb)](https://www.mongodb.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
-[![TanStack Query](https://img.shields.io/badge/TanStack_Query-v5-FF4154?style=flat&logo=react-query)](https://tanstack.com/query)
-[![Zustand](https://img.shields.io/badge/Zustand-v5-orange?style=flat)](https://zustand-demo.pmnd.rs/)
-
 > DocTrack is an enterprise-grade healthcare administrative portal engineered for medical supervisors and clinical directors. Built with a decoupled architecture (**Next.js 14 App Router** frontend and standalone **Node.js/Express REST API** backed by **MongoDB Atlas**), DocTrack empowers healthcare networks to manage practitioner directories, balance patient caseloads, schedule clinical encounters via specialized calendar pickers, and visualize operational intelligence through real-time Recharts analytics.
 
 ---
@@ -151,52 +142,6 @@ npm run dev
 
 ---
 
-### 3.5 Automated Test Suite Execution
-
-The backend contains an automated end-to-end integration test runner validating all 8 fundamental operations (health check, pagination, doctor CRUD, patient CRUD, atomic encounter linking, and cascade disassociations).
-
-```bash
-cd server
-npm run test:cases
-```
-
-**Expected Test Output**:
-```
-=====================================================
-🧪 Starting DocTrack Goal 1 Verification Test Suite
-🔗 Target URL: http://localhost:5000
-=====================================================
-
-✅ [Test 1] Server Health Check & MongoDB Atlas Connectivity
-   Status: 200, DB Status: connected, Connected: true
-
-✅ [Test 2] GET /api/v1/doctors - Pagination & Real Caseload Population
-   Status: 200, Count: 6, Page: 1, Total: 6
-
-✅ [Test 3] POST /api/v1/doctors - Create Doctor Profile
-   Status: 201, Created: Dr. Sarah Lin (Neurology)
-
-✅ [Test 4] GET /api/v1/patients - Query Master Patient Directory
-   Status: 200, Patients Count: 10, Total: 10
-
-✅ [Test 5] POST /api/v1/patients - Create Master Patient Record
-   Status: 201, Created: Robert Fox, Age: 45
-
-✅ [Test 6] POST /api/v1/doctors/:id/sessions - Workflow 4.1 Link Encounter
-   Status: 201, Session ID: 673... Connected Doctor to Patient
-
-✅ [Test 7] DELETE /api/v1/doctors/:id/sessions/:sessionId - Disassociate Encounter
-   Status: 200, Encounter removed cleanly, master records intact
-
-✅ [Test 8] DELETE /api/v1/doctors/:id - Clean Delete Doctor Profile
-   Status: 200, Cleaned up test doctor Dr. Sarah Lin
-
-=====================================================
-📊 Test Execution Summary: 8/8 Passed (100% Success)
-=====================================================
-```
-
----
 
 ## 4. System Architecture
 
@@ -338,15 +283,15 @@ flowchart TD
 
 Below is a visual overview of DocTrack’s responsive user interface across Desktop, Tablet, and Mobile viewports:
 
-| Interface View | Viewport | Key Capabilities & Features Demonstrated | Screenshot / Visual Reference |
-| :--- | :--- | :--- | :--- |
-| **Executive Analytics Dashboard** | Desktop (1440px) | 4 real-time KPI metric cards, Recharts practitioner caseload bar chart, specialty breakdown donut chart, and 14-day encounter area trend. | `doctrack_goal4_analytics_dashboard.png` |
-| **Doctor Directory & Caseloads** | Desktop (1440px) | Paginated doctor roster, 300ms debounced search, specialty filters, initials avatar badges, active patient badges (`N Patients →`), and action menus. | `doctrack_goal2_ui.png` |
-| **Caseload Inspection Modal** | Desktop Modal | Slide-over inspection modal displaying all active patient encounters under a selected doctor with individual disassociate controls. | `doctrack_goal3_assigned_patient_inspected.png` |
-| **Workflow 4.1 Encounter Scheduler** | Desktop Modal | Dual-tab modal: Tab 1 links existing patients with custom `DatePicker` & 30-min slot `TimePicker`; Tab 2 registers new patients inline atomically. | `doctrack_goal3_assign_patient_modal.png` |
-| **Master Patient Directory** | Desktop (1440px) | Complete patient registry with medical condition tags, attending physician badges, appointment timestamps, and edit/delete triggers. | `doctrack_goal3_patients_directory_synchronized.png` |
-| **Responsive Tablet Layout** | Tablet (1024px) | Responsive multi-column grid adapting KPI cards and Recharts analytics with collapsible navigation. | `doctrack_goal4_tablet_1024.png` |
-| **Responsive Mobile Layout** | Mobile (390px) | Compact mobile layout featuring an off-canvas slide-out sidebar, full-width touch targets, stacked metric cards, and horizontal scroll tables. | `doctrack_goal4_mobile_390.png` |
+| Interface View | Viewport | Key Capabilities & Features Demonstrated |
+| :--- | :--- | :--- |
+| **Executive Analytics Dashboard** | Desktop (1440px) | 4 real-time KPI metric cards, Recharts practitioner caseload bar chart, specialty breakdown donut chart, and 14-day encounter area trend. |
+| **Doctor Directory & Caseloads** | Desktop (1440px) | Paginated doctor roster, 300ms debounced search, specialty filters, initials avatar badges, active patient badges (`N Patients →`), and action menus. |
+| **Caseload Inspection Modal** | Desktop Modal | Slide-over inspection modal displaying all active patient encounters under a selected doctor with individual disassociate controls. |
+| **Workflow 4.1 Encounter Scheduler** | Desktop Modal | Dual-tab modal: Tab 1 links existing patients with custom `DatePicker` & 30-min slot `TimePicker`; Tab 2 registers new patients inline atomically. |
+| **Master Patient Directory** | Desktop (1440px) | Complete patient registry with medical condition tags, attending physician badges, appointment timestamps, and edit/delete triggers. |
+| **Responsive Tablet Layout** | Tablet (1024px) | Responsive multi-column grid adapting KPI cards and Recharts analytics with collapsible navigation. |
+| **Responsive Mobile Layout** | Mobile (390px) | Compact mobile layout featuring an off-canvas slide-out sidebar, full-width touch targets, stacked metric cards, and horizontal scroll tables. |
 
 > *Interactive UI Prototype Demo*: In addition to the Next.js application, an interactive standalone preview of all interface layouts and color tokens is available at [ui_prototype_demo.html](file:///d:/Work%20Related/Projects/DocTrack/ui_prototype_demo.html).
 

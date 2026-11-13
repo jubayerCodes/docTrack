@@ -10,12 +10,7 @@ import { Button } from './Button';
 import { useUIStore } from '@/store/useUIStore';
 import { usePatients, useAssignSession } from '@/hooks/usePatients';
 import { cn } from '@/lib/utils';
-
-const STATUS_OPTIONS = [
-  { label: 'Scheduled', value: 'scheduled' },
-  { label: 'Active', value: 'active' },
-  { label: 'Completed', value: 'completed' },
-];
+import { Lock } from 'lucide-react';
 
 const GENDER_OPTIONS = [
   { label: 'Female', value: 'Female' },
@@ -46,7 +41,7 @@ export const AssignPatientModal: React.FC = () => {
 
   // Shared Encounter State
   const [condition, setCondition] = useState('');
-  const [status, setStatus] = useState('scheduled');
+  const status = 'scheduled'; // Encounter status is always scheduled initially on creation
   const [sessionDate, setSessionDate] = useState<Date>(new Date());
   const [appointmentAt, setAppointmentAt] = useState('10:00 AM');
   const [notes, setNotes] = useState('');
@@ -228,12 +223,24 @@ export const AssignPatientModal: React.FC = () => {
             onChange={(e) => setCondition(e.target.value)}
           />
 
-          <SelectDropdown
-            label="Encounter Status"
-            options={STATUS_OPTIONS}
-            value={status}
-            onChange={(val) => setStatus(val)}
-          />
+          <div>
+            <label className="block text-xs font-semibold text-textSecondary mb-1.5 flex items-center justify-between">
+              <span>Initial Status</span>
+              <span className="text-[10px] text-textMuted flex items-center gap-1">
+                <Lock className="w-2.5 h-2.5" /> Fixed
+              </span>
+            </label>
+            <div
+              className="h-9 px-3 rounded-control border border-border bg-surface-subtle flex items-center justify-between text-xs cursor-not-allowed select-none"
+              title="Encounter status is always scheduled initially on creation"
+            >
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                <span className="font-semibold text-ink">Scheduled</span>
+              </div>
+              <span className="text-[10px] text-textMuted font-medium uppercase tracking-wider">Initial</span>
+            </div>
+          </div>
         </div>
 
         {/* Date & Time Pickers */}
