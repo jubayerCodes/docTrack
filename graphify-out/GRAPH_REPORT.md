@@ -1,16 +1,16 @@
 # Graph Report - DocTrack  (2026-11-13)
 
 ## Corpus Check
-- 86 files · ~37,669 words
+- 86 files · ~37,698 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 519 nodes · 939 edges · 28 communities (21 shown, 7 thin omitted)
+- 517 nodes · 939 edges · 26 communities (19 shown, 7 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `37bb2f8f`
+- Built from commit: `5beaf925`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,12 +20,11 @@
 - sendResponse
 - devDependencies
 - dependencies
-- app.ts
 - compilerOptions
 - compilerOptions
-- apiClient.ts
+- useAnalytics.ts
 - playwright.md
-- AppShell.tsx
+- apiClient.ts
 - run_8_test_cases.ts
 - extends
 - postcss.config.mjs
@@ -43,45 +42,45 @@
 - middleware.ts
 
 ## God Nodes (most connected - your core abstractions)
-1. `cn()` - 29 edges
+1. `cn()` - 30 edges
 2. `useUIStore` - 25 edges
 3. `sendResponse()` - 22 edges
 4. `AppError` - 19 edges
 5. `Button` - 15 edges
-6. `compilerOptions` - 15 edges
-7. `express` - 15 edges
+6. `express` - 15 edges
+7. `compilerOptions` - 15 edges
 8. `compilerOptions` - 12 edges
 9. `DoctorsPage()` - 10 edges
 10. `SelectDropdown()` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `LoginPage()` --calls--> `useAuth()`  [EXTRACTED]
-  client/src/app/login/page.tsx → client/src/context/AuthContext.tsx
-- `SessionsPage()` --calls--> `useSessionMutations()`  [EXTRACTED]
-  client/src/app/sessions/page.tsx → client/src/hooks/useSessions.ts
-- `SessionsPage()` --calls--> `useSessions()`  [EXTRACTED]
-  client/src/app/sessions/page.tsx → client/src/hooks/useSessions.ts
-- `AppShell()` --calls--> `cn()`  [EXTRACTED]
-  client/src/components/layout/AppShell.tsx → client/src/lib/utils.ts
-- `AppShell()` --calls--> `useUIStore`  [EXTRACTED]
-  client/src/components/layout/AppShell.tsx → client/src/store/useUIStore.ts
+- `Sidebar()` --calls--> `cn()`  [EXTRACTED]
+  client/src/components/layout/Sidebar.tsx → client/src/lib/utils.ts
+- `Sidebar()` --calls--> `useUIStore`  [EXTRACTED]
+  client/src/components/layout/Sidebar.tsx → client/src/store/useUIStore.ts
+- `createApp()` --indirect_call--> `errorHandler()`  [INFERRED]
+  server/src/app.ts → server/src/middleware/errorHandler.ts
+- `getAllDoctorsFromDB()` --calls--> `escapeRegex()`  [EXTRACTED]
+  server/src/services/doctorService.ts → server/src/utils/escapeRegex.ts
+- `getDoctorByIdFromDB()` --calls--> `AppError`  [EXTRACTED]
+  server/src/services/doctorService.ts → server/src/utils/AppError.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (28 total, 7 thin omitted)
+## Communities (26 total, 7 thin omitted)
 
 ### Community 0 - "doctors/page.tsx"
-Cohesion: 0.08
-Nodes (66): DoctorsPage(), SORT_OPTIONS, SPECIALIZATION_FILTERS, GENDER_OPTIONS, PatientsPage(), SORT_OPTIONS, CONDITION_OPTIONS, SessionsPage() (+58 more)
+Cohesion: 0.07
+Nodes (70): DoctorsPage(), SORT_OPTIONS, SPECIALIZATION_FILTERS, GENDER_OPTIONS, PatientsPage(), SORT_OPTIONS, CONDITION_OPTIONS, SessionsPage() (+62 more)
 
 ### Community 1 - "sessionService.ts"
 Cohesion: 0.07
-Nodes (45): doctrack, healthcare, mongoose, typescript, keywords, Doctor, DoctorSchema, IDoctor (+37 more)
+Nodes (44): doctrack, healthcare, mongoose, typescript, keywords, Doctor, DoctorSchema, IDoctor (+36 more)
 
 ### Community 2 - "sendResponse"
-Cohesion: 0.08
-Nodes (42): express, supabase, supabaseAdmin, AnalyticsController, getAnalyticsSummary, createDoctor, deleteDoctor, DoctorController (+34 more)
+Cohesion: 0.07
+Nodes (49): express, app, createApp(), connectDB(), supabase, supabaseAdmin, AnalyticsController, getAnalyticsSummary (+41 more)
 
 ### Community 3 - "devDependencies"
 Cohesion: 0.08
@@ -91,10 +90,6 @@ Nodes (25): devDependencies, eslint, eslint-config-next, postcss, tailwindcss, @
 Cohesion: 0.09
 Nodes (23): dependencies, clsx, lucide-react, next, react, react-dom, recharts, @supabase/ssr (+15 more)
 
-### Community 5 - "app.ts"
-Cohesion: 0.33
-Nodes (6): app, createApp(), connectDB(), errorHandler(), router, startServer()
-
 ### Community 6 - "compilerOptions"
 Cohesion: 0.08
 Nodes (25): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+17 more)
@@ -103,13 +98,13 @@ Nodes (25): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModu
 Cohesion: 0.11
 Nodes (18): dist, ES2022, src/**/*, compilerOptions, esModuleInterop, forceConsistentCasingInFileNames, lib, module (+10 more)
 
-### Community 8 - "apiClient.ts"
-Cohesion: 0.11
-Nodes (19): DashboardPage(), PIE_COLORS, IAnalyticsKPIs, IAnalyticsSummary, ICaseloadDistribution, ISpecializationDistribution, IStatusBreakdown, ITemporalTrend (+11 more)
+### Community 8 - "useAnalytics.ts"
+Cohesion: 0.20
+Nodes (10): DashboardPage(), PIE_COLORS, IAnalyticsKPIs, IAnalyticsSummary, ICaseloadDistribution, ISpecializationDistribution, IStatusBreakdown, ITemporalTrend (+2 more)
 
-### Community 10 - "AppShell.tsx"
-Cohesion: 0.16
-Nodes (13): metadata, LoginPage(), AppShell(), NavItem, navItems, Sidebar(), TopBar(), QueryProvider() (+5 more)
+### Community 10 - "apiClient.ts"
+Cohesion: 0.13
+Nodes (17): metadata, AppShell(), NavItem, navItems, Sidebar(), TopBar(), QueryProvider(), AuthContext (+9 more)
 
 ### Community 11 - "run_8_test_cases.ts"
 Cohesion: 0.50
@@ -148,7 +143,7 @@ Cohesion: 0.50
 Nodes (3): Deploy on Vercel, Getting Started, Learn More
 
 ## Knowledge Gaps
-- **229 isolated node(s):** `next/core-web-vitals`, `next/typescript`, `nextConfig`, `name`, `version` (+224 more)
+- **230 isolated node(s):** `1. Project Links & Credentials`, `2. Description`, `3.1 Prerequisites`, `Step 1: Clone Repository`, `Step 2: Configure Backend Environment Variables (`server/.env`)` (+225 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -157,15 +152,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `keywords` connect `sessionService.ts` to `server/package.json`, `sendResponse`?**
   _High betweenness centrality (0.043) - this node is a cross-community bridge._
-- **Why does `express` connect `sendResponse` to `sessionService.ts`, `app.ts`?**
+- **Why does `express` connect `sendResponse` to `sessionService.ts`?**
   _High betweenness centrality (0.030) - this node is a cross-community bridge._
-- **Why does `mongoose` connect `sessionService.ts` to `app.ts`?**
+- **Why does `mongoose` connect `sessionService.ts` to `sendResponse`?**
   _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **What connects `next/core-web-vitals`, `next/typescript`, `nextConfig` to the rest of the system?**
-  _229 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `1. Project Links & Credentials`, `2. Description`, `3.1 Prerequisites` to the rest of the system?**
+  _230 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `doctors/page.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07503506311360449 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06811881188118812 - nodes in this community are weakly interconnected._
 - **Should `sessionService.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06818181818181818 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06954887218045112 - nodes in this community are weakly interconnected._
 - **Should `sendResponse` be split into smaller, more focused modules?**
-  _Cohesion score 0.07924984875983061 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06648575305291723 - nodes in this community are weakly interconnected._

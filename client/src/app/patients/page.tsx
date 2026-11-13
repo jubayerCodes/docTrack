@@ -118,7 +118,11 @@ export default function PatientsPage() {
       <div className="p-4 rounded-card bg-surface border border-border shadow-card space-y-3 sm:space-y-0 sm:flex sm:items-center sm:justify-between sm:gap-4">
         {/* Search input */}
         <div className="relative flex-1 min-w-[220px]">
-          <Search className="w-4 h-4 text-textMuted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          {isSearching ? (
+            <Loader2 className="w-4 h-4 text-primary animate-spin absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          ) : (
+            <Search className="w-4 h-4 text-textMuted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          )}
           <input
             type="text"
             placeholder="Search patient by name, phone, email..."
@@ -144,15 +148,33 @@ export default function PatientsPage() {
             />
           </div>
 
-          <div className="w-[170px]">
-            <SelectDropdown
-              options={SORT_OPTIONS}
-              value={selectedSort}
-              onChange={(val) => {
-                setSelectedSort(val);
-                setCurrentPage(1);
-              }}
-            />
+          <div className="flex items-center gap-1.5 w-[220px]">
+            <div className="flex-1">
+              <SelectDropdown
+                options={SORT_OPTIONS}
+                value={selectedSort}
+                onChange={(val) => {
+                  setSelectedSort(val);
+                  setCurrentPage(1);
+                }}
+              />
+            </div>
+            <button
+              type="button"
+              onClick={() => setSelectedSort((curr) => toggleSortOrder(curr))}
+              title={
+                isSortAscending(selectedSort)
+                  ? 'Ascending order (Click to switch to Descending)'
+                  : 'Descending order (Click to switch to Ascending)'
+              }
+              className="h-9 px-2 rounded-control border border-border bg-surface hover:bg-surface-subtle text-textSecondary hover:text-ink flex items-center justify-center transition-colors flex-shrink-0"
+            >
+              {isSortAscending(selectedSort) ? (
+                <ArrowUpNarrowWide className="w-4 h-4 text-primary" />
+              ) : (
+                <ArrowDownNarrowWide className="w-4 h-4 text-primary" />
+              )}
+            </button>
           </div>
 
           {(searchQuery || selectedGender !== 'All Genders' || selectedSort !== 'newest') && (
@@ -184,10 +206,10 @@ export default function PatientsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {isLoading ? (
+              {isLoading && !responseData ? (
                 <tr>
                   <td colSpan={5} className="py-16 text-center text-xs text-textMuted">
-                    Loading patient records from MongoDB Atlas...
+                    Loading patient records...
                   </td>
                 </tr>
               ) : isError ? (
@@ -199,7 +221,7 @@ export default function PatientsPage() {
               ) : patients.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="py-16 text-center text-xs text-textMuted">
-                    No patients found matching your search or filters.
+                    {isSearching ? 'Searching patient records...' : 'No patients found matching your search or filters.'}
                   </td>
                 </tr>
               ) : (
@@ -209,7 +231,10 @@ export default function PatientsPage() {
                   return (
                     <tr
                       key={patient._id}
-                      className="hover:bg-surface-subtle/70 transition-colors group text-xs text-ink"
+                      className={cn(
+                        "hover:bg-surface-subtle/70 transition-all duration-150 group text-xs text-ink",
+                        isSearching && "opacity-75"
+                      )}
                     >
                       {/* Patient Profile */}
                       <td className="py-3.5 px-4 sm:px-6">
@@ -289,7 +314,7 @@ export default function PatientsPage() {
                                 label: 'Delete Patient',
                                 icon: <Trash2 className="w-3.5 h-3.5 text-semantic-danger" />,
                                 variant: 'danger',
-                                onClick: () => handleDeletePatient(patient),
+                                onClick: () => setPatientToDelete(patient),
                               },
                             ]}
                           />
@@ -319,6 +344,15 @@ export default function PatientsPage() {
       <CreatePatientModal />
       <EditPatientModal />
       <ScheduleSessionModal />
+      <ConfirmDeleteModal
+        isOpen={!!patientToDelete}
+        onClose={() => setPatientToDelete(null)}
+        onConfirm={handleConfirmDelete}
+        title="Delete Patient"
+        itemName={patientToDelete?.name}
+        itemType="patient"
+        isLoading={deletePatient.isPending}
+      />
     </div>
   );
 }

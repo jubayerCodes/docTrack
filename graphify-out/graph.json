@@ -199,6 +199,19 @@
       "source_location": "L5"
     },
     {
+      "id": "client_src_hooks_usesessions_isessionfilters",
+      "label": "ISessionFilters",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "doctors/page.tsx",
+      "file_type": "code",
+      "norm_label": "isessionfilters",
+      "source_file": "client/src/hooks/useSessions.ts",
+      "source_location": "L5"
+    },
+    {
       "id": "client_src_store_useuistore_uistate",
       "label": "UIState",
       "_callable": true,
@@ -210,6 +223,19 @@
       "norm_label": "uistate",
       "source_file": "client/src/store/useUIStore.ts",
       "source_location": "L4"
+    },
+    {
+      "id": "client_src_types_index_iapiresponse",
+      "label": "IApiResponse",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "doctors/page.tsx",
+      "file_type": "code",
+      "norm_label": "iapiresponse",
+      "source_file": "client/src/types/index.ts",
+      "source_location": "L55"
     },
     {
       "id": "client_src_types_index_idoctor",
@@ -374,7 +400,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "navitem",
       "source_file": "client/src/components/layout/Sidebar.tsx",
@@ -387,11 +413,24 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "authcontexttype",
       "source_file": "client/src/context/AuthContext.tsx",
       "source_location": "L8"
+    },
+    {
+      "id": "client_src_lib_apiclient_apiclienterror",
+      "label": "ApiClientError",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "apiClient.ts",
+      "file_type": "code",
+      "norm_label": "apiclienterror",
+      "source_file": "client/src/lib/apiClient.ts",
+      "source_location": "L6"
     },
     {
       "id": "server_src_test_run_8_test_cases_itestresult",
@@ -465,7 +504,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "ianalyticskpis",
       "source_file": "client/src/hooks/useAnalytics.ts",
@@ -478,7 +517,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "ianalyticssummary",
       "source_file": "client/src/hooks/useAnalytics.ts",
@@ -491,7 +530,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "icaseloaddistribution",
       "source_file": "client/src/hooks/useAnalytics.ts",
@@ -504,7 +543,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "ispecializationdistribution",
       "source_file": "client/src/hooks/useAnalytics.ts",
@@ -517,7 +556,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "istatusbreakdown",
       "source_file": "client/src/hooks/useAnalytics.ts",
@@ -530,50 +569,11 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "itemporaltrend",
       "source_file": "client/src/hooks/useAnalytics.ts",
       "source_location": "L20"
-    },
-    {
-      "id": "client_src_hooks_usesessions_isessionfilters",
-      "label": "ISessionFilters",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "isessionfilters",
-      "source_file": "client/src/hooks/useSessions.ts",
-      "source_location": "L5"
-    },
-    {
-      "id": "client_src_lib_apiclient_apiclienterror",
-      "label": "ApiClientError",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "apiclienterror",
-      "source_file": "client/src/lib/apiClient.ts",
-      "source_location": "L6"
-    },
-    {
-      "id": "client_src_types_index_iapiresponse",
-      "label": "IApiResponse",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "iapiresponse",
-      "source_file": "client/src/types/index.ts",
-      "source_location": "L55"
     },
     {
       "id": "client_src_app_doctors_page_doctorspage",
@@ -588,6 +588,18 @@
       "source_location": "L53"
     },
     {
+      "id": "client_src_app_login_page_loginpage",
+      "label": "LoginPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "doctors/page.tsx",
+      "file_type": "code",
+      "norm_label": "loginpage()",
+      "source_file": "client/src/app/login/page.tsx",
+      "source_location": "L10"
+    },
+    {
       "id": "client_src_app_patients_page_patientspage",
       "label": "PatientsPage()",
       "_callable": true,
@@ -597,7 +609,7 @@
       "file_type": "code",
       "norm_label": "patientspage()",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L42"
+      "source_location": "L50"
     },
     {
       "id": "client_src_app_sessions_page_sessionspage",
@@ -888,6 +900,42 @@
       "source_location": "L15"
     },
     {
+      "id": "client_src_hooks_usesessions_usesession",
+      "label": "useSession()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "doctors/page.tsx",
+      "file_type": "code",
+      "norm_label": "usesession()",
+      "source_file": "client/src/hooks/useSessions.ts",
+      "source_location": "L52"
+    },
+    {
+      "id": "client_src_hooks_usesessions_usesessionmutations",
+      "label": "useSessionMutations()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "doctors/page.tsx",
+      "file_type": "code",
+      "norm_label": "usesessionmutations()",
+      "source_file": "client/src/hooks/useSessions.ts",
+      "source_location": "L64"
+    },
+    {
+      "id": "client_src_hooks_usesessions_usesessions",
+      "label": "useSessions()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "doctors/page.tsx",
+      "file_type": "code",
+      "norm_label": "usesessions()",
+      "source_file": "client/src/hooks/useSessions.ts",
+      "source_location": "L16"
+    },
+    {
       "id": "client_src_lib_sortutils_issortascending",
       "label": "isSortAscending()",
       "_callable": true,
@@ -958,6 +1006,18 @@
       "norm_label": "seeddatabase()",
       "source_file": "server/src/seed/seeder.ts",
       "source_location": "L120"
+    },
+    {
+      "id": "server_src_services_analyticsservice_getanalyticssummaryfromdb",
+      "label": "getAnalyticsSummaryFromDB()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "sessionService.ts",
+      "file_type": "code",
+      "norm_label": "getanalyticssummaryfromdb()",
+      "source_file": "server/src/services/analyticsService.ts",
+      "source_location": "L5"
     },
     {
       "id": "server_src_services_doctorservice_createdoctorindb",
@@ -1193,23 +1253,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "rootlayout()",
       "source_file": "client/src/app/layout.tsx",
       "source_location": "L12"
-    },
-    {
-      "id": "client_src_app_login_page_loginpage",
-      "label": "LoginPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "AppShell.tsx",
-      "file_type": "code",
-      "norm_label": "loginpage()",
-      "source_file": "client/src/app/login/page.tsx",
-      "source_location": "L10"
     },
     {
       "id": "client_src_components_layout_appshell_appshell",
@@ -1217,7 +1265,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "appshell()",
       "source_file": "client/src/components/layout/AppShell.tsx",
@@ -1229,7 +1277,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "sidebar()",
       "source_file": "client/src/components/layout/Sidebar.tsx",
@@ -1241,7 +1289,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "topbar()",
       "source_file": "client/src/components/layout/TopBar.tsx",
@@ -1253,7 +1301,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "queryprovider()",
       "source_file": "client/src/components/providers/QueryProvider.tsx",
@@ -1265,7 +1313,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "authprovider()",
       "source_file": "client/src/context/AuthContext.tsx",
@@ -1277,11 +1325,71 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "useauth()",
       "source_file": "client/src/context/AuthContext.tsx",
       "source_location": "L170"
+    },
+    {
+      "id": "client_src_lib_apiclient_apiclienterror_constructor",
+      "label": ".constructor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "apiClient.ts",
+      "file_type": "code",
+      "norm_label": ".constructor()",
+      "source_file": "client/src/lib/apiClient.ts",
+      "source_location": "L8"
+    },
+    {
+      "id": "client_src_lib_apiclient_getaccesstoken",
+      "label": "getAccessToken()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "apiClient.ts",
+      "file_type": "code",
+      "norm_label": "getaccesstoken()",
+      "source_file": "client/src/lib/apiClient.ts",
+      "source_location": "L34"
+    },
+    {
+      "id": "client_src_lib_apiclient_getsupabase",
+      "label": "getSupabase()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "apiClient.ts",
+      "file_type": "code",
+      "norm_label": "getsupabase()",
+      "source_file": "client/src/lib/apiClient.ts",
+      "source_location": "L17"
+    },
+    {
+      "id": "client_src_lib_apiclient_gettokenfromcookie",
+      "label": "getTokenFromCookie()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "apiClient.ts",
+      "file_type": "code",
+      "norm_label": "gettokenfromcookie()",
+      "source_file": "client/src/lib/apiClient.ts",
+      "source_location": "L25"
+    },
+    {
+      "id": "client_src_lib_apiclient_request",
+      "label": "request()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "apiClient.ts",
+      "file_type": "code",
+      "norm_label": "request()",
+      "source_file": "client/src/lib/apiClient.ts",
+      "source_location": "L53"
     },
     {
       "id": "client_src_lib_supabase_client_createclient",
@@ -1289,7 +1397,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "createclient()",
       "source_file": "client/src/lib/supabase/client.ts",
@@ -1329,6 +1437,30 @@
       "file_type": "code",
       "norm_label": "homepage()",
       "source_file": "client/src/app/page.tsx",
+      "source_location": "L3"
+    },
+    {
+      "id": "server_src_app_createapp",
+      "label": "createApp()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "sendResponse",
+      "file_type": "code",
+      "norm_label": "createapp()",
+      "source_file": "server/src/app.ts",
+      "source_location": "L11"
+    },
+    {
+      "id": "server_src_config_db_connectdb",
+      "label": "connectDB()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "sendResponse",
+      "file_type": "code",
+      "norm_label": "connectdb()",
+      "source_file": "server/src/config/db.ts",
       "source_location": "L3"
     },
     {
@@ -1380,16 +1512,28 @@
       "source_location": "L46"
     },
     {
-      "id": "server_src_services_analyticsservice_getanalyticssummaryfromdb",
-      "label": "getAnalyticsSummaryFromDB()",
+      "id": "server_src_middleware_errorhandler_errorhandler",
+      "label": "errorHandler()",
       "_callable": true,
       "_origin": "ast",
       "community": 2,
       "community_name": "sendResponse",
       "file_type": "code",
-      "norm_label": "getanalyticssummaryfromdb()",
-      "source_file": "server/src/services/analyticsService.ts",
-      "source_location": "L5"
+      "norm_label": "errorhandler()",
+      "source_file": "server/src/middleware/errorHandler.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "server_src_server_startserver",
+      "label": "startServer()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "sendResponse",
+      "file_type": "code",
+      "norm_label": "startserver()",
+      "source_file": "server/src/server.ts",
+      "source_location": "L14"
     },
     {
       "id": "server_src_utils_catchasync_catchasync",
@@ -1428,60 +1572,12 @@
       "source_location": "L4"
     },
     {
-      "id": "server_src_app_createapp",
-      "label": "createApp()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "app.ts",
-      "file_type": "code",
-      "norm_label": "createapp()",
-      "source_file": "server/src/app.ts",
-      "source_location": "L11"
-    },
-    {
-      "id": "server_src_config_db_connectdb",
-      "label": "connectDB()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "app.ts",
-      "file_type": "code",
-      "norm_label": "connectdb()",
-      "source_file": "server/src/config/db.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "server_src_middleware_errorhandler_errorhandler",
-      "label": "errorHandler()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "app.ts",
-      "file_type": "code",
-      "norm_label": "errorhandler()",
-      "source_file": "server/src/middleware/errorHandler.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "server_src_server_startserver",
-      "label": "startServer()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "app.ts",
-      "file_type": "code",
-      "norm_label": "startserver()",
-      "source_file": "server/src/server.ts",
-      "source_location": "L14"
-    },
-    {
       "id": "client_src_app_dashboard_page_dashboardpage",
       "label": "DashboardPage()",
       "_callable": true,
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "dashboardpage()",
       "source_file": "client/src/app/dashboard/page.tsx",
@@ -1493,107 +1589,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "useanalytics()",
       "source_file": "client/src/hooks/useAnalytics.ts",
       "source_location": "L45"
-    },
-    {
-      "id": "client_src_hooks_usesessions_usesession",
-      "label": "useSession()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "usesession()",
-      "source_file": "client/src/hooks/useSessions.ts",
-      "source_location": "L52"
-    },
-    {
-      "id": "client_src_hooks_usesessions_usesessionmutations",
-      "label": "useSessionMutations()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "usesessionmutations()",
-      "source_file": "client/src/hooks/useSessions.ts",
-      "source_location": "L64"
-    },
-    {
-      "id": "client_src_hooks_usesessions_usesessions",
-      "label": "useSessions()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "usesessions()",
-      "source_file": "client/src/hooks/useSessions.ts",
-      "source_location": "L16"
-    },
-    {
-      "id": "client_src_lib_apiclient_apiclienterror_constructor",
-      "label": ".constructor()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": ".constructor()",
-      "source_file": "client/src/lib/apiClient.ts",
-      "source_location": "L8"
-    },
-    {
-      "id": "client_src_lib_apiclient_getaccesstoken",
-      "label": "getAccessToken()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "getaccesstoken()",
-      "source_file": "client/src/lib/apiClient.ts",
-      "source_location": "L34"
-    },
-    {
-      "id": "client_src_lib_apiclient_getsupabase",
-      "label": "getSupabase()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "getsupabase()",
-      "source_file": "client/src/lib/apiClient.ts",
-      "source_location": "L17"
-    },
-    {
-      "id": "client_src_lib_apiclient_gettokenfromcookie",
-      "label": "getTokenFromCookie()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "gettokenfromcookie()",
-      "source_file": "client/src/lib/apiClient.ts",
-      "source_location": "L25"
-    },
-    {
-      "id": "client_src_lib_apiclient_request",
-      "label": "request()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "request()",
-      "source_file": "client/src/lib/apiClient.ts",
-      "source_location": "L53"
     },
     {
       "id": "client_src_app_doctors_page",
@@ -1629,6 +1629,17 @@
       "source_location": "L32"
     },
     {
+      "id": "client_src_app_login_page",
+      "label": "login/page.tsx",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "doctors/page.tsx",
+      "file_type": "code",
+      "norm_label": "login/page.tsx",
+      "source_file": "client/src/app/login/page.tsx",
+      "source_location": "L1"
+    },
+    {
       "id": "client_src_app_patients_page",
       "label": "patients/page.tsx",
       "_origin": "ast",
@@ -1648,7 +1659,7 @@
       "file_type": "code",
       "norm_label": "gender_options",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L29"
+      "source_location": "L34"
     },
     {
       "id": "client_src_app_patients_page_sort_options",
@@ -1659,7 +1670,7 @@
       "file_type": "code",
       "norm_label": "sort_options",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L36"
+      "source_location": "L41"
     },
     {
       "id": "client_src_app_sessions_page",
@@ -1992,6 +2003,17 @@
       "source_location": "L1"
     },
     {
+      "id": "client_src_hooks_usesessions",
+      "label": "useSessions.ts",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "doctors/page.tsx",
+      "file_type": "code",
+      "norm_label": "usesessions.ts",
+      "source_file": "client/src/hooks/useSessions.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "client_src_lib_sortutils",
       "label": "sortUtils.ts",
       "_origin": "ast",
@@ -2234,6 +2256,17 @@
       "source_location": "L110"
     },
     {
+      "id": "server_src_services_analyticsservice",
+      "label": "analyticsService.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "sessionService.ts",
+      "file_type": "code",
+      "norm_label": "analyticsservice.ts",
+      "source_file": "server/src/services/analyticsService.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "server_src_services_doctorservice",
       "label": "doctorService.ts",
       "_origin": "ast",
@@ -2287,17 +2320,6 @@
       "norm_label": "assigndoctorsessionindb",
       "source_file": "server/src/services/sessionService.ts",
       "source_location": "L273"
-    },
-    {
-      "id": "server_src_services_sessionservice_sessionservice",
-      "label": "SessionService",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "sessionService.ts",
-      "file_type": "code",
-      "norm_label": "sessionservice",
-      "source_file": "server/src/services/sessionService.ts",
-      "source_location": "L277"
     },
     {
       "id": "server_src_utils_apperror",
@@ -2370,7 +2392,7 @@
       "label": "layout.tsx",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "layout.tsx",
       "source_file": "client/src/app/layout.tsx",
@@ -2381,29 +2403,18 @@
       "label": "metadata",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "metadata",
       "source_file": "client/src/app/layout.tsx",
       "source_location": "L7"
     },
     {
-      "id": "client_src_app_login_page",
-      "label": "login/page.tsx",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "AppShell.tsx",
-      "file_type": "code",
-      "norm_label": "login/page.tsx",
-      "source_file": "client/src/app/login/page.tsx",
-      "source_location": "L1"
-    },
-    {
       "id": "client_src_components_layout_appshell",
       "label": "AppShell.tsx",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "appshell.tsx",
       "source_file": "client/src/components/layout/AppShell.tsx",
@@ -2414,7 +2425,7 @@
       "label": "Sidebar.tsx",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "sidebar.tsx",
       "source_file": "client/src/components/layout/Sidebar.tsx",
@@ -2425,7 +2436,7 @@
       "label": "navItems",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "navitems",
       "source_file": "client/src/components/layout/Sidebar.tsx",
@@ -2436,7 +2447,7 @@
       "label": "TopBar.tsx",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "topbar.tsx",
       "source_file": "client/src/components/layout/TopBar.tsx",
@@ -2447,7 +2458,7 @@
       "label": "QueryProvider.tsx",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "queryprovider.tsx",
       "source_file": "client/src/components/providers/QueryProvider.tsx",
@@ -2458,7 +2469,7 @@
       "label": "AuthContext.tsx",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "authcontext.tsx",
       "source_file": "client/src/context/AuthContext.tsx",
@@ -2469,7 +2480,7 @@
       "label": "AuthContext",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "authcontext",
       "source_file": "client/src/context/AuthContext.tsx",
@@ -2480,10 +2491,21 @@
       "label": "useAuth.ts",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "useauth.ts",
       "source_file": "client/src/hooks/useAuth.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_lib_apiclient",
+      "label": "apiClient.ts",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "apiClient.ts",
+      "file_type": "code",
+      "norm_label": "apiclient.ts",
+      "source_file": "client/src/lib/apiClient.ts",
       "source_location": "L1"
     },
     {
@@ -2491,7 +2513,7 @@
       "label": "client.ts",
       "_origin": "ast",
       "community": 10,
-      "community_name": "AppShell.tsx",
+      "community_name": "apiClient.ts",
       "file_type": "code",
       "norm_label": "client.ts",
       "source_file": "client/src/lib/supabase/client.ts",
@@ -2562,17 +2584,6 @@
       "norm_label": "next/typescript",
       "source_file": "client/.eslintrc.json",
       "source_location": "L2"
-    },
-    {
-      "id": "postcss_load_config",
-      "label": "postcss-load-config",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "postcss.config.mjs",
-      "confidence": "EXTRACTED",
-      "file_type": "code",
-      "norm_label": "postcss-load-config",
-      "source_file": "postcss-load-config"
     },
     {
       "id": "client_postcss_config",
@@ -3641,6 +3652,39 @@
       "source_location": "L44"
     },
     {
+      "id": "server_src_app",
+      "label": "app.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "sendResponse",
+      "file_type": "code",
+      "norm_label": "app.ts",
+      "source_file": "server/src/app.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "server_src_app_app",
+      "label": "app",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "sendResponse",
+      "file_type": "code",
+      "norm_label": "app",
+      "source_file": "server/src/app.ts",
+      "source_location": "L75"
+    },
+    {
+      "id": "server_src_config_db",
+      "label": "db.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "sendResponse",
+      "file_type": "code",
+      "norm_label": "db.ts",
+      "source_file": "server/src/config/db.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "server_src_config_supabase",
       "label": "supabase.ts",
       "_origin": "ast",
@@ -3982,6 +4026,17 @@
       "source_location": "L1"
     },
     {
+      "id": "server_src_middleware_errorhandler",
+      "label": "errorHandler.ts",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "sendResponse",
+      "file_type": "code",
+      "norm_label": "errorhandler.ts",
+      "source_file": "server/src/middleware/errorHandler.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "server_src_routes_analyticsroutes",
       "label": "analyticsRoutes.ts",
       "_origin": "ast",
@@ -4048,6 +4103,17 @@
       "source_location": "L10"
     },
     {
+      "id": "server_src_routes_index_router",
+      "label": "router",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "sendResponse",
+      "file_type": "code",
+      "norm_label": "router",
+      "source_file": "server/src/routes/index.ts",
+      "source_location": "L7"
+    },
+    {
       "id": "server_src_routes_patientroutes",
       "label": "patientRoutes.ts",
       "_origin": "ast",
@@ -4092,14 +4158,14 @@
       "source_location": "L11"
     },
     {
-      "id": "server_src_services_analyticsservice",
-      "label": "analyticsService.ts",
+      "id": "server_src_server",
+      "label": "server.ts",
       "_origin": "ast",
       "community": 2,
       "community_name": "sendResponse",
       "file_type": "code",
-      "norm_label": "analyticsservice.ts",
-      "source_file": "server/src/services/analyticsService.ts",
+      "norm_label": "server.ts",
+      "source_file": "server/src/server.ts",
       "source_location": "L1"
     },
     {
@@ -4123,6 +4189,17 @@
       "norm_label": "patientservice",
       "source_file": "server/src/services/patientService.ts",
       "source_location": "L180"
+    },
+    {
+      "id": "server_src_services_sessionservice_sessionservice",
+      "label": "SessionService",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "sendResponse",
+      "file_type": "code",
+      "norm_label": "sessionservice",
+      "source_file": "server/src/services/sessionService.ts",
+      "source_location": "L277"
     },
     {
       "id": "server_src_utils_catchasync",
@@ -4788,17 +4865,6 @@
       "source_location": "L58"
     },
     {
-      "id": "next_next",
-      "label": "next",
-      "_origin": "ast",
-      "community": 28,
-      "community_name": "next",
-      "confidence": "EXTRACTED",
-      "file_type": "code",
-      "norm_label": "next",
-      "source_file": "next"
-    },
-    {
       "id": "client_package",
       "label": "client/package.json",
       "_origin": "ast",
@@ -5338,72 +5404,6 @@
       "source_location": "L22"
     },
     {
-      "id": "server_src_app",
-      "label": "app.ts",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "app.ts",
-      "file_type": "code",
-      "norm_label": "app.ts",
-      "source_file": "server/src/app.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "server_src_app_app",
-      "label": "app",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "app.ts",
-      "file_type": "code",
-      "norm_label": "app",
-      "source_file": "server/src/app.ts",
-      "source_location": "L75"
-    },
-    {
-      "id": "server_src_config_db",
-      "label": "db.ts",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "app.ts",
-      "file_type": "code",
-      "norm_label": "db.ts",
-      "source_file": "server/src/config/db.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "server_src_middleware_errorhandler",
-      "label": "errorHandler.ts",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "app.ts",
-      "file_type": "code",
-      "norm_label": "errorhandler.ts",
-      "source_file": "server/src/middleware/errorHandler.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "server_src_routes_index_router",
-      "label": "router",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "app.ts",
-      "file_type": "code",
-      "norm_label": "router",
-      "source_file": "server/src/routes/index.ts",
-      "source_location": "L7"
-    },
-    {
-      "id": "server_src_server",
-      "label": "server.ts",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "app.ts",
-      "file_type": "code",
-      "norm_label": "server.ts",
-      "source_file": "server/src/server.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "client_tsconfig",
       "label": "client/tsconfig.json",
       "_origin": "ast",
@@ -5903,7 +5903,7 @@
       "label": "dashboard/page.tsx",
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "dashboard/page.tsx",
       "source_file": "client/src/app/dashboard/page.tsx",
@@ -5914,7 +5914,7 @@
       "label": "PIE_COLORS",
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "pie_colors",
       "source_file": "client/src/app/dashboard/page.tsx",
@@ -5925,32 +5925,10 @@
       "label": "useAnalytics.ts",
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "useanalytics.ts",
       "source_file": "client/src/hooks/useAnalytics.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "client_src_hooks_usesessions",
-      "label": "useSessions.ts",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "usesessions.ts",
-      "source_file": "client/src/hooks/useSessions.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "client_src_lib_apiclient",
-      "label": "apiClient.ts",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "apiClient.ts",
-      "file_type": "code",
-      "norm_label": "apiclient.ts",
-      "source_file": "client/src/lib/apiClient.ts",
       "source_location": "L1"
     },
     {
@@ -5958,7 +5936,7 @@
       "label": "apiClient",
       "_origin": "ast",
       "community": 8,
-      "community_name": "apiClient.ts",
+      "community_name": "useAnalytics.ts",
       "file_type": "code",
       "norm_label": "apiclient",
       "source_file": "client/src/lib/apiClient.ts",
@@ -6115,18 +6093,6 @@
       "weight": 1.0
     },
     {
-      "source": "client_src_app_login_page_loginpage",
-      "target": "client_src_context_authcontext_useauth",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "client/src/app/login/page.tsx",
-      "source_location": "L12",
-      "weight": 1.0
-    },
-    {
       "source": "client_src_app_patients_page_patientspage",
       "target": "client_src_lib_utils_getinitials",
       "relation": "calls",
@@ -6135,7 +6101,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L206",
+      "source_location": "L218",
       "weight": 1.0
     },
     {
@@ -6147,7 +6113,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L253",
+      "source_location": "L265",
       "weight": 1.0
     },
     {
@@ -6159,7 +6125,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L44",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -6171,7 +6137,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L50",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -6183,7 +6149,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L51",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -6195,7 +6161,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L53",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -6316,18 +6282,6 @@
       "context": "call",
       "source_file": "client/src/components/layout/Sidebar.tsx",
       "source_location": "L34",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_components_layout_sidebar_sidebar",
-      "target": "client_src_context_authcontext_useauth",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "client/src/components/layout/Sidebar.tsx",
-      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -8012,18 +7966,6 @@
     },
     {
       "source": "client_src_app_login_page",
-      "target": "client_src_context_authcontext_useauth",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/app/login/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_login_page",
       "target": "client_src_components_ui_button_button",
       "relation": "imports",
       "_origin": "ast",
@@ -8055,7 +7997,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L16",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -8067,7 +8009,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L17",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -8079,7 +8021,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L18",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -8091,7 +8033,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L19",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -8103,7 +8045,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L20",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -8115,7 +8057,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L21",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -8127,7 +8069,19 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L22",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_components_ui_confirmdeletemodal_confirmdeletemodal",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -8139,7 +8093,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L23",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -8151,7 +8105,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L23",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -8163,7 +8117,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L24",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -8175,7 +8129,19 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L25",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_lib_utils_cn",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -8187,7 +8153,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L26",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -8199,7 +8165,31 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L26",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_lib_sortutils_issortascending",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_lib_sortutils_togglesortorder",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -8211,7 +8201,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L27",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -8464,18 +8454,6 @@
       "context": "import",
       "source_file": "client/src/components/layout/Sidebar.tsx",
       "source_location": "L14",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_components_layout_sidebar",
-      "target": "client_src_context_authcontext_useauth",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/components/layout/Sidebar.tsx",
-      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -9560,18 +9538,6 @@
     },
     {
       "source": "server_src_app",
-      "target": "server_src_routes_index_router",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "server/src/app.ts",
-      "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "server_src_app",
       "target": "server_src_middleware_errorhandler_errorhandler",
       "relation": "imports",
       "_origin": "ast",
@@ -10563,7 +10529,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L16",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -10575,7 +10541,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L17",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -10587,7 +10553,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L18",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -10599,7 +10565,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L19",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -10611,7 +10577,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L20",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -10623,7 +10589,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L21",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -10635,48 +10601,12 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L22",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_patients_page",
-      "target": "client_src_hooks_usepatients",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L23",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_patients_page",
-      "target": "client_src_hooks_usedebounce",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L24",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_patients_page",
-      "target": "client_src_store_useuistore",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/app/patients/page.tsx",
       "source_location": "L25",
       "weight": 1.0
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_lib_utils",
+      "target": "client_src_components_ui_confirmdeletemodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10688,7 +10618,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_types_index",
+      "target": "client_src_hooks_usepatients",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10696,6 +10626,66 @@
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
       "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_hooks_usedebounce",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_store_useuistore",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_lib_utils",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_lib_sortutils",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_types_index",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -13266,7 +13256,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L29",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -13277,7 +13267,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L36",
+      "source_location": "L41",
       "weight": 1.0
     },
     {
@@ -13288,7 +13278,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L42",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -16592,15 +16582,6 @@
       "weight": 1.0
     },
     {
-      "source": "client_postcss_config",
-      "target": "postcss_load_config",
-      "relation": "dynamic_import",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "client/postcss.config.mjs"
-    },
-    {
       "source": "client_src_lib_apiclient_apiclienterror",
       "target": "client_src_lib_apiclient_apiclienterror_constructor",
       "relation": "method",
@@ -16900,5 +16881,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "37bb2f8fc45c29fa56bd1f4aae4dca8f7f71d26e"
+  "built_at_commit": "5beaf9251c4dfb64c452ef7c804f6876816bdd1d"
 }
