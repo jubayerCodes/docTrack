@@ -9,10 +9,17 @@
     "start": "node dist/server.js",
     "seed": "ts-node-dev --transpile-only src/seed/seeder.ts"
   },
-  "keywords": ["doctrack", "express", "mongoose", "typescript", "healthcare"],
+  "keywords": [
+    "doctrack",
+    "express",
+    "mongoose",
+    "typescript",
+    "healthcare"
+  ],
   "author": "DocTrack Team",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.119.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

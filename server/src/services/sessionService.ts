@@ -5,6 +5,7 @@ import { Doctor } from '../models/Doctor';
 import { AppError } from '../utils/AppError';
 
 export interface IAssignSessionPayload {
+  doctorId?: string;
   mode: 'existing' | 'new';
   patientId?: string;
   // Inline patient fields when mode === 'new'
@@ -21,9 +22,14 @@ export interface IAssignSessionPayload {
   notes?: string;
 }
 
-export const assignDoctorSessionInDB = async (doctorId: string, payload: IAssignSessionPayload) => {
-  if (!mongoose.Types.ObjectId.isValid(doctorId)) {
-    throw new AppError(400, 'Invalid doctor identifier format');
+export const createSessionInDB = async (
+  doctorIdInput: string | undefined,
+  payload: IAssignSessionPayload
+) => {
+  const doctorId = doctorIdInput || payload.doctorId;
+
+  if (!doctorId || !mongoose.Types.ObjectId.isValid(doctorId)) {
+    throw new AppError(400, 'A valid doctorId is required to schedule a patient session');
   }
 
   const doctor = await Doctor.findById(doctorId);
@@ -94,21 +100,28 @@ export const assignDoctorSessionInDB = async (doctorId: string, payload: IAssign
   return populatedSession;
 };
 
-export const disassociateDoctorSessionFromDB = async (doctorId: string, sessionId: string) => {
-  if (!mongoose.Types.ObjectId.isValid(doctorId) || !mongoose.Types.ObjectId.isValid(sessionId)) {
-    throw new AppError(400, 'Invalid doctor or session identifier format');
+export const deleteSessionFromDB = async (sessionId: string, doctorId?: string) => {
+  if (!mongoose.Types.ObjectId.isValid(sessionId)) {
+    throw new AppError(400, 'Invalid session identifier format');
   }
 
-  const session = await PatientSession.findOneAndDelete({
-    _id: sessionId,
-    doctorId,
-  });
+  const query: any = { _id: sessionId };
+  if (doctorId && mongoose.Types.ObjectId.isValid(doctorId)) {
+    query.doctorId = doctorId;
+  }
+
+  const session = await PatientSession.findOneAndDelete(query);
 
   if (!session) {
-    throw new AppError(404, 'Session encounter not found under this doctor');
+    throw new AppError(
+      404,
+      doctorId
+        ? 'Session encounter not found under this doctor'
+        : 'Session encounter not found'
+    );
   }
 
-  return { sessionId, doctorId };
+  return { sessionId, doctorId: session.doctorId };
 };
 
 export const updateSessionInDB = async (sessionId: string, payload: Partial<IPatientSession>) => {
@@ -130,8 +143,53 @@ export const updateSessionInDB = async (sessionId: string, payload: Partial<IPat
   return session;
 };
 
+export const getSessionsFromDB = async (queryParams: Record<string, any>) => {
+  const filter: any = {};
+  if (queryParams.doctorId && mongoose.Types.ObjectId.isValid(queryParams.doctorId)) {
+    filter.doctorId = queryParams.doctorId;
+  }
+  if (queryParams.patientId && mongoose.Types.ObjectId.isValid(queryParams.patientId)) {
+    filter.patientId = queryParams.patientId;
+  }
+  if (queryParams.status) {
+    filter.status = queryParams.status;
+  }
+
+  const sessions = await PatientSession.find(filter)
+    .populate('patientId', 'name phone email age gender')
+    .populate('doctorId', 'name specialization hospital')
+    .sort({ sessionDate: -1 });
+
+  return { count: sessions.length, sessions };
+};
+
+export const getSessionByIdFromDB = async (sessionId: string) => {
+  if (!mongoose.Types.ObjectId.isValid(sessionId)) {
+    throw new AppError(400, 'Invalid session identifier format');
+  }
+
+  const session = await PatientSession.findById(sessionId)
+    .populate('patientId', 'name phone email age gender')
+    .populate('doctorId', 'name specialization hospital');
+
+  if (!session) {
+    throw new AppError(404, 'Session encounter not found');
+  }
+
+  return session;
+};
+
+// Aliases for backwards compatibility
+export const assignDoctorSessionInDB = createSessionInDB;
+export const disassociateDoctorSessionFromDB = (doctorId: string, sessionId: string) =>
+  deleteSessionFromDB(sessionId, doctorId);
+
 export const SessionService = {
+  createSessionInDB,
+  deleteSessionFromDB,
+  updateSessionInDB,
+  getSessionsFromDB,
+  getSessionByIdFromDB,
   assignDoctorSessionInDB,
   disassociateDoctorSessionFromDB,
-  updateSessionInDB,
 };

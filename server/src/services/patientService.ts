@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { Patient, IPatient } from '../models/Patient';
 import { PatientSession } from '../models/PatientSession';
 import { AppError } from '../utils/AppError';
+import { escapeRegex } from '../utils/escapeRegex';
 
 export interface IPatientQueryParams {
   page?: number;
@@ -24,12 +25,13 @@ export const getAllPatientsFromDB = async (queryParams: IPatientQueryParams) => 
 
   // Filter patients by name, phone, or email if search query is provided
   if (q) {
+    const safeQ = escapeRegex(q);
     pipeline.push({
       $match: {
         $or: [
-          { name: { $regex: q, $options: 'i' } },
-          { phone: { $regex: q, $options: 'i' } },
-          { email: { $regex: q, $options: 'i' } },
+          { name: { $regex: safeQ, $options: 'i' } },
+          { phone: { $regex: safeQ, $options: 'i' } },
+          { email: { $regex: safeQ, $options: 'i' } },
         ],
       },
     });
@@ -65,7 +67,7 @@ export const getAllPatientsFromDB = async (queryParams: IPatientQueryParams) => 
   // Apply condition and status filters on the joined session
   const matchSessionFilters: any = {};
   if (condition && condition !== 'All Conditions') {
-    matchSessionFilters['latestSession.condition'] = { $regex: condition, $options: 'i' };
+    matchSessionFilters['latestSession.condition'] = { $regex: escapeRegex(condition), $options: 'i' };
   }
   if (status && status !== 'All Statuses') {
     matchSessionFilters['latestSession.status'] = status;

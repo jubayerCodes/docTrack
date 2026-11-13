@@ -17,3 +17,19 @@ Every line of code written in this repository must strictly adhere to the follow
 ### 3. Simplicity Over Cleverness (KISS Principle)
 - **Keep It Simple & Direct**: Always favor the simplest solution that completely solves the requirement. Avoid premature optimization, speculative abstractions, and overly nested architectures.
 - **Predictable Data Flow**: Maintain clear, straightforward state management and data flows. Avoid hidden side effects.
+
+---
+
+## 4. Mandatory Knowledge Graph Protocol (graphify)
+
+This project has an active graphify knowledge graph located at `graphify-out/`.
+
+### Rules for Every Model Call:
+- **Mandatory First Step for Codebase Queries**: Before reading raw files, running grep/find, answering questions about architecture, symbols, data flow, dependencies, or file relationships, the model **MUST** query the graph first:
+  - **MCP Tools**: Use `query_graph`, `get_node`, `get_neighbors`, `shortest_path`, or `god_nodes` (passing `project_path: "d:/Work Related/Projects/DocTrack"` or current workspace path).
+  - **CLI Alternative**: Run `graphify query "<question>"`, `graphify path "<A>" "<B>"`, or `graphify explain "<concept>"`.
+- **Targeted Code Navigation**: Use the graph query output to pinpoint exact file paths, line ranges, and connected symbols before inspecting files. Do not perform wide, unguided file globbing or bulk raw reads.
+- **Architecture & Overview**: Refer to `graphify-out/GRAPH_REPORT.md` for high-level module architecture, god nodes, and community boundaries.
+- **Continuous Graph Maintenance**: After creating, modifying, or refactoring code files, run `graphify update .` to keep `graphify-out/graph.json` synchronized (local AST extraction, 0 API cost).
+- **Git Commit Sync**: Git `post-commit` and `post-checkout` hooks are installed to automatically update the knowledge graph on git commits.
+

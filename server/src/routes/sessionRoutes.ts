@@ -1,12 +1,26 @@
 import { Router } from 'express';
-import { updateSession } from '../controllers/sessionController';
+import {
+  getSessions,
+  getSessionById,
+  createSession,
+  updateSession,
+  deleteSession,
+} from '../controllers/sessionController';
 import { authenticate } from '../middleware/auth';
 
 const router = Router();
 
 router.use(authenticate);
 
-// Update status, notes, or time
-router.patch('/:sessionId', updateSession);
+// Session collection routes (/api/v1/sessions)
+router.route('/')
+  .get(getSessions)
+  .post(createSession);
+
+// Individual session routes (/api/v1/sessions/:sessionId)
+router.route('/:sessionId')
+  .get(getSessionById)
+  .patch(updateSession)
+  .delete(deleteSession);
 
 export default router;

@@ -81,6 +81,28 @@ export const getAnalyticsSummaryFromDB = async () => {
     { $limit: 14 },
   ]);
 
+  // 4. Specialization Breakdown
+  const specializationDistribution = await Doctor.aggregate([
+    {
+      $group: {
+        _id: '$specialization',
+        count: { $sum: 1 },
+      },
+    },
+    { $sort: { count: -1 } },
+    { $limit: 8 },
+  ]);
+
+  // 5. Encounter Status Breakdown
+  const statusBreakdown = await PatientSession.aggregate([
+    {
+      $group: {
+        _id: '$status',
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
   return {
     kpis: {
       totalDoctors,
@@ -92,6 +114,8 @@ export const getAnalyticsSummaryFromDB = async () => {
     },
     caseloadDistribution,
     temporalTrends,
+    specializationDistribution,
+    statusBreakdown,
   };
 };
 

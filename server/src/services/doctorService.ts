@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { Doctor, IDoctor } from '../models/Doctor';
 import { PatientSession } from '../models/PatientSession';
 import { AppError } from '../utils/AppError';
+import { escapeRegex } from '../utils/escapeRegex';
 
 export interface IDoctorQueryParams {
   page?: number;
@@ -24,11 +25,12 @@ export const getAllDoctorsFromDB = async (queryParams: IDoctorQueryParams) => {
   const filter: any = {};
 
   if (q) {
+    const safeQ = escapeRegex(q);
     filter.$or = [
-      { name: { $regex: q, $options: 'i' } },
-      { hospital: { $regex: q, $options: 'i' } },
-      { phone: { $regex: q, $options: 'i' } },
-      { email: { $regex: q, $options: 'i' } },
+      { name: { $regex: safeQ, $options: 'i' } },
+      { hospital: { $regex: safeQ, $options: 'i' } },
+      { phone: { $regex: safeQ, $options: 'i' } },
+      { email: { $regex: safeQ, $options: 'i' } },
     ];
   }
 
