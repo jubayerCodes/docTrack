@@ -8,63 +8,54 @@ import {
   Trash2,
   Phone,
   Mail,
-  Clock,
   Calendar,
-  Activity,
   RotateCcw,
-  Stethoscope,
+  CalendarPlus,
+  Layers,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { SelectDropdown } from '@/components/ui/SelectDropdown';
 import { PaginationBar } from '@/components/ui/PaginationBar';
-import { StatusBadge } from '@/components/ui/StatusBadge';
 import { ActionMenu } from '@/components/ui/ActionMenu';
 import { CreatePatientModal } from '@/components/ui/CreatePatientModal';
 import { EditPatientModal } from '@/components/ui/EditPatientModal';
+import { ScheduleSessionModal } from '@/components/ui/ScheduleSessionModal';
 import { usePatients, usePatientMutations } from '@/hooks/usePatients';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useUIStore } from '@/store/useUIStore';
 import { getInitials, formatDate } from '@/lib/utils';
 import { IPatient } from '@/types';
 
-const CONDITION_OPTIONS = [
-  { label: 'All Conditions', value: 'All Conditions' },
-  { label: 'Hypertension', value: 'Hypertension' },
-  { label: 'Arrhythmia', value: 'Arrhythmia' },
-  { label: 'Diabetes', value: 'Diabetes' },
-  { label: 'Asthma', value: 'Asthma' },
-  { label: 'Migraine', value: 'Migraine' },
-  { label: 'Oncology', value: 'Oncology' },
-  { label: 'Pediatric', value: 'Pediatric' },
-  { label: 'Post-Op', value: 'Post-Op' },
-  { label: 'Dermatology', value: 'Eczema' },
+const GENDER_OPTIONS = [
+  { label: 'All Genders', value: 'All Genders' },
+  { label: 'Female', value: 'Female' },
+  { label: 'Male', value: 'Male' },
+  { label: 'Other', value: 'Other' },
 ];
 
-const STATUS_OPTIONS = [
-  { label: 'All Statuses', value: 'All Statuses' },
-  { label: 'Active', value: 'active' },
-  { label: 'Scheduled', value: 'scheduled' },
-  { label: 'Completed', value: 'completed' },
-  { label: 'Cancelled', value: 'cancelled' },
+const SORT_OPTIONS = [
+  { label: 'Sort: Newest First', value: 'newest' },
+  { label: 'Sort: Oldest First', value: 'oldest' },
+  { label: 'Sort: Name (A-Z)', value: 'alpha' },
 ];
 
 export default function PatientsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const debouncedSearch = useDebounce(searchQuery, 350);
 
-  const [selectedCondition, setSelectedCondition] = useState('All Conditions');
-  const [selectedStatus, setSelectedStatus] = useState('All Statuses');
+  const [selectedGender, setSelectedGender] = useState('All Genders');
+  const [selectedSort, setSelectedSort] = useState('newest');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { openCreatePatient, openEditPatient } = useUIStore();
+  const { openCreatePatient, openEditPatient, openScheduleSession } = useUIStore();
   const { deletePatient } = usePatientMutations();
 
   const { data: responseData, isLoading, isError, error } = usePatients({
     page: currentPage,
     limit: 8,
     q: debouncedSearch,
-    condition: selectedCondition,
-    status: selectedStatus,
+    gender: selectedGender,
+    sort: selectedSort,
   });
 
   const patients = (responseData?.data as IPatient[]) || [];
@@ -72,13 +63,13 @@ export default function PatientsPage() {
 
   const handleResetFilters = () => {
     setSearchQuery('');
-    setSelectedCondition('All Conditions');
-    setSelectedStatus('All Statuses');
+    setSelectedGender('All Genders');
+    setSelectedSort('newest');
     setCurrentPage(1);
   };
 
   const handleDeletePatient = async (patient: IPatient) => {
-    if (confirm(`Are you sure you want to delete patient ${patient.name}? This action cannot be undone.`)) {
+    if (confirm(`Are you sure you want to delete patient ${patient.name}? This will remove their profile and all associated clinical encounters.`)) {
       try {
         await deletePatient.mutateAsync(patient._id);
       } catch (err) {
@@ -99,7 +90,7 @@ export default function PatientsPage() {
             Patient Directory
           </h1>
           <p className="text-xs text-textSecondary mt-0.5">
-            Master patient roster, assigned attending physicians, and active clinical encounters.
+            Master patient roster, demographic profiles, and independent medical records.
           </p>
         </div>
 
@@ -130,29 +121,29 @@ export default function PatientsPage() {
 
         {/* Dropdowns */}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="w-[170px]">
-            <SelectDropdown
-              options={CONDITION_OPTIONS}
-              value={selectedCondition}
-              onChange={(val) => {
-                setSelectedCondition(val);
-                setCurrentPage(1);
-              }}
-            />
-          </div>
-
           <div className="w-[150px]">
             <SelectDropdown
-              options={STATUS_OPTIONS}
-              value={selectedStatus}
+              options={GENDER_OPTIONS}
+              value={selectedGender}
               onChange={(val) => {
-                setSelectedStatus(val);
+                setSelectedGender(val);
                 setCurrentPage(1);
               }}
             />
           </div>
 
-          {(searchQuery || selectedCondition !== 'All Conditions' || selectedStatus !== 'All Statuses') && (
+          <div className="w-[170px]">
+            <SelectDropdown
+              options={SORT_OPTIONS}
+              value={selectedSort}
+              onChange={(val) => {
+                setSelectedSort(val);
+                setCurrentPage(1);
+              }}
+            />
+          </div>
+
+          {(searchQuery || selectedGender !== 'All Genders' || selectedSort !== 'newest') && (
             <Button
               variant="ghost"
               size="sm"
@@ -175,34 +166,34 @@ export default function PatientsPage() {
               <tr className="border-b border-border bg-surface-subtle/50 text-[10px] font-bold uppercase tracking-wider text-textMuted">
                 <th className="py-3 px-4 sm:px-6">Patient Profile</th>
                 <th className="py-3 px-4">Contact Information</th>
-                <th className="py-3 px-4">Assigned Doctor</th>
-                <th className="py-3 px-4">Condition / Diagnosis</th>
-                <th className="py-3 px-4">Appointment</th>
-                <th className="py-3 px-4">Status</th>
+                <th className="py-3 px-4">Clinical Sessions</th>
+                <th className="py-3 px-4">Registered Date</th>
                 <th className="py-3 px-4 text-right pr-6">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
               {isLoading ? (
                 <tr>
-                  <td colSpan={7} className="py-16 text-center text-xs text-textMuted">
+                  <td colSpan={5} className="py-16 text-center text-xs text-textMuted">
                     Loading patient records from MongoDB Atlas...
                   </td>
                 </tr>
               ) : isError ? (
                 <tr>
-                  <td colSpan={7} className="py-16 text-center text-xs text-semantic-danger">
+                  <td colSpan={5} className="py-16 text-center text-xs text-semantic-danger">
                     Failed to load patients: {(error as Error)?.message || 'Internal Error'}
                   </td>
                 </tr>
               ) : patients.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="py-16 text-center text-xs text-textMuted">
+                  <td colSpan={5} className="py-16 text-center text-xs text-textMuted">
                     No patients found matching your search or filters.
                   </td>
                 </tr>
               ) : (
                 patients.map((patient) => {
+                  const sessionsCount = patient.totalSessions ?? 0;
+
                   return (
                     <tr
                       key={patient._id}
@@ -228,69 +219,39 @@ export default function PatientsPage() {
                       {/* Contact Info */}
                       <td className="py-3.5 px-4">
                         <div className="space-y-0.5 text-[11px]">
-                          {patient.phone && (
+                          {patient.phone ? (
                             <p className="text-textSecondary flex items-center gap-1.5 font-medium">
                               <Phone className="w-3 h-3 text-textMuted" />
                               <span>{patient.phone}</span>
                             </p>
+                          ) : (
+                            <span className="text-textSubtle italic">No phone provided</span>
                           )}
-                          {patient.email && (
+                          {patient.email ? (
                             <p className="text-textMuted flex items-center gap-1.5">
                               <Mail className="w-3 h-3 text-textMuted" />
                               <span className="truncate max-w-[180px]">{patient.email}</span>
                             </p>
+                          ) : (
+                            <span className="text-textSubtle italic">No email on file</span>
                           )}
                         </div>
                       </td>
 
-                      {/* Assigned Doctor */}
+                      {/* Clinical Sessions Enrolled */}
                       <td className="py-3.5 px-4">
-                        {patient.assignedDoctor?.name ? (
-                          <div>
-                            <p className="font-semibold text-ink leading-tight flex items-center gap-1">
-                              <Stethoscope className="w-3 h-3 text-primary flex-shrink-0" />
-                              <span className="truncate max-w-[160px]">
-                                {patient.assignedDoctor.name}
-                              </span>
-                            </p>
-                            <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary-soft text-primary border border-primary/15">
-                              {patient.assignedDoctor.specialization}
-                            </span>
-                          </div>
-                        ) : (
-                          <span className="text-[11px] text-textSubtle italic">
-                            Unassigned
-                          </span>
-                        )}
-                      </td>
-
-                      {/* Condition / Diagnosis */}
-                      <td className="py-3.5 px-4">
-                        <div className="flex items-center gap-1.5 text-textSecondary font-medium">
-                          <Activity className="w-3.5 h-3.5 text-[#2c9a8b] flex-shrink-0" />
-                          <span className="truncate max-w-[170px]" title={patient.currentCondition}>
-                            {patient.currentCondition || 'General Consultation'}
-                          </span>
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-primary-soft text-primary border border-primary/15">
+                          <Layers className="w-3 h-3 text-primary" />
+                          <span>{sessionsCount} {sessionsCount === 1 ? 'Session' : 'Sessions'}</span>
                         </div>
                       </td>
 
-                      {/* Appointment Time & Date */}
+                      {/* Registered Date */}
                       <td className="py-3.5 px-4">
-                        <div className="space-y-0.5 text-[11px]">
-                          <p className="text-ink font-semibold flex items-center gap-1.5">
-                            <Clock className="w-3 h-3 text-primary flex-shrink-0" />
-                            <span>{patient.appointmentAt || '10:00 AM'}</span>
-                          </p>
-                          <p className="text-textMuted flex items-center gap-1.5">
-                            <Calendar className="w-3 h-3 text-textSubtle flex-shrink-0" />
-                            <span>{formatDate(patient.sessionDate || patient.createdAt)}</span>
-                          </p>
+                        <div className="flex items-center gap-1.5 text-textMuted text-[11px]">
+                          <Calendar className="w-3.5 h-3.5 text-textSubtle flex-shrink-0" />
+                          <span>{formatDate(patient.createdAt)}</span>
                         </div>
-                      </td>
-
-                      {/* Status */}
-                      <td className="py-3.5 px-4">
-                        <StatusBadge status={patient.status || 'scheduled'} />
                       </td>
 
                       {/* Actions Menu */}
@@ -298,6 +259,15 @@ export default function PatientsPage() {
                         <div className="inline-flex justify-end">
                           <ActionMenu
                             items={[
+                              {
+                                label: 'Schedule Session',
+                                icon: <CalendarPlus className="w-3.5 h-3.5 text-primary" />,
+                                onClick: () =>
+                                  openScheduleSession({
+                                    patientId: patient._id,
+                                    patientName: patient.name,
+                                  }),
+                              },
                               {
                                 label: 'Edit Profile',
                                 icon: <Edit3 className="w-3.5 h-3.5 text-textMuted" />,
@@ -336,6 +306,7 @@ export default function PatientsPage() {
       {/* Modals */}
       <CreatePatientModal />
       <EditPatientModal />
+      <ScheduleSessionModal />
     </div>
   );
 }

@@ -19,9 +19,7 @@ const startServer = async () => {
     const app = createApp();
 
     const server = app.listen(PORT, () => {
-      console.log(`🚀 DocTrack Express Server running on port ${PORT}`);
-      console.log(`🔗 Health Check: http://localhost:${PORT}/api/health`);
-      console.log(`⚙️ Dev Mode: ${process.env.DEV_MODE === 'true' ? 'Enabled (Auth mock)' : 'Disabled (Supabase JWT)'}`);
+      console.log(`🚀 DocTrack Express Server running...`);
     });
 
     const shutdown = () => {

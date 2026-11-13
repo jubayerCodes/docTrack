@@ -29,6 +29,24 @@ interface UIState {
   selectedPatientForEdit: IPatient | null;
   openEditPatient: (patient: IPatient) => void;
   closeEditPatient: () => void;
+
+  // Schedule session modal state
+  isScheduleSessionOpen: boolean;
+  scheduleSessionContext: {
+    doctorId?: string;
+    doctorName?: string;
+    doctorSpecialization?: string;
+    patientId?: string;
+    patientName?: string;
+  } | null;
+  openScheduleSession: (context?: {
+    doctorId?: string;
+    doctorName?: string;
+    doctorSpecialization?: string;
+    patientId?: string;
+    patientName?: string;
+  }) => void;
+  closeScheduleSession: () => void;
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -55,4 +73,11 @@ export const useUIStore = create<UIState>((set) => ({
   selectedPatientForEdit: null,
   openEditPatient: (patient) => set({ selectedPatientForEdit: patient }),
   closeEditPatient: () => set({ selectedPatientForEdit: null }),
+
+  isScheduleSessionOpen: false,
+  scheduleSessionContext: null,
+  openScheduleSession: (context) =>
+    set({ isScheduleSessionOpen: true, scheduleSessionContext: context || null }),
+  closeScheduleSession: () =>
+    set({ isScheduleSessionOpen: false, scheduleSessionContext: null }),
 }));

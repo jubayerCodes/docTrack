@@ -6,17 +6,25 @@ export interface IPatientFilters {
   page?: number;
   limit?: number;
   q?: string;
+  gender?: string;
+  sort?: string;
   condition?: string;
   status?: string;
 }
 
 export function usePatients(filters: IPatientFilters = {}) {
-  const { page = 1, limit = 10, q = '', condition = '', status = '' } = filters;
+  const { page = 1, limit = 10, q = '', gender = '', sort = '', condition = '', status = '' } = filters;
 
   const queryParams = new URLSearchParams();
   if (page) queryParams.set('page', String(page));
   if (limit) queryParams.set('limit', String(limit));
   if (q.trim()) queryParams.set('q', q.trim());
+  if (gender && gender !== 'All Genders') {
+    queryParams.set('gender', gender);
+  }
+  if (sort) {
+    queryParams.set('sort', sort);
+  }
   if (condition && condition !== 'All Conditions') {
     queryParams.set('condition', condition);
   }
@@ -25,7 +33,7 @@ export function usePatients(filters: IPatientFilters = {}) {
   }
 
   return useQuery({
-    queryKey: ['patients', { page, limit, q, condition, status }],
+    queryKey: ['patients', { page, limit, q, gender, sort, condition, status }],
     queryFn: async () => {
       const res = await apiClient.get<IPatient[]>(`/patients?${queryParams.toString()}`);
       return res;
@@ -126,6 +134,8 @@ export function useAssignSession() {
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ['doctors'] });
       queryClient.invalidateQueries({ queryKey: ['patients'] });
+      queryClient.invalidateQueries({ queryKey: ['sessions'] });
+      queryClient.invalidateQueries({ queryKey: ['analytics'] });
       queryClient.invalidateQueries({ queryKey: ['doctorPatients', variables.doctorId] });
     },
   });

@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   Stethoscope,
   UserCheck,
+  CalendarDays,
   LogOut,
   Loader2,
 } from 'lucide-react';
@@ -25,6 +26,7 @@ const navItems: NavItem[] = [
   { name: 'Overview', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Doctors', href: '/doctors', icon: Stethoscope },
   { name: 'Patients', href: '/patients', icon: UserCheck },
+  { name: 'Sessions', href: '/sessions', icon: CalendarDays },
 ];
 
 export const Sidebar: React.FC = () => {

@@ -119,33 +119,24 @@ const STATUSES: Array<'scheduled' | 'active' | 'completed' | 'cancelled'> = [
 
 export const seedDatabase = async () => {
   const mongoURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/doctrack';
-  console.log(`Connecting to MongoDB for Seeding: ${mongoURI}`);
 
   try {
     await mongoose.connect(mongoURI);
-    console.log('✓ MongoDB Connected Successfully.');
 
     // Clear existing collections
-    console.log('Clearing old collections...');
     await Promise.all([
       Doctor.deleteMany({}),
       Patient.deleteMany({}),
       PatientSession.deleteMany({}),
     ]);
-    console.log('✓ Collections wiped clean.');
 
     // Seed Doctors
-    console.log('Inserting doctors...');
     const createdDoctors = await Doctor.insertMany(DOCTORS_DATA);
-    console.log(`✓ Inserted ${createdDoctors.length} doctors.`);
 
     // Seed Patients
-    console.log('Inserting patients...');
     const createdPatients = await Patient.insertMany(PATIENTS_DATA);
-    console.log(`✓ Inserted ${createdPatients.length} patients.`);
 
     // Seed Sessions (Encounter links)
-    console.log('Generating clinical sessions...');
     const sessions = [];
 
     // Distribute sessions across doctors and patients
@@ -188,17 +179,8 @@ export const seedDatabase = async () => {
     }
 
     const createdSessions = await PatientSession.insertMany(sessions);
-    console.log(`✓ Inserted ${createdSessions.length} patient clinical sessions.`);
-
-    console.log('\n=======================================');
-    console.log('🌱 DocTrack Database Seeding Completed!');
-    console.log(` Doctors:   ${createdDoctors.length}`);
-    console.log(` Patients:  ${createdPatients.length}`);
-    console.log(` Sessions:  ${createdSessions.length}`);
-    console.log('=======================================\n');
 
     await mongoose.disconnect();
-    console.log('Database disconnected cleanly.');
     process.exit(0);
   } catch (error) {
     console.error('❌ Database Seeding Failed:', error);
