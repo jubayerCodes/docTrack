@@ -6507,7 +6507,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/components/layout/AppShell.tsx",
-      "source_location": "L47",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -17598,5 +17598,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "432133f2a5c7ec098b4c36fcff30078009f5c0cf"
+  "built_at_commit": "e834fa5ebbe80f3d1bcf5c722edabe487dc2c5e2"
 }
