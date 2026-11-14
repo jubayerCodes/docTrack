@@ -45,6 +45,15 @@ export interface IPatientSession {
   updatedAt: string;
 }
 
+export interface IUser {
+  id: string;
+  email: string;
+  name: string;
+  role: 'admin' | 'user';
+  createdAt: string;
+  lastSignInAt?: string | null;
+}
+
 export interface IMeta {
   page?: number;
   limit?: number;

@@ -6,12 +6,13 @@ import {
   updatePatient,
   deletePatient,
 } from '../controllers/patientController';
-import { authenticate } from '../middleware/auth';
+import { authenticate, authorizeRole } from '../middleware/auth';
 
 const router = Router();
 
-// Apply auth middleware to all patient routes
+// Apply auth middleware to all patient routes (Admin only access)
 router.use(authenticate);
+router.use(authorizeRole('admin'));
 
 router.route('/')
   .get(getPatients)

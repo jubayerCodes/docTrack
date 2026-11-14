@@ -1,16 +1,19 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { useRouter, usePathname } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
-interface AuthContextType {
+export interface AuthContextType {
   user: User | null;
   session: Session | null;
   isLoading: boolean;
   isAuthenticated: boolean;
+  isAdmin: boolean;
+  role: 'admin' | 'user';
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  register: (email: string, password: string, name: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => Promise<void>;
 }
 
@@ -23,7 +26,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const router = useRouter();
   const pathname = usePathname();
 
-  const supabase = React.useMemo(() => createClient(), []);
+  const supabase = useMemo(() => createClient(), []);
+
+  // Compute actual role and admin status from Supabase user metadata
+  const role: 'admin' | 'user' = useMemo(() => {
+    const rawRole = user?.app_metadata?.role || user?.user_metadata?.role;
+    return rawRole === 'admin' ? 'admin' : 'user';
+  }, [user]);
+
+  const isAdmin = role === 'admin';
 
   // Helper to sync sb-access-token cookie for Express backend compatibility
   const syncAccessCookie = useCallback((accessToken?: string, expiresIn?: number) => {
@@ -103,14 +114,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     if (isLoading) return;
 
-    const isLoginPage = pathname === '/login';
+    const isAuthPage = pathname === '/login' || pathname === '/register';
+    const isAdminOnlyPage =
+      pathname.startsWith('/doctors') ||
+      pathname.startsWith('/patients') ||
+      pathname.startsWith('/sessions') ||
+      pathname.startsWith('/users');
 
-    if (!user && !isLoginPage) {
+    if (!user && !isAuthPage) {
       router.replace('/login');
-    } else if (user && isLoginPage) {
+    } else if (user && isAuthPage) {
+      router.replace('/dashboard');
+    } else if (user && !isAdmin && isAdminOnlyPage) {
+      // Normal users are restricted to dashboard only
       router.replace('/dashboard');
     }
-  }, [user, isLoading, pathname, router]);
+  }, [user, isAdmin, isLoading, pathname, router]);
 
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     try {
@@ -140,6 +159,42 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const register = async (
+    email: string,
+    password: string,
+    name: string
+  ): Promise<{ success: boolean; error?: string }> => {
+    try {
+      setIsLoading(true);
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+      const res = await fetch(`${apiUrl}/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+          name: name.trim(),
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data.success) {
+        setIsLoading(false);
+        return { success: false, error: data.message || 'Registration failed. Please check your details.' };
+      }
+
+      // Automatically sign in the user upon successful registration
+      return await login(email, password);
+    } catch (err: unknown) {
+      setIsLoading(false);
+      const message = err instanceof Error ? err.message : 'Registration failed unexpectedly. Please try again.';
+      return { success: false, error: message };
+    }
+  };
+
   const logout = async (): Promise<void> => {
     try {
       setIsLoading(true);
@@ -160,7 +215,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     session,
     isLoading,
     isAuthenticated: !!user,
+    isAdmin,
+    role,
     login,
+    register,
     logout,
   };
 

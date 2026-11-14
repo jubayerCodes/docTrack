@@ -10,6 +10,8 @@ export interface ActionMenuItem {
   icon?: React.ReactNode;
   onClick: () => void;
   variant?: 'default' | 'danger';
+  disabled?: boolean;
+  title?: string;
 }
 
 export interface ActionMenuProps {
@@ -85,6 +87,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ items, ariaLabel = 'Acti
   const handleItemClick = (e: React.MouseEvent, item: ActionMenuItem) => {
     e.stopPropagation();
     e.preventDefault();
+    if (item.disabled) return;
     setIsOpen(false);
     item.onClick();
   };
@@ -122,13 +125,17 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ items, ariaLabel = 'Acti
               <button
                 key={index}
                 type="button"
+                disabled={item.disabled}
+                title={item.title}
                 onMouseDown={(e) => e.stopPropagation()}
                 onClick={(e) => handleItemClick(e, item)}
                 className={cn(
-                  'w-full flex items-center gap-2 px-3 py-2 rounded-md text-xs font-medium transition-colors text-left cursor-pointer',
-                  item.variant === 'danger'
-                    ? 'text-semantic-danger hover:bg-semantic-dangerBg'
-                    : 'text-ink hover:bg-surface-subtle'
+                  'w-full flex items-center gap-2 px-3 py-2 rounded-md text-xs font-medium transition-colors text-left',
+                  item.disabled
+                    ? 'opacity-40 cursor-not-allowed text-textMuted'
+                    : item.variant === 'danger'
+                    ? 'text-semantic-danger hover:bg-semantic-dangerBg cursor-pointer'
+                    : 'text-ink hover:bg-surface-subtle cursor-pointer'
                 )}
               >
                 {item.icon && <span className="w-3.5 h-3.5 flex-shrink-0">{item.icon}</span>}

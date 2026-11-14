@@ -7,12 +7,13 @@ import {
   deleteDoctor,
   getDoctorPatients,
 } from '../controllers/doctorController';
-import { authenticate } from '../middleware/auth';
+import { authenticate, authorizeRole } from '../middleware/auth';
 
 const router = Router();
 
-// Apply auth middleware to all doctor routes
+// Apply auth middleware to all doctor routes (Admin only access)
 router.use(authenticate);
+router.use(authorizeRole('admin'));
 
 // Doctor CRUD & Listing
 router.route('/')

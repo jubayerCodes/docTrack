@@ -13,10 +13,10 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
   const { sidebarCollapsed } = useUIStore();
   const { isLoading, user } = useAuth();
 
-  const isLoginPage = pathname === '/login';
+  const isAuthPage = pathname === '/login' || pathname === '/register';
 
-  // Auth pages (e.g. /login) render standalone without sidebar or top navigation
-  if (isLoginPage) {
+  // Auth pages (e.g. /login, /register) render standalone without sidebar or top navigation
+  if (isAuthPage) {
     return <div className="min-h-screen bg-appBackground text-ink">{children}</div>;
   }
 

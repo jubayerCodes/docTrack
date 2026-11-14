@@ -36,20 +36,37 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   const { pathname } = request.nextUrl;
-  const isLoginPage = pathname === '/login';
+  const isPublicAuthPage = pathname === '/login' || pathname === '/register';
 
   // 1. Unauthenticated users trying to access protected portal pages -> redirect to /login
-  if (!user && !isLoginPage) {
+  if (!user && !isPublicAuthPage) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = '/login';
     return NextResponse.redirect(loginUrl);
   }
 
-  // 2. Authenticated users trying to visit /login or / -> redirect to dashboard
-  if (user && (isLoginPage || pathname === '/')) {
+  // 2. Authenticated users trying to visit auth pages (/login, /register) or root (/) -> redirect to dashboard
+  if (user && (isPublicAuthPage || pathname === '/')) {
     const portalUrl = request.nextUrl.clone();
     portalUrl.pathname = '/dashboard';
     return NextResponse.redirect(portalUrl);
+  }
+
+  // 3. Standard users trying to access admin-only pages -> redirect to dashboard
+  if (user) {
+    const userRole = user.app_metadata?.role || user.user_metadata?.role || 'user';
+    const isAdmin = userRole === 'admin';
+    const isAdminOnlyPage =
+      pathname.startsWith('/doctors') ||
+      pathname.startsWith('/patients') ||
+      pathname.startsWith('/sessions') ||
+      pathname.startsWith('/users');
+
+    if (!isAdmin && isAdminOnlyPage) {
+      const dashboardUrl = request.nextUrl.clone();
+      dashboardUrl.pathname = '/dashboard';
+      return NextResponse.redirect(dashboardUrl);
+    }
   }
 
   return supabaseResponse;

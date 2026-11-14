@@ -8,6 +8,7 @@ import {
   Stethoscope,
   UserCheck,
   CalendarDays,
+  Users,
   LogOut,
   Loader2,
   X,
@@ -23,18 +24,25 @@ interface NavItem {
   badge?: string;
 }
 
-const navItems: NavItem[] = [
+const adminNavItems: NavItem[] = [
   { name: 'Overview', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Doctors', href: '/doctors', icon: Stethoscope },
   { name: 'Patients', href: '/patients', icon: UserCheck },
   { name: 'Sessions', href: '/sessions', icon: CalendarDays },
+  { name: 'Manage Users', href: '/users', icon: Users },
+];
+
+const regularNavItems: NavItem[] = [
+  { name: 'Overview', href: '/dashboard', icon: LayoutDashboard },
 ];
 
 export const Sidebar: React.FC = () => {
   const pathname = usePathname();
   const { sidebarCollapsed, mobileSidebarOpen, setMobileSidebarOpen } = useUIStore();
-  const { logout } = useAuth();
+  const { logout, isAdmin } = useAuth();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const navItems = isAdmin ? adminNavItems : regularNavItems;
 
   const handleLogout = async () => {
     try {

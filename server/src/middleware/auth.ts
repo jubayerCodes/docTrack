@@ -83,6 +83,21 @@ const tokenCache = new Map<string, CachedUser>();
 const TOKEN_CACHE_TTL_MS = 5 * 60 * 1000; // 5-minute TTL
 
 /**
+ * Invalidate token cache entries, optionally targeted by userId
+ */
+export const invalidateTokenCache = (userId?: string): void => {
+  if (!userId) {
+    tokenCache.clear();
+    return;
+  }
+  for (const [token, cached] of tokenCache.entries()) {
+    if (cached.id === userId) {
+      tokenCache.delete(token);
+    }
+  }
+};
+
+/**
  * Periodically prunes expired tokens from memory to prevent unbounded memory growth
  */
 const pruneExpiredTokens = () => {
@@ -162,7 +177,7 @@ export const authenticate = async (
     const verifiedUser = {
       id: user.id,
       email: user.email || '',
-      role: user.app_metadata?.role || user.user_metadata?.role || 'admin',
+      role: user.app_metadata?.role || user.user_metadata?.role || 'user',
     };
 
     req.user = verifiedUser;

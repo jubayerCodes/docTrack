@@ -31,6 +31,7 @@ import {
 import { Button } from '@/components/ui/Button';
 import { Skeleton, ChartSkeleton, DonutSkeleton } from '@/components/ui/Skeleton';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useAuth } from '@/hooks/useAuth';
 
 const PIE_COLORS = [
   '#6559cc', // Purple primary
@@ -44,6 +45,7 @@ const PIE_COLORS = [
 ];
 
 export default function DashboardPage() {
+  const { isAdmin } = useAuth();
   const { data, isLoading, isError, error, refetch, isFetching } = useAnalytics();
 
   const kpis = data?.kpis || {
@@ -108,13 +110,15 @@ export default function DashboardPage() {
             <span>Sync Live Data</span>
           </Button>
 
-          <Link href="/doctors" className="flex-1 sm:flex-initial">
-            <Button variant="primary" size="sm" className="w-full">
-              <Stethoscope className="w-3.5 h-3.5 mr-1" />
-              <span>Doctor Directory</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1" />
-            </Button>
-          </Link>
+          {isAdmin && (
+            <Link href="/doctors" className="flex-1 sm:flex-initial">
+              <Button variant="primary" size="sm" className="w-full">
+                <Stethoscope className="w-3.5 h-3.5 mr-1" />
+                <span>Doctor Directory</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1" />
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
 

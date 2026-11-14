@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Mail, Lock, Eye, EyeOff, ShieldCheck, AlertCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
@@ -139,7 +140,7 @@ export default function LoginPage() {
                   disabled={isSubmitting}
                   required
                   autoComplete="current-password"
-                  className="w-full h-10 rounded-control border border-border bg-surface pl-9 pr-10 text-xs text-ink placeholder:text-textSubtle transition-all duration-150 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  className="w-full h-10 rounded-control border border-border bg-surface pl-9 pr-10 text-xs text-ink placeholder:text-textSubtle transition-all duration-150 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 [&::-ms-reveal]:hidden [&::-ms-clear]:hidden"
                 />
                 <button
                   type="button"
@@ -163,6 +164,19 @@ export default function LoginPage() {
               {!isSubmitting && <ArrowRight className="w-4 h-4 ml-1.5" />}
             </Button>
           </form>
+
+          {/* Registration Navigation */}
+          <div className="pt-3 text-center border-t border-border">
+            <p className="text-xs text-textSecondary">
+              Don&apos;t have an account?{' '}
+              <Link
+                href="/register"
+                className="font-semibold text-primary hover:text-primary-hover transition-colors underline underline-offset-2"
+              >
+                Register here
+              </Link>
+            </p>
+          </div>
         </div>
 
         {/* Security & Compliance Footer */}

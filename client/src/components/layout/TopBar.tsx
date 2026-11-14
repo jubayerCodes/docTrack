@@ -7,7 +7,7 @@ import { useAuth } from '@/hooks/useAuth';
 
 export const TopBar: React.FC = () => {
   const { toggleSidebar, toggleMobileSidebar } = useUIStore();
-  const { user } = useAuth();
+  const { user, isAdmin } = useAuth();
 
   const handleToggle = () => {
     if (typeof window !== 'undefined' && window.innerWidth < 1024) {
@@ -20,16 +20,16 @@ export const TopBar: React.FC = () => {
   // Compute initials and displayName
   const displayName =
     (user?.user_metadata?.name as string) ||
-    (user?.email ? user.email.split('@')[0] : 'Admin System');
+    (user?.email ? user.email.split('@')[0] : 'User');
 
   const initials = displayName
     .split(' ')
     .filter(Boolean)
     .map((part) => part[0]?.toUpperCase())
     .slice(0, 2)
-    .join('') || 'AD';
+    .join('') || 'DT';
 
-  const userRole = (user?.user_metadata?.role as string) || 'Chief Administrator';
+  const userRole = isAdmin ? 'System Administrator' : 'Staff Member';
 
   return (
     <header className="sticky top-0 z-20 h-14 bg-surface border-b border-border px-3.5 sm:px-6 flex items-center justify-between">
