@@ -71,6 +71,29 @@ const parseCookieValue = (raw: any): string | null => {
   return null;
 };
 
+interface CachedUser {
+  id: string;
+  email: string;
+  role: string;
+  expiresAt: number;
+}
+
+// In-memory token verification cache to eliminate redundant remote Supabase network roundtrips
+const tokenCache = new Map<string, CachedUser>();
+const TOKEN_CACHE_TTL_MS = 5 * 60 * 1000; // 5-minute TTL
+
+/**
+ * Periodically prunes expired tokens from memory to prevent unbounded memory growth
+ */
+const pruneExpiredTokens = () => {
+  const now = Date.now();
+  for (const [key, val] of tokenCache.entries()) {
+    if (val.expiresAt <= now) {
+      tokenCache.delete(key);
+    }
+  }
+};
+
 /**
  * Dual Transport Authentication Middleware
  * Supports Bearer tokens in Authorization header (standard for decoupled cross-origin deployments)
@@ -109,13 +132,25 @@ export const authenticate = async (
       return;
     }
 
-    // 3. Verify the session token using privileged backend client (SUPABASE_SECRET_KEY)
+    // 3. Fast In-Memory Cache Check (eliminates ~60ms external HTTP hop to Supabase)
+    const cached = tokenCache.get(token);
+    if (cached && cached.expiresAt > Date.now()) {
+      req.user = {
+        id: cached.id,
+        email: cached.email,
+        role: cached.role,
+      };
+      return next();
+    }
+
+    // 4. Verify the session token using privileged backend client (SUPABASE_SECRET_KEY)
     const {
       data: { user },
       error,
     } = await supabaseAdmin.auth.getUser(token);
 
     if (error || !user) {
+      tokenCache.delete(token);
       res.status(401).json({
         success: false,
         message: 'Invalid, expired, or revoked session token.',
@@ -123,12 +158,22 @@ export const authenticate = async (
       return;
     }
 
-    // 4. Populate verified user payload
-    req.user = {
+    // 5. Populate and cache verified user payload
+    const verifiedUser = {
       id: user.id,
       email: user.email || '',
       role: user.app_metadata?.role || user.user_metadata?.role || 'admin',
     };
+
+    req.user = verifiedUser;
+
+    if (tokenCache.size > 2000) {
+      pruneExpiredTokens();
+    }
+    tokenCache.set(token, {
+      ...verifiedUser,
+      expiresAt: Date.now() + TOKEN_CACHE_TTL_MS,
+    });
 
     next();
   } catch (error) {

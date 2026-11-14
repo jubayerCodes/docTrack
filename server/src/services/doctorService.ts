@@ -48,9 +48,8 @@ export const getAllDoctorsFromDB = async (queryParams: IDoctorQueryParams) => {
     sortStage = { name: -1 };
   }
 
-  // Aggregation pipeline to join active patient sessions and count caseload
-  const aggregationPipeline: any[] = [
-    { $match: filter },
+  // Lookup sub-pipeline to attach active patient sessions count
+  const sessionLookupStages: any[] = [
     {
       $lookup: {
         from: 'patientsessions',
@@ -82,20 +81,49 @@ export const getAllDoctorsFromDB = async (queryParams: IDoctorQueryParams) => {
     },
   ];
 
-  if (sortBy === 'patients-asc') {
-    aggregationPipeline.push({ $sort: { activePatientsCount: 1, name: 1 } });
-  } else if (sortBy === 'patients' || sortBy === 'patients-desc') {
-    aggregationPipeline.push({ $sort: { activePatientsCount: -1, name: 1 } });
+  // Build single-roundtrip aggregation pipeline with $facet
+  const isCaseloadSort = sortBy === 'patients-asc' || sortBy === 'patients' || sortBy === 'patients-desc';
+  const caseloadSortDir = sortBy === 'patients-asc' ? 1 : -1;
+
+  let aggregationPipeline: any[];
+
+  if (isCaseloadSort) {
+    // When sorting by caseload, calculate activePatientsCount first, then sort and paginate
+    aggregationPipeline = [
+      { $match: filter },
+      ...sessionLookupStages,
+      {
+        $facet: {
+          metadata: [{ $count: 'total' }],
+          data: [
+            { $sort: { activePatientsCount: caseloadSortDir, name: 1 } },
+            { $skip: skip },
+            { $limit: limit },
+          ],
+        },
+      },
+    ];
   } else {
-    aggregationPipeline.push({ $sort: sortStage });
+    // Standard sort: Sort & paginate first, then lookup sessions ONLY for the requested page of doctors
+    aggregationPipeline = [
+      { $match: filter },
+      {
+        $facet: {
+          metadata: [{ $count: 'total' }],
+          data: [
+            { $sort: sortStage },
+            { $skip: skip },
+            { $limit: limit },
+            ...sessionLookupStages,
+          ],
+        },
+      },
+    ];
   }
 
-  const total = await Doctor.countDocuments(filter);
-
-  aggregationPipeline.push({ $skip: skip });
-  aggregationPipeline.push({ $limit: limit });
-
-  const doctors = await Doctor.aggregate(aggregationPipeline);
+  const [result] = await Doctor.aggregate(aggregationPipeline);
+  const total = result?.metadata?.[0]?.total || 0;
+  const doctors = result?.data || [];
 
   return {
     meta: {
@@ -113,14 +141,18 @@ export const getDoctorByIdFromDB = async (id: string) => {
     throw new AppError(400, 'Invalid doctor identifier format');
   }
 
-  const doctor = await Doctor.findById(id);
+  // Execute doctor lookup and session population in parallel to eliminate sequential roundtrips
+  const [doctor, sessions] = await Promise.all([
+    Doctor.findById(id).lean(),
+    PatientSession.find({ doctorId: id })
+      .populate('patientId', 'name phone email age gender')
+      .sort({ sessionDate: -1 })
+      .lean(),
+  ]);
+
   if (!doctor) {
     throw new AppError(404, 'Doctor not found');
   }
-
-  const sessions = await PatientSession.find({ doctorId: doctor._id })
-    .populate('patientId', 'name phone email age gender')
-    .sort({ sessionDate: -1 });
 
   return {
     doctor,
@@ -186,17 +218,21 @@ export const getDoctorAssignedPatientsFromDB = async (doctorId: string) => {
     throw new AppError(400, 'Invalid doctor identifier format');
   }
 
-  const doctor = await Doctor.findById(doctorId);
+  // Fetch doctor and assigned sessions concurrently
+  const [doctor, sessions] = await Promise.all([
+    Doctor.findById(doctorId).lean(),
+    PatientSession.find({
+      doctorId,
+      status: { $in: ['active', 'scheduled'] },
+    })
+      .populate('patientId', 'name phone email age gender')
+      .sort({ sessionDate: 1, appointmentAt: 1 })
+      .lean(),
+  ]);
+
   if (!doctor) {
     throw new AppError(404, 'Doctor not found');
   }
-
-  const sessions = await PatientSession.find({
-    doctorId: doctor._id,
-    status: { $in: ['active', 'scheduled'] },
-  })
-    .populate('patientId', 'name phone email age gender')
-    .sort({ sessionDate: 1, appointmentAt: 1 });
 
   return {
     doctor: {

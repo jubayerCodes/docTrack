@@ -112,14 +112,18 @@ export const getPatientByIdFromDB = async (id: string) => {
     throw new AppError(400, 'Invalid patient identifier format');
   }
 
-  const patient = await Patient.findById(id);
+  // Fetch patient and clinical sessions in parallel to eliminate sequential roundtrips
+  const [patient, sessions] = await Promise.all([
+    Patient.findById(id).lean(),
+    PatientSession.find({ patientId: id })
+      .populate('doctorId', 'name specialization hospital phone email')
+      .sort({ sessionDate: -1 })
+      .lean(),
+  ]);
+
   if (!patient) {
     throw new AppError(404, 'Patient not found');
   }
-
-  const sessions = await PatientSession.find({ patientId: patient._id })
-    .populate('doctorId', 'name specialization hospital phone email')
-    .sort({ sessionDate: -1 });
 
   return {
     patient,
