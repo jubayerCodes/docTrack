@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Modal } from './Modal';
 import { Button } from './Button';
 import { StatusBadge } from './StatusBadge';
+import { Skeleton } from './Skeleton';
 import { ConfirmDeleteModal } from './ConfirmDeleteModal';
 import { Trash2, Clock, UserPlus } from 'lucide-react';
 import { useUIStore } from '@/store/useUIStore';
@@ -48,8 +49,22 @@ export const AssignedPatientsModal: React.FC = () => {
     >
       <div className="space-y-4">
         {isLoading ? (
-          <div className="py-12 text-center text-xs text-textMuted">
-            Loading assigned encounters...
+          <div className="space-y-2.5">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-between p-3 sm:p-3.5 rounded-card bg-white border border-border shadow-sm gap-2"
+              >
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <Skeleton className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex-shrink-0" />
+                  <div className="space-y-1.5 flex-1 min-w-0">
+                    <Skeleton className="h-3.5 w-32 max-w-full" />
+                    <Skeleton className="h-2.5 w-44 max-w-full" />
+                  </div>
+                </div>
+                <Skeleton className="w-8 h-8 rounded-control flex-shrink-0" />
+              </div>
+            ))}
           </div>
         ) : sessions.length === 0 ? (
           <div className="py-10 text-center rounded-card bg-surface-subtle border border-border p-6">

@@ -29,9 +29,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
             <span className="w-3 h-8 rounded-full bg-primary block" />
             <span className="w-3 h-8 rounded-full bg-[#2c9a8b] block" />
           </div>
-          <span className="text-xs font-semibold text-textMuted tracking-wider uppercase">
-            Loading DocTrack Portal...
-          </span>
+          <div className="w-28 h-2.5 rounded-full bg-border/70 animate-pulse mt-1" />
         </div>
       </div>
     );

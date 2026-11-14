@@ -24,6 +24,7 @@ import { SelectDropdown } from '@/components/ui/SelectDropdown';
 import { PaginationBar } from '@/components/ui/PaginationBar';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { ActionMenu } from '@/components/ui/ActionMenu';
+import { TableSkeleton, CardListSkeleton } from '@/components/ui/Skeleton';
 import { ScheduleSessionModal } from '@/components/ui/ScheduleSessionModal';
 import { ConfirmDeleteModal } from '@/components/ui/ConfirmDeleteModal';
 import { useSessions, useSessionMutations } from '@/hooks/useSessions';
@@ -238,9 +239,7 @@ export default function SessionsPage() {
       {/* Mobile Card View (< 768px) */}
       <div className="md:hidden space-y-3">
         {isLoading && !responseData ? (
-          <div className="p-8 text-center text-xs text-textMuted rounded-card bg-surface border border-border">
-            Loading clinical encounter records...
-          </div>
+          <CardListSkeleton count={4} />
         ) : isError ? (
           <div className="p-8 text-center text-xs text-semantic-danger rounded-card bg-surface border border-border">
             Failed to load sessions: {(error as Error)?.message || 'Internal Error'}
@@ -388,11 +387,7 @@ export default function SessionsPage() {
             </thead>
             <tbody className="divide-y divide-border">
               {isLoading && !responseData ? (
-                <tr>
-                  <td colSpan={6} className="py-16 text-center text-xs text-textMuted">
-                    Loading clinical encounter records...
-                  </td>
-                </tr>
+                <TableSkeleton rows={6} cols={6} />
               ) : isError ? (
                 <tr>
                   <td colSpan={6} className="py-16 text-center text-xs text-semantic-danger">

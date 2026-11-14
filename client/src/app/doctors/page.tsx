@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/Button';
 import { SelectDropdown } from '@/components/ui/SelectDropdown';
 import { ActionMenu } from '@/components/ui/ActionMenu';
 import { PaginationBar } from '@/components/ui/PaginationBar';
+import { TableSkeleton, CardListSkeleton } from '@/components/ui/Skeleton';
 import { CreateDoctorModal } from '@/components/ui/CreateDoctorModal';
 import { AssignedPatientsModal } from '@/components/ui/AssignedPatientsModal';
 import { AssignPatientModal } from '@/components/ui/AssignPatientModal';
@@ -203,9 +204,7 @@ export default function DoctorsPage() {
       {/* Mobile Card View (< 768px) */}
       <div className="md:hidden space-y-3">
         {isLoading && !data ? (
-          <div className="p-8 text-center text-xs text-textMuted rounded-card bg-surface border border-border">
-            Loading doctors directory...
-          </div>
+          <CardListSkeleton count={4} />
         ) : isError ? (
           <div className="p-8 text-center text-xs text-semantic-danger rounded-card bg-surface border border-border">
             Failed to load doctors: {(error as Error)?.message || 'Internal Error'}
@@ -345,11 +344,7 @@ export default function DoctorsPage() {
             </thead>
             <tbody className="divide-y divide-border">
               {isLoading && !data ? (
-                <tr>
-                  <td colSpan={6} className="py-16 text-center text-xs text-textMuted">
-                    Loading doctors directory...
-                  </td>
-                </tr>
+                <TableSkeleton rows={6} cols={6} />
               ) : isError ? (
                 <tr>
                   <td colSpan={6} className="py-16 text-center text-xs text-semantic-danger">

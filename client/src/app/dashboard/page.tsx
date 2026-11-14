@@ -29,6 +29,7 @@ import {
   Legend,
 } from 'recharts';
 import { Button } from '@/components/ui/Button';
+import { Skeleton, ChartSkeleton, DonutSkeleton } from '@/components/ui/Skeleton';
 import { useAnalytics } from '@/hooks/useAnalytics';
 
 const PIE_COLORS = [
@@ -130,9 +131,9 @@ export default function DashboardPage() {
             </div>
           </div>
           <div className="mt-3">
-            <p className="text-2xl sm:text-3xl font-heading font-bold text-ink">
-              {isLoading ? '—' : kpis.totalDoctors}
-            </p>
+            <div className="text-2xl sm:text-3xl font-heading font-bold text-ink">
+              {isLoading ? <Skeleton className="h-8 w-16 my-0.5" /> : kpis.totalDoctors}
+            </div>
             <p className="text-xs text-textSecondary mt-1 flex items-center gap-1">
               <span className="text-[#2c9a8b] font-semibold flex items-center">
                 <TrendingUp className="w-3 h-3 mr-0.5" /> Active Roster
@@ -153,13 +154,13 @@ export default function DashboardPage() {
             </div>
           </div>
           <div className="mt-3">
-            <p className="text-2xl sm:text-3xl font-heading font-bold text-ink">
-              {isLoading ? '—' : kpis.activePatients}
-            </p>
+            <div className="text-2xl sm:text-3xl font-heading font-bold text-ink">
+              {isLoading ? <Skeleton className="h-8 w-16 my-0.5" /> : kpis.activePatients}
+            </div>
             <p className="text-xs text-textSecondary mt-1">
               Out of{' '}
               <span className="font-semibold text-ink">
-                {isLoading ? '—' : kpis.totalPatients}
+                {isLoading ? <Skeleton className="inline-block h-3.5 w-8 align-middle" /> : kpis.totalPatients}
               </span>{' '}
               registered records
             </p>
@@ -177,12 +178,12 @@ export default function DashboardPage() {
             </div>
           </div>
           <div className="mt-3">
-            <p className="text-2xl sm:text-3xl font-heading font-bold text-ink">
-              {isLoading ? '—' : kpis.totalEncounters}
-            </p>
+            <div className="text-2xl sm:text-3xl font-heading font-bold text-ink">
+              {isLoading ? <Skeleton className="h-8 w-16 my-0.5" /> : kpis.totalEncounters}
+            </div>
             <p className="text-xs text-textSecondary mt-1">
               <span className="font-semibold text-ink">
-                {isLoading ? '—' : kpis.todayScheduled}
+                {isLoading ? <Skeleton className="inline-block h-3.5 w-8 align-middle" /> : kpis.todayScheduled}
               </span>{' '}
               scheduled for today
             </p>
@@ -200,9 +201,9 @@ export default function DashboardPage() {
             </div>
           </div>
           <div className="mt-3">
-            <p className="text-2xl sm:text-3xl font-heading font-bold text-ink">
-              {isLoading ? '—' : `${kpis.avgPerDoctor} / doc`}
-            </p>
+            <div className="text-2xl sm:text-3xl font-heading font-bold text-ink">
+              {isLoading ? <Skeleton className="h-8 w-24 my-0.5" /> : `${kpis.avgPerDoctor} / doc`}
+            </div>
             <p className="text-xs text-textSecondary mt-1 flex items-center gap-1 text-[#2c9a8b] font-medium">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Optimal capacity load</span>
@@ -231,9 +232,7 @@ export default function DashboardPage() {
 
           <div className="h-64 sm:h-72 w-full pt-2 min-w-0">
             {isLoading ? (
-              <div className="h-full flex items-center justify-center text-xs text-textMuted">
-                Loading aggregation metrics...
-              </div>
+              <ChartSkeleton />
             ) : isError ? (
               <div className="h-full flex items-center justify-center text-xs text-semantic-danger">
                 Failed to load analytics: {(error as Error)?.message}
@@ -309,7 +308,7 @@ export default function DashboardPage() {
 
           <div className="h-64 sm:h-72 w-full flex items-center justify-center min-w-0">
             {isLoading ? (
-              <div className="text-xs text-textMuted">Loading breakdown...</div>
+              <DonutSkeleton />
             ) : specialtyData.length === 0 ? (
               <div className="text-xs text-textMuted">No specialty data available.</div>
             ) : (
@@ -385,9 +384,7 @@ export default function DashboardPage() {
 
         <div className="h-64 sm:h-72 w-full pt-2 min-w-0">
           {isLoading ? (
-            <div className="h-full flex items-center justify-center text-xs text-textMuted">
-              Loading temporal trends...
-            </div>
+            <ChartSkeleton />
           ) : trendData.length === 0 ? (
             <div className="h-full flex items-center justify-center text-xs text-textMuted">
               No trend data recorded in the last 30 days.

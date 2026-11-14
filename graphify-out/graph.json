@@ -4,19 +4,6 @@
   "graph": {},
   "nodes": [
     {
-      "id": "client_src_components_layout_sidebar_navitem",
-      "label": "NavItem",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "navitem",
-      "source_file": "client/src/components/layout/Sidebar.tsx",
-      "source_location": "L19"
-    },
-    {
       "id": "client_src_components_ui_actionmenu_actionmenuitem",
       "label": "ActionMenuItem",
       "_callable": true,
@@ -147,6 +134,45 @@
       "source_location": "L7"
     },
     {
+      "id": "client_src_components_ui_skeleton_cardlistskeletonprops",
+      "label": "CardListSkeletonProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "sessions/page.tsx",
+      "file_type": "code",
+      "norm_label": "cardlistskeletonprops",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L77"
+    },
+    {
+      "id": "client_src_components_ui_skeleton_skeletonprops",
+      "label": "SkeletonProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "sessions/page.tsx",
+      "file_type": "code",
+      "norm_label": "skeletonprops",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "client_src_components_ui_skeleton_tableskeletonprops",
+      "label": "TableSkeletonProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "sessions/page.tsx",
+      "file_type": "code",
+      "norm_label": "tableskeletonprops",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L25"
+    },
+    {
       "id": "client_src_components_ui_statusbadge_statusbadgeprops",
       "label": "StatusBadgeProps",
       "_callable": true,
@@ -170,58 +196,6 @@
       "file_type": "code",
       "norm_label": "timepickerprops",
       "source_file": "client/src/components/ui/TimePicker.tsx",
-      "source_location": "L13"
-    },
-    {
-      "id": "client_src_hooks_usedoctors_idoctorfilters",
-      "label": "IDoctorFilters",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "idoctorfilters",
-      "source_file": "client/src/hooks/useDoctors.ts",
-      "source_location": "L5"
-    },
-    {
-      "id": "client_src_store_useuistore_uistate",
-      "label": "UIState",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "uistate",
-      "source_file": "client/src/store/useUIStore.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "client_src_types_index_idoctor",
-      "label": "IDoctor",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "idoctor",
-      "source_file": "client/src/types/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "client_src_types_index_ipatient",
-      "label": "IPatient",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "ipatient",
-      "source_file": "client/src/types/index.ts",
       "source_location": "L13"
     },
     {
@@ -329,95 +303,17 @@
       "source_location": "L4"
     },
     {
-      "id": "client_src_context_authcontext_authcontexttype",
-      "label": "AuthContextType",
+      "id": "client_src_hooks_usedoctors_idoctorfilters",
+      "label": "IDoctorFilters",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 10,
       "community_name": "usePatients.ts",
       "file_type": "code",
-      "norm_label": "authcontexttype",
-      "source_file": "client/src/context/AuthContext.tsx",
-      "source_location": "L8"
-    },
-    {
-      "id": "client_src_hooks_useanalytics_ianalyticskpis",
-      "label": "IAnalyticsKPIs",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "ianalyticskpis",
-      "source_file": "client/src/hooks/useAnalytics.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "client_src_hooks_useanalytics_ianalyticssummary",
-      "label": "IAnalyticsSummary",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "ianalyticssummary",
-      "source_file": "client/src/hooks/useAnalytics.ts",
-      "source_location": "L37"
-    },
-    {
-      "id": "client_src_hooks_useanalytics_icaseloaddistribution",
-      "label": "ICaseloadDistribution",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "icaseloaddistribution",
-      "source_file": "client/src/hooks/useAnalytics.ts",
-      "source_location": "L13"
-    },
-    {
-      "id": "client_src_hooks_useanalytics_ispecializationdistribution",
-      "label": "ISpecializationDistribution",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "ispecializationdistribution",
-      "source_file": "client/src/hooks/useAnalytics.ts",
-      "source_location": "L27"
-    },
-    {
-      "id": "client_src_hooks_useanalytics_istatusbreakdown",
-      "label": "IStatusBreakdown",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "istatusbreakdown",
-      "source_file": "client/src/hooks/useAnalytics.ts",
-      "source_location": "L32"
-    },
-    {
-      "id": "client_src_hooks_useanalytics_itemporaltrend",
-      "label": "ITemporalTrend",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "itemporaltrend",
-      "source_file": "client/src/hooks/useAnalytics.ts",
-      "source_location": "L20"
+      "norm_label": "idoctorfilters",
+      "source_file": "client/src/hooks/useDoctors.ts",
+      "source_location": "L5"
     },
     {
       "id": "client_src_hooks_usepatients_iassignsessionpayload",
@@ -472,6 +368,19 @@
       "source_location": "L6"
     },
     {
+      "id": "client_src_store_useuistore_uistate",
+      "label": "UIState",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "usePatients.ts",
+      "file_type": "code",
+      "norm_label": "uistate",
+      "source_file": "client/src/store/useUIStore.ts",
+      "source_location": "L4"
+    },
+    {
       "id": "client_src_types_index_iapiresponse",
       "label": "IApiResponse",
       "_callable": true,
@@ -485,6 +394,19 @@
       "source_location": "L55"
     },
     {
+      "id": "client_src_types_index_idoctor",
+      "label": "IDoctor",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "usePatients.ts",
+      "file_type": "code",
+      "norm_label": "idoctor",
+      "source_file": "client/src/types/index.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "client_src_types_index_imeta",
       "label": "IMeta",
       "_callable": true,
@@ -496,6 +418,19 @@
       "norm_label": "imeta",
       "source_file": "client/src/types/index.ts",
       "source_location": "L48"
+    },
+    {
+      "id": "client_src_types_index_ipatient",
+      "label": "IPatient",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "usePatients.ts",
+      "file_type": "code",
+      "norm_label": "ipatient",
+      "source_file": "client/src/types/index.ts",
+      "source_location": "L13"
     },
     {
       "id": "client_src_types_index_ipatientsession",
@@ -576,6 +511,110 @@
       "source_location": "L3"
     },
     {
+      "id": "client_src_hooks_useanalytics_ianalyticskpis",
+      "label": "IAnalyticsKPIs",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "ianalyticskpis",
+      "source_file": "client/src/hooks/useAnalytics.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "client_src_hooks_useanalytics_ianalyticssummary",
+      "label": "IAnalyticsSummary",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "ianalyticssummary",
+      "source_file": "client/src/hooks/useAnalytics.ts",
+      "source_location": "L37"
+    },
+    {
+      "id": "client_src_hooks_useanalytics_icaseloaddistribution",
+      "label": "ICaseloadDistribution",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "icaseloaddistribution",
+      "source_file": "client/src/hooks/useAnalytics.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "client_src_hooks_useanalytics_ispecializationdistribution",
+      "label": "ISpecializationDistribution",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "ispecializationdistribution",
+      "source_file": "client/src/hooks/useAnalytics.ts",
+      "source_location": "L27"
+    },
+    {
+      "id": "client_src_hooks_useanalytics_istatusbreakdown",
+      "label": "IStatusBreakdown",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "istatusbreakdown",
+      "source_file": "client/src/hooks/useAnalytics.ts",
+      "source_location": "L32"
+    },
+    {
+      "id": "client_src_hooks_useanalytics_itemporaltrend",
+      "label": "ITemporalTrend",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "itemporaltrend",
+      "source_file": "client/src/hooks/useAnalytics.ts",
+      "source_location": "L20"
+    },
+    {
+      "id": "client_src_components_layout_sidebar_navitem",
+      "label": "NavItem",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "navitem",
+      "source_file": "client/src/components/layout/Sidebar.tsx",
+      "source_location": "L19"
+    },
+    {
+      "id": "client_src_context_authcontext_authcontexttype",
+      "label": "AuthContextType",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "authcontexttype",
+      "source_file": "client/src/context/AuthContext.tsx",
+      "source_location": "L8"
+    },
+    {
       "id": "client_src_app_doctors_page_doctorspage",
       "label": "DoctorsPage()",
       "_callable": true,
@@ -585,19 +624,7 @@
       "file_type": "code",
       "norm_label": "doctorspage()",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L54"
-    },
-    {
-      "id": "client_src_app_login_page_loginpage",
-      "label": "LoginPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "loginpage()",
-      "source_file": "client/src/app/login/page.tsx",
-      "source_location": "L10"
+      "source_location": "L55"
     },
     {
       "id": "client_src_app_patients_page_patientspage",
@@ -609,7 +636,7 @@
       "file_type": "code",
       "norm_label": "patientspage()",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L50"
+      "source_location": "L51"
     },
     {
       "id": "client_src_app_sessions_page_sessionspage",
@@ -621,43 +648,7 @@
       "file_type": "code",
       "norm_label": "sessionspage()",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L68"
-    },
-    {
-      "id": "client_src_components_layout_appshell_appshell",
-      "label": "AppShell()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "appshell()",
-      "source_file": "client/src/components/layout/AppShell.tsx",
-      "source_location": "L11"
-    },
-    {
-      "id": "client_src_components_layout_sidebar_sidebar",
-      "label": "Sidebar()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "sidebar()",
-      "source_file": "client/src/components/layout/Sidebar.tsx",
-      "source_location": "L33"
-    },
-    {
-      "id": "client_src_components_layout_topbar_topbar",
-      "label": "TopBar()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "topbar()",
-      "source_file": "client/src/components/layout/TopBar.tsx",
-      "source_location": "L8"
+      "source_location": "L69"
     },
     {
       "id": "client_src_components_ui_actionmenu_actionmenu",
@@ -670,18 +661,6 @@
       "norm_label": "actionmenu()",
       "source_file": "client/src/components/ui/ActionMenu.tsx",
       "source_location": "L20"
-    },
-    {
-      "id": "client_src_components_ui_assignedpatientsmodal_assignedpatientsmodal",
-      "label": "AssignedPatientsModal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "assignedpatientsmodal()",
-      "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
-      "source_location": "L14"
     },
     {
       "id": "client_src_components_ui_assignpatientmodal_assignpatientmodal",
@@ -804,6 +783,42 @@
       "source_location": "L22"
     },
     {
+      "id": "client_src_components_ui_skeleton_cardlistskeleton",
+      "label": "CardListSkeleton()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "sessions/page.tsx",
+      "file_type": "code",
+      "norm_label": "cardlistskeleton()",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L81"
+    },
+    {
+      "id": "client_src_components_ui_skeleton_skeleton",
+      "label": "Skeleton()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "sessions/page.tsx",
+      "file_type": "code",
+      "norm_label": "skeleton()",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L13"
+    },
+    {
+      "id": "client_src_components_ui_skeleton_tableskeleton",
+      "label": "TableSkeleton()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "sessions/page.tsx",
+      "file_type": "code",
+      "norm_label": "tableskeleton()",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L31"
+    },
+    {
       "id": "client_src_components_ui_statusbadge_statusbadge",
       "label": "StatusBadge()",
       "_callable": true,
@@ -828,18 +843,6 @@
       "source_location": "L21"
     },
     {
-      "id": "client_src_context_authcontext_useauth",
-      "label": "useAuth()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "useauth()",
-      "source_file": "client/src/context/AuthContext.tsx",
-      "source_location": "L170"
-    },
-    {
       "id": "client_src_hooks_usedebounce_usedebounce",
       "label": "useDebounce()",
       "_callable": true,
@@ -852,18 +855,6 @@
       "source_location": "L3"
     },
     {
-      "id": "client_src_hooks_usedoctors_usedisassociatesession",
-      "label": "useDisassociateSession()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "usedisassociatesession()",
-      "source_file": "client/src/hooks/useDoctors.ts",
-      "source_location": "L93"
-    },
-    {
       "id": "client_src_hooks_usedoctors_usedoctormutations",
       "label": "useDoctorMutations()",
       "_callable": true,
@@ -874,18 +865,6 @@
       "norm_label": "usedoctormutations()",
       "source_file": "client/src/hooks/useDoctors.ts",
       "source_location": "L51"
-    },
-    {
-      "id": "client_src_hooks_usedoctors_usedoctorpatients",
-      "label": "useDoctorPatients()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "usedoctorpatients()",
-      "source_file": "client/src/hooks/useDoctors.ts",
-      "source_location": "L35"
     },
     {
       "id": "client_src_hooks_usedoctors_usedoctors",
@@ -1272,64 +1251,40 @@
       "source_location": "L5"
     },
     {
-      "id": "client_src_app_dashboard_page_dashboardpage",
-      "label": "DashboardPage()",
+      "id": "client_src_components_ui_assignedpatientsmodal_assignedpatientsmodal",
+      "label": "AssignedPatientsModal()",
       "_callable": true,
       "_origin": "ast",
       "community": 10,
       "community_name": "usePatients.ts",
       "file_type": "code",
-      "norm_label": "dashboardpage()",
-      "source_file": "client/src/app/dashboard/page.tsx",
-      "source_location": "L45"
+      "norm_label": "assignedpatientsmodal()",
+      "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
+      "source_location": "L15"
     },
     {
-      "id": "client_src_app_layout_rootlayout",
-      "label": "RootLayout()",
+      "id": "client_src_hooks_usedoctors_usedisassociatesession",
+      "label": "useDisassociateSession()",
       "_callable": true,
       "_origin": "ast",
       "community": 10,
       "community_name": "usePatients.ts",
       "file_type": "code",
-      "norm_label": "rootlayout()",
-      "source_file": "client/src/app/layout.tsx",
-      "source_location": "L18"
+      "norm_label": "usedisassociatesession()",
+      "source_file": "client/src/hooks/useDoctors.ts",
+      "source_location": "L93"
     },
     {
-      "id": "client_src_components_providers_queryprovider_queryprovider",
-      "label": "QueryProvider()",
+      "id": "client_src_hooks_usedoctors_usedoctorpatients",
+      "label": "useDoctorPatients()",
       "_callable": true,
       "_origin": "ast",
       "community": 10,
       "community_name": "usePatients.ts",
       "file_type": "code",
-      "norm_label": "queryprovider()",
-      "source_file": "client/src/components/providers/QueryProvider.tsx",
-      "source_location": "L6"
-    },
-    {
-      "id": "client_src_context_authcontext_authprovider",
-      "label": "AuthProvider()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "authprovider()",
-      "source_file": "client/src/context/AuthContext.tsx",
-      "source_location": "L19"
-    },
-    {
-      "id": "client_src_hooks_useanalytics_useanalytics",
-      "label": "useAnalytics()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "useanalytics()",
-      "source_file": "client/src/hooks/useAnalytics.ts",
-      "source_location": "L45"
+      "norm_label": "usedoctorpatients()",
+      "source_file": "client/src/hooks/useDoctors.ts",
+      "source_location": "L35"
     },
     {
       "id": "client_src_hooks_usepatients_usepatient",
@@ -1414,18 +1369,6 @@
       "norm_label": "request()",
       "source_file": "client/src/lib/apiClient.ts",
       "source_location": "L53"
-    },
-    {
-      "id": "client_src_lib_supabase_client_createclient",
-      "label": "createClient()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "createclient()",
-      "source_file": "client/src/lib/supabase/client.ts",
-      "source_location": "L3"
     },
     {
       "id": "server_src_test_run_8_test_cases_logresult",
@@ -1584,6 +1527,54 @@
       "source_location": "L21"
     },
     {
+      "id": "client_src_app_dashboard_page_dashboardpage",
+      "label": "DashboardPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "dashboardpage()",
+      "source_file": "client/src/app/dashboard/page.tsx",
+      "source_location": "L46"
+    },
+    {
+      "id": "client_src_components_ui_skeleton_chartskeleton",
+      "label": "ChartSkeleton()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "chartskeleton()",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L121"
+    },
+    {
+      "id": "client_src_components_ui_skeleton_donutskeleton",
+      "label": "DonutSkeleton()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "donutskeleton()",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L142"
+    },
+    {
+      "id": "client_src_hooks_useanalytics_useanalytics",
+      "label": "useAnalytics()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "useanalytics()",
+      "source_file": "client/src/hooks/useAnalytics.ts",
+      "source_location": "L45"
+    },
+    {
       "id": "client_src_middleware_middleware",
       "label": "middleware()",
       "_callable": true,
@@ -1594,6 +1585,114 @@
       "norm_label": "middleware()",
       "source_file": "client/src/middleware.ts",
       "source_location": "L4"
+    },
+    {
+      "id": "client_src_app_layout_rootlayout",
+      "label": "RootLayout()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "rootlayout()",
+      "source_file": "client/src/app/layout.tsx",
+      "source_location": "L18"
+    },
+    {
+      "id": "client_src_app_login_page_loginpage",
+      "label": "LoginPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "loginpage()",
+      "source_file": "client/src/app/login/page.tsx",
+      "source_location": "L10"
+    },
+    {
+      "id": "client_src_components_layout_appshell_appshell",
+      "label": "AppShell()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "appshell()",
+      "source_file": "client/src/components/layout/AppShell.tsx",
+      "source_location": "L11"
+    },
+    {
+      "id": "client_src_components_layout_sidebar_sidebar",
+      "label": "Sidebar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "sidebar()",
+      "source_file": "client/src/components/layout/Sidebar.tsx",
+      "source_location": "L33"
+    },
+    {
+      "id": "client_src_components_layout_topbar_topbar",
+      "label": "TopBar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "topbar()",
+      "source_file": "client/src/components/layout/TopBar.tsx",
+      "source_location": "L8"
+    },
+    {
+      "id": "client_src_components_providers_queryprovider_queryprovider",
+      "label": "QueryProvider()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "queryprovider()",
+      "source_file": "client/src/components/providers/QueryProvider.tsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "client_src_context_authcontext_authprovider",
+      "label": "AuthProvider()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "authprovider()",
+      "source_file": "client/src/context/AuthContext.tsx",
+      "source_location": "L19"
+    },
+    {
+      "id": "client_src_context_authcontext_useauth",
+      "label": "useAuth()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "useauth()",
+      "source_file": "client/src/context/AuthContext.tsx",
+      "source_location": "L170"
+    },
+    {
+      "id": "client_src_lib_supabase_client_createclient",
+      "label": "createClient()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "createclient()",
+      "source_file": "client/src/lib/supabase/client.ts",
+      "source_location": "L3"
     },
     {
       "id": "client_src_app_doctors_page",
@@ -1615,7 +1714,7 @@
       "file_type": "code",
       "norm_label": "sort_options",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L45"
+      "source_location": "L46"
     },
     {
       "id": "client_src_app_doctors_page_specialization_filters",
@@ -1626,7 +1725,7 @@
       "file_type": "code",
       "norm_label": "specialization_filters",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L33"
+      "source_location": "L34"
     },
     {
       "id": "client_src_app_login_page",
@@ -1659,7 +1758,7 @@
       "file_type": "code",
       "norm_label": "gender_options",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L34"
+      "source_location": "L35"
     },
     {
       "id": "client_src_app_patients_page_sort_options",
@@ -1670,7 +1769,7 @@
       "file_type": "code",
       "norm_label": "sort_options",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L41"
+      "source_location": "L42"
     },
     {
       "id": "client_src_app_sessions_page",
@@ -1692,7 +1791,7 @@
       "file_type": "code",
       "norm_label": "condition_options",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L36"
+      "source_location": "L37"
     },
     {
       "id": "client_src_app_sessions_page_sort_options",
@@ -1703,7 +1802,7 @@
       "file_type": "code",
       "norm_label": "sort_options",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L57"
+      "source_location": "L58"
     },
     {
       "id": "client_src_app_sessions_page_status_options",
@@ -1714,51 +1813,7 @@
       "file_type": "code",
       "norm_label": "status_options",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L49"
-    },
-    {
-      "id": "client_src_components_layout_appshell",
-      "label": "AppShell.tsx",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "appshell.tsx",
-      "source_file": "client/src/components/layout/AppShell.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "client_src_components_layout_sidebar",
-      "label": "Sidebar.tsx",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "sidebar.tsx",
-      "source_file": "client/src/components/layout/Sidebar.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "client_src_components_layout_sidebar_navitems",
-      "label": "navItems",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "navitems",
-      "source_file": "client/src/components/layout/Sidebar.tsx",
-      "source_location": "L26"
-    },
-    {
-      "id": "client_src_components_layout_topbar",
-      "label": "TopBar.tsx",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "topbar.tsx",
-      "source_file": "client/src/components/layout/TopBar.tsx",
-      "source_location": "L1"
+      "source_location": "L50"
     },
     {
       "id": "client_src_components_ui_actionmenu",
@@ -1992,6 +2047,17 @@
       "source_location": "L1"
     },
     {
+      "id": "client_src_components_ui_skeleton",
+      "label": "Skeleton.tsx",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "sessions/page.tsx",
+      "file_type": "code",
+      "norm_label": "skeleton.tsx",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L1"
+    },
+    {
       "id": "client_src_components_ui_statusbadge",
       "label": "StatusBadge.tsx",
       "_origin": "ast",
@@ -2025,17 +2091,6 @@
       "source_location": "L7"
     },
     {
-      "id": "client_src_hooks_useauth",
-      "label": "useAuth.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "useauth.ts",
-      "source_file": "client/src/hooks/useAuth.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "client_src_hooks_usedebounce",
       "label": "useDebounce.ts",
       "_origin": "ast",
@@ -2044,17 +2099,6 @@
       "file_type": "code",
       "norm_label": "usedebounce.ts",
       "source_file": "client/src/hooks/useDebounce.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "client_src_hooks_usedoctors",
-      "label": "useDoctors.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
-      "file_type": "code",
-      "norm_label": "usedoctors.ts",
-      "source_file": "client/src/hooks/useDoctors.ts",
       "source_location": "L1"
     },
     {
@@ -2091,26 +2135,37 @@
       "source_location": "L1"
     },
     {
-      "id": "client_src_store_useuistore",
-      "label": "useUIStore.ts",
+      "id": "server_package_keywords",
+      "label": "keywords",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
+      "community": 1,
+      "community_name": "sessionService.ts",
       "file_type": "code",
-      "norm_label": "useuistore.ts",
-      "source_file": "client/src/store/useUIStore.ts",
+      "norm_label": "keywords",
+      "source_file": "server/package.json",
+      "source_location": "L13"
+    },
+    {
+      "id": "server_src_controllers_analyticscontroller",
+      "label": "analyticsController.ts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "sessionService.ts",
+      "file_type": "code",
+      "norm_label": "analyticscontroller.ts",
+      "source_file": "server/src/controllers/analyticsController.ts",
       "source_location": "L1"
     },
     {
-      "id": "client_src_store_useuistore_useuistore",
-      "label": "useUIStore",
+      "id": "server_src_controllers_analyticscontroller_analyticscontroller",
+      "label": "AnalyticsController",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "sessions/page.tsx",
+      "community": 1,
+      "community_name": "sessionService.ts",
       "file_type": "code",
-      "norm_label": "useuistore",
-      "source_file": "client/src/store/useUIStore.ts",
-      "source_location": "L57"
+      "norm_label": "analyticscontroller",
+      "source_file": "server/src/controllers/analyticsController.ts",
+      "source_location": "L19"
     },
     {
       "id": "server_src_models_doctor",
@@ -2289,6 +2344,17 @@
       "source_location": "L1"
     },
     {
+      "id": "server_src_services_analyticsservice_analyticsservice",
+      "label": "AnalyticsService",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "sessionService.ts",
+      "file_type": "code",
+      "norm_label": "analyticsservice",
+      "source_file": "server/src/services/analyticsService.ts",
+      "source_location": "L122"
+    },
+    {
       "id": "server_src_services_doctorservice",
       "label": "doctorService.ts",
       "_origin": "ast",
@@ -2300,6 +2366,17 @@
       "source_location": "L1"
     },
     {
+      "id": "server_src_services_doctorservice_doctorservice",
+      "label": "DoctorService",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "sessionService.ts",
+      "file_type": "code",
+      "norm_label": "doctorservice",
+      "source_file": "server/src/services/doctorService.ts",
+      "source_location": "L212"
+    },
+    {
       "id": "server_src_services_patientservice",
       "label": "patientService.ts",
       "_origin": "ast",
@@ -2309,6 +2386,17 @@
       "norm_label": "patientservice.ts",
       "source_file": "server/src/services/patientService.ts",
       "source_location": "L1"
+    },
+    {
+      "id": "server_src_services_patientservice_patientservice",
+      "label": "PatientService",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "sessionService.ts",
+      "file_type": "code",
+      "norm_label": "patientservice",
+      "source_file": "server/src/services/patientService.ts",
+      "source_location": "L180"
     },
     {
       "id": "server_src_services_sessionservice",
@@ -2355,6 +2443,28 @@
       "source_location": "L1"
     },
     {
+      "id": "ref_doctrack",
+      "label": "doctrack",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "sessionService.ts",
+      "file_type": "concept",
+      "norm_label": "doctrack",
+      "source_file": "server/package.json",
+      "source_location": "L13"
+    },
+    {
+      "id": "ref_healthcare",
+      "label": "healthcare",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "sessionService.ts",
+      "file_type": "concept",
+      "norm_label": "healthcare",
+      "source_file": "server/package.json",
+      "source_location": "L13"
+    },
+    {
       "id": "ref_mongoose",
       "label": "mongoose",
       "_origin": "ast",
@@ -2366,102 +2476,25 @@
       "source_location": "L13"
     },
     {
-      "id": "client_src_app_dashboard_page",
-      "label": "dashboard/page.tsx",
+      "id": "ref_typescript",
+      "label": "typescript",
       "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "dashboard/page.tsx",
-      "source_file": "client/src/app/dashboard/page.tsx",
-      "source_location": "L1"
+      "community": 1,
+      "community_name": "sessionService.ts",
+      "file_type": "concept",
+      "norm_label": "typescript",
+      "source_file": "server/package.json",
+      "source_location": "L13"
     },
     {
-      "id": "client_src_app_dashboard_page_pie_colors",
-      "label": "PIE_COLORS",
+      "id": "client_src_hooks_usedoctors",
+      "label": "useDoctors.ts",
       "_origin": "ast",
       "community": 10,
       "community_name": "usePatients.ts",
       "file_type": "code",
-      "norm_label": "pie_colors",
-      "source_file": "client/src/app/dashboard/page.tsx",
-      "source_location": "L34"
-    },
-    {
-      "id": "client_src_app_layout",
-      "label": "layout.tsx",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "layout.tsx",
-      "source_file": "client/src/app/layout.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "client_src_app_layout_metadata",
-      "label": "metadata",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "metadata",
-      "source_file": "client/src/app/layout.tsx",
-      "source_location": "L7"
-    },
-    {
-      "id": "client_src_app_layout_viewport",
-      "label": "viewport",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "viewport",
-      "source_file": "client/src/app/layout.tsx",
-      "source_location": "L12"
-    },
-    {
-      "id": "client_src_components_providers_queryprovider",
-      "label": "QueryProvider.tsx",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "queryprovider.tsx",
-      "source_file": "client/src/components/providers/QueryProvider.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "client_src_context_authcontext",
-      "label": "AuthContext.tsx",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "authcontext.tsx",
-      "source_file": "client/src/context/AuthContext.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "client_src_context_authcontext_authcontext",
-      "label": "AuthContext",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "authcontext",
-      "source_file": "client/src/context/AuthContext.tsx",
-      "source_location": "L17"
-    },
-    {
-      "id": "client_src_hooks_useanalytics",
-      "label": "useAnalytics.ts",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "useanalytics.ts",
-      "source_file": "client/src/hooks/useAnalytics.ts",
+      "norm_label": "usedoctors.ts",
+      "source_file": "client/src/hooks/useDoctors.ts",
       "source_location": "L1"
     },
     {
@@ -2507,17 +2540,6 @@
       "norm_label": "apiclient",
       "source_file": "client/src/lib/apiClient.ts",
       "source_location": "L95"
-    },
-    {
-      "id": "client_src_lib_supabase_client",
-      "label": "client.ts",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "usePatients.ts",
-      "file_type": "code",
-      "norm_label": "client.ts",
-      "source_file": "client/src/lib/supabase/client.ts",
-      "source_location": "L1"
     },
     {
       "id": "client_src_types_index",
@@ -2894,17 +2916,6 @@
       "source_location": "L38"
     },
     {
-      "id": "server_package_keywords",
-      "label": "keywords",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "server/package.json",
-      "file_type": "code",
-      "norm_label": "keywords",
-      "source_file": "server/package.json",
-      "source_location": "L13"
-    },
-    {
       "id": "server_package_license",
       "label": "license",
       "_origin": "ast",
@@ -3079,39 +3090,6 @@
       "norm_label": "mongoose",
       "source_file": "server/package.json",
       "source_location": "L29"
-    },
-    {
-      "id": "ref_doctrack",
-      "label": "doctrack",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "server/package.json",
-      "file_type": "concept",
-      "norm_label": "doctrack",
-      "source_file": "server/package.json",
-      "source_location": "L13"
-    },
-    {
-      "id": "ref_healthcare",
-      "label": "healthcare",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "server/package.json",
-      "file_type": "concept",
-      "norm_label": "healthcare",
-      "source_file": "server/package.json",
-      "source_location": "L13"
-    },
-    {
-      "id": "ref_typescript",
-      "label": "typescript",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "server/package.json",
-      "file_type": "concept",
-      "norm_label": "typescript",
-      "source_file": "server/package.json",
-      "source_location": "L13"
     },
     {
       "id": "server_package_json_supabase_supabase_js",
@@ -3784,28 +3762,6 @@
       "source_location": "L26"
     },
     {
-      "id": "server_src_controllers_analyticscontroller",
-      "label": "analyticsController.ts",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "sendResponse",
-      "file_type": "code",
-      "norm_label": "analyticscontroller.ts",
-      "source_file": "server/src/controllers/analyticsController.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "server_src_controllers_analyticscontroller_analyticscontroller",
-      "label": "AnalyticsController",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "sendResponse",
-      "file_type": "code",
-      "norm_label": "analyticscontroller",
-      "source_file": "server/src/controllers/analyticsController.ts",
-      "source_location": "L19"
-    },
-    {
       "id": "server_src_controllers_analyticscontroller_getanalyticssummary",
       "label": "getAnalyticsSummary",
       "_origin": "ast",
@@ -4235,39 +4191,6 @@
       "source_location": "L1"
     },
     {
-      "id": "server_src_services_analyticsservice_analyticsservice",
-      "label": "AnalyticsService",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "sendResponse",
-      "file_type": "code",
-      "norm_label": "analyticsservice",
-      "source_file": "server/src/services/analyticsService.ts",
-      "source_location": "L122"
-    },
-    {
-      "id": "server_src_services_doctorservice_doctorservice",
-      "label": "DoctorService",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "sendResponse",
-      "file_type": "code",
-      "norm_label": "doctorservice",
-      "source_file": "server/src/services/doctorService.ts",
-      "source_location": "L212"
-    },
-    {
-      "id": "server_src_services_patientservice_patientservice",
-      "label": "PatientService",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "sendResponse",
-      "file_type": "code",
-      "norm_label": "patientservice",
-      "source_file": "server/src/services/patientService.ts",
-      "source_location": "L180"
-    },
-    {
       "id": "server_src_services_sessionservice_sessionservice",
       "label": "SessionService",
       "_origin": "ast",
@@ -4586,6 +4509,39 @@
       "norm_label": "step 3: configure frontend environment variables (`client/.env.local`)",
       "source_file": "README.md",
       "source_location": "L74"
+    },
+    {
+      "id": "client_src_app_dashboard_page",
+      "label": "dashboard/page.tsx",
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "dashboard/page.tsx",
+      "source_file": "client/src/app/dashboard/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_app_dashboard_page_pie_colors",
+      "label": "PIE_COLORS",
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "pie_colors",
+      "source_file": "client/src/app/dashboard/page.tsx",
+      "source_location": "L35"
+    },
+    {
+      "id": "client_src_hooks_useanalytics",
+      "label": "useAnalytics.ts",
+      "_origin": "ast",
+      "community": 21,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "useanalytics.ts",
+      "source_file": "client/src/hooks/useAnalytics.ts",
+      "source_location": "L1"
     },
     {
       "id": "agents",
@@ -5987,6 +5943,160 @@
       "source_location": "L16"
     },
     {
+      "id": "client_src_app_layout",
+      "label": "layout.tsx",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "layout.tsx",
+      "source_file": "client/src/app/layout.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_app_layout_metadata",
+      "label": "metadata",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "metadata",
+      "source_file": "client/src/app/layout.tsx",
+      "source_location": "L7"
+    },
+    {
+      "id": "client_src_app_layout_viewport",
+      "label": "viewport",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "viewport",
+      "source_file": "client/src/app/layout.tsx",
+      "source_location": "L12"
+    },
+    {
+      "id": "client_src_components_layout_appshell",
+      "label": "AppShell.tsx",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "appshell.tsx",
+      "source_file": "client/src/components/layout/AppShell.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_components_layout_sidebar",
+      "label": "Sidebar.tsx",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "sidebar.tsx",
+      "source_file": "client/src/components/layout/Sidebar.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_components_layout_sidebar_navitems",
+      "label": "navItems",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "navitems",
+      "source_file": "client/src/components/layout/Sidebar.tsx",
+      "source_location": "L26"
+    },
+    {
+      "id": "client_src_components_layout_topbar",
+      "label": "TopBar.tsx",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "topbar.tsx",
+      "source_file": "client/src/components/layout/TopBar.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_components_providers_queryprovider",
+      "label": "QueryProvider.tsx",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "queryprovider.tsx",
+      "source_file": "client/src/components/providers/QueryProvider.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_context_authcontext",
+      "label": "AuthContext.tsx",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "authcontext.tsx",
+      "source_file": "client/src/context/AuthContext.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_context_authcontext_authcontext",
+      "label": "AuthContext",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "authcontext",
+      "source_file": "client/src/context/AuthContext.tsx",
+      "source_location": "L17"
+    },
+    {
+      "id": "client_src_hooks_useauth",
+      "label": "useAuth.ts",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "useauth.ts",
+      "source_file": "client/src/hooks/useAuth.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_lib_supabase_client",
+      "label": "client.ts",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "client.ts",
+      "source_file": "client/src/lib/supabase/client.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_store_useuistore",
+      "label": "useUIStore.ts",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "useuistore.ts",
+      "source_file": "client/src/store/useUIStore.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_src_store_useuistore_useuistore",
+      "label": "useUIStore",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "useUIStore",
+      "file_type": "code",
+      "norm_label": "useuistore",
+      "source_file": "client/src/store/useUIStore.ts",
+      "source_location": "L57"
+    },
+    {
       "id": "agents_rules_playwright",
       "label": "playwright.md",
       "_origin": "ast",
@@ -6025,7 +6135,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/dashboard/page.tsx",
-      "source_location": "L46",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -6037,7 +6147,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L172",
+      "source_location": "L173",
       "weight": 1.0
     },
     {
@@ -6049,7 +6159,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L174",
+      "source_location": "L175",
       "weight": 1.0
     },
     {
@@ -6061,7 +6171,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L224",
+      "source_location": "L223",
       "weight": 1.0
     },
     {
@@ -6073,7 +6183,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L233",
+      "source_location": "L232",
       "weight": 1.0
     },
     {
@@ -6085,7 +6195,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L388",
+      "source_location": "L383",
       "weight": 1.0
     },
     {
@@ -6097,7 +6207,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L61",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -6109,7 +6219,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L64",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
@@ -6121,7 +6231,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L74",
+      "source_location": "L75",
       "weight": 1.0
     },
     {
@@ -6133,7 +6243,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L75",
+      "source_location": "L76",
       "weight": 1.0
     },
     {
@@ -6157,7 +6267,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L164",
+      "source_location": "L165",
       "weight": 1.0
     },
     {
@@ -6169,7 +6279,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L166",
+      "source_location": "L167",
       "weight": 1.0
     },
     {
@@ -6181,7 +6291,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L216",
+      "source_location": "L215",
       "weight": 1.0
     },
     {
@@ -6193,7 +6303,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L225",
+      "source_location": "L224",
       "weight": 1.0
     },
     {
@@ -6205,7 +6315,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L408",
+      "source_location": "L403",
       "weight": 1.0
     },
     {
@@ -6217,24 +6327,12 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
       "source": "client_src_app_patients_page_patientspage",
       "target": "client_src_store_useuistore_useuistore",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L60",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_patients_page_patientspage",
-      "target": "client_src_hooks_usepatients_usepatientmutations",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6246,6 +6344,18 @@
     },
     {
       "source": "client_src_app_patients_page_patientspage",
+      "target": "client_src_hooks_usepatients_usepatientmutations",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page_patientspage",
       "target": "client_src_hooks_usepatients_usepatients",
       "relation": "calls",
       "_origin": "ast",
@@ -6253,7 +6363,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -6265,7 +6375,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L207",
+      "source_location": "L208",
       "weight": 1.0
     },
     {
@@ -6277,7 +6387,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L209",
+      "source_location": "L210",
       "weight": 1.0
     },
     {
@@ -6289,7 +6399,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L264",
+      "source_location": "L263",
       "weight": 1.0
     },
     {
@@ -6301,7 +6411,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L273",
+      "source_location": "L272",
       "weight": 1.0
     },
     {
@@ -6313,7 +6423,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L366",
+      "source_location": "L365",
       "weight": 1.0
     },
     {
@@ -6325,7 +6435,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L70",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -6337,7 +6447,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L79",
+      "source_location": "L80",
       "weight": 1.0
     },
     {
@@ -6349,7 +6459,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L80",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -6361,7 +6471,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L82",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -6397,7 +6507,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/components/layout/AppShell.tsx",
-      "source_location": "L49",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -6481,7 +6591,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -6493,7 +6603,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -6505,7 +6615,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -6517,7 +6627,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
-      "source_location": "L76",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -6770,6 +6880,42 @@
       "context": "call",
       "source_file": "client/src/components/ui/SelectDropdown.tsx",
       "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton_chartskeleton",
+      "target": "client_src_lib_utils_cn",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton_skeleton",
+      "target": "client_src_lib_utils_cn",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton_tableskeleton",
+      "target": "client_src_lib_utils_cn",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
@@ -7842,7 +7988,7 @@
     },
     {
       "source": "client_src_app_dashboard_page",
-      "target": "client_src_hooks_useanalytics_useanalytics",
+      "target": "client_src_components_ui_skeleton_chartskeleton",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7850,6 +7996,42 @@
       "context": "import",
       "source_file": "client/src/app/dashboard/page.tsx",
       "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_dashboard_page",
+      "target": "client_src_components_ui_skeleton_donutskeleton",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/dashboard/page.tsx",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_dashboard_page",
+      "target": "client_src_components_ui_skeleton_skeleton",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/dashboard/page.tsx",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_dashboard_page",
+      "target": "client_src_hooks_useanalytics_useanalytics",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/dashboard/page.tsx",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -7902,7 +8084,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_components_ui_createdoctormodal_createdoctormodal",
+      "target": "client_src_components_ui_skeleton_cardlistskeleton",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7914,7 +8096,19 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_components_ui_assignedpatientsmodal_assignedpatientsmodal",
+      "target": "client_src_components_ui_skeleton_tableskeleton",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/doctors/page.tsx",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_doctors_page",
+      "target": "client_src_components_ui_createdoctormodal_createdoctormodal",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7926,7 +8120,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_components_ui_assignpatientmodal_assignpatientmodal",
+      "target": "client_src_components_ui_assignedpatientsmodal_assignedpatientsmodal",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7938,7 +8132,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_components_ui_confirmdeletemodal_confirmdeletemodal",
+      "target": "client_src_components_ui_assignpatientmodal_assignpatientmodal",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7950,31 +8144,19 @@
     },
     {
       "source": "client_src_app_doctors_page",
+      "target": "client_src_components_ui_confirmdeletemodal_confirmdeletemodal",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/doctors/page.tsx",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_doctors_page",
       "target": "client_src_hooks_usedoctors_usedoctormutations",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L26",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_doctors_page",
-      "target": "client_src_hooks_usedoctors_usedoctors",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L26",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_doctors_page",
-      "target": "client_src_hooks_usedebounce_usedebounce",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7986,7 +8168,19 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_store_useuistore_useuistore",
+      "target": "client_src_hooks_usedoctors_usedoctors",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/doctors/page.tsx",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_doctors_page",
+      "target": "client_src_hooks_usedebounce_usedebounce",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7998,7 +8192,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_lib_utils_cn",
+      "target": "client_src_store_useuistore_useuistore",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8006,6 +8200,18 @@
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
       "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_doctors_page",
+      "target": "client_src_lib_utils_cn",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/doctors/page.tsx",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -8017,7 +8223,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -8029,7 +8235,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -8041,7 +8247,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -8053,7 +8259,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -8065,7 +8271,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -8190,7 +8396,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_components_ui_createpatientmodal_createpatientmodal",
+      "target": "client_src_components_ui_skeleton_cardlistskeleton",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8202,7 +8408,19 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_components_ui_editpatientmodal_editpatientmodal",
+      "target": "client_src_components_ui_skeleton_tableskeleton",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_components_ui_createpatientmodal_createpatientmodal",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8214,7 +8432,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_components_ui_schedulesessionmodal_schedulesessionmodal",
+      "target": "client_src_components_ui_editpatientmodal_editpatientmodal",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8226,7 +8444,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_components_ui_confirmdeletemodal_confirmdeletemodal",
+      "target": "client_src_components_ui_schedulesessionmodal_schedulesessionmodal",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8238,31 +8456,19 @@
     },
     {
       "source": "client_src_app_patients_page",
+      "target": "client_src_components_ui_confirmdeletemodal_confirmdeletemodal",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
       "target": "client_src_hooks_usepatients_usepatientmutations",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L27",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_patients_page",
-      "target": "client_src_hooks_usepatients_usepatients",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L27",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_patients_page",
-      "target": "client_src_hooks_usedebounce_usedebounce",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8274,7 +8480,19 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_store_useuistore_useuistore",
+      "target": "client_src_hooks_usepatients_usepatients",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_hooks_usedebounce_usedebounce",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8286,7 +8504,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_lib_utils_cn",
+      "target": "client_src_store_useuistore_useuistore",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8294,6 +8512,18 @@
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
       "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_lib_utils_cn",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -8305,7 +8535,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -8317,7 +8547,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -8329,7 +8559,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -8341,7 +8571,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -8353,7 +8583,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -8418,7 +8648,7 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_components_ui_schedulesessionmodal_schedulesessionmodal",
+      "target": "client_src_components_ui_skeleton_cardlistskeleton",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8430,7 +8660,19 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_components_ui_confirmdeletemodal_confirmdeletemodal",
+      "target": "client_src_components_ui_skeleton_tableskeleton",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/sessions/page.tsx",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_sessions_page",
+      "target": "client_src_components_ui_schedulesessionmodal_schedulesessionmodal",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8442,31 +8684,19 @@
     },
     {
       "source": "client_src_app_sessions_page",
+      "target": "client_src_components_ui_confirmdeletemodal_confirmdeletemodal",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/sessions/page.tsx",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_sessions_page",
       "target": "client_src_hooks_usesessions_usesessionmutations",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L29",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_sessions_page",
-      "target": "client_src_hooks_usesessions_usesessions",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L29",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_app_sessions_page",
-      "target": "client_src_hooks_usedebounce_usedebounce",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8478,7 +8708,19 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_store_useuistore_useuistore",
+      "target": "client_src_hooks_usesessions_usesessions",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/sessions/page.tsx",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_sessions_page",
+      "target": "client_src_hooks_usedebounce_usedebounce",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8490,7 +8732,7 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_lib_utils_cn",
+      "target": "client_src_store_useuistore_useuistore",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8498,6 +8740,18 @@
       "context": "import",
       "source_file": "client/src/app/sessions/page.tsx",
       "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_sessions_page",
+      "target": "client_src_lib_utils_cn",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/sessions/page.tsx",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -8509,7 +8763,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -8521,7 +8775,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -8533,7 +8787,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -8545,7 +8799,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -8557,7 +8811,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -8569,7 +8823,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -8581,7 +8835,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -8718,31 +8972,19 @@
     },
     {
       "source": "client_src_components_ui_assignedpatientsmodal",
+      "target": "client_src_store_useuistore_useuistore",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_assignedpatientsmodal",
       "target": "client_src_hooks_usedoctors_usedisassociatesession",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
-      "source_location": "L10",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_components_ui_assignedpatientsmodal",
-      "target": "client_src_hooks_usedoctors_usedoctorpatients",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
-      "source_location": "L10",
-      "weight": 1.0
-    },
-    {
-      "source": "client_src_components_ui_assignedpatientsmodal",
-      "target": "client_src_lib_utils_getinitials",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8754,7 +8996,19 @@
     },
     {
       "source": "client_src_components_ui_assignedpatientsmodal",
-      "target": "client_src_types_index_ipatient",
+      "target": "client_src_hooks_usedoctors_usedoctorpatients",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_assignedpatientsmodal",
+      "target": "client_src_lib_utils_getinitials",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8762,6 +9016,18 @@
       "context": "import",
       "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
       "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_assignedpatientsmodal",
+      "target": "client_src_types_index_ipatient",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -8802,7 +9068,7 @@
     },
     {
       "source": "client_src_components_ui_assignedpatientsmodal",
-      "target": "client_src_components_ui_confirmdeletemodal_confirmdeletemodal",
+      "target": "client_src_components_ui_skeleton_skeleton",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -8814,14 +9080,14 @@
     },
     {
       "source": "client_src_components_ui_assignedpatientsmodal",
-      "target": "client_src_store_useuistore_useuistore",
+      "target": "client_src_components_ui_confirmdeletemodal_confirmdeletemodal",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
-      "source_location": "L9",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -9398,6 +9664,18 @@
       "context": "import",
       "source_file": "client/src/components/ui/SelectDropdown.tsx",
       "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton",
+      "target": "client_src_lib_utils_cn",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -10494,7 +10772,7 @@
     },
     {
       "source": "client_src_app_dashboard_page",
-      "target": "client_src_hooks_useanalytics",
+      "target": "client_src_components_ui_skeleton",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10502,6 +10780,18 @@
       "context": "import",
       "source_file": "client/src/app/dashboard/page.tsx",
       "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_dashboard_page",
+      "target": "client_src_hooks_useanalytics",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/dashboard/page.tsx",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -10554,7 +10844,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_components_ui_createdoctormodal",
+      "target": "client_src_components_ui_skeleton",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10566,7 +10856,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_components_ui_assignedpatientsmodal",
+      "target": "client_src_components_ui_createdoctormodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10578,7 +10868,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_components_ui_assignpatientmodal",
+      "target": "client_src_components_ui_assignedpatientsmodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10590,7 +10880,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_components_ui_confirmdeletemodal",
+      "target": "client_src_components_ui_assignpatientmodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10602,7 +10892,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_hooks_usedoctors",
+      "target": "client_src_components_ui_confirmdeletemodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10614,7 +10904,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_hooks_usedebounce",
+      "target": "client_src_hooks_usedoctors",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10626,7 +10916,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_store_useuistore",
+      "target": "client_src_hooks_usedebounce",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10638,7 +10928,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_lib_utils",
+      "target": "client_src_store_useuistore",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10650,7 +10940,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_lib_sortutils",
+      "target": "client_src_lib_utils",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10662,7 +10952,7 @@
     },
     {
       "source": "client_src_app_doctors_page",
-      "target": "client_src_types_index",
+      "target": "client_src_lib_sortutils",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10670,6 +10960,18 @@
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
       "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_doctors_page",
+      "target": "client_src_types_index",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/doctors/page.tsx",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -10794,7 +11096,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_components_ui_createpatientmodal",
+      "target": "client_src_components_ui_skeleton",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10806,7 +11108,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_components_ui_editpatientmodal",
+      "target": "client_src_components_ui_createpatientmodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10818,7 +11120,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_components_ui_schedulesessionmodal",
+      "target": "client_src_components_ui_editpatientmodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10830,7 +11132,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_components_ui_confirmdeletemodal",
+      "target": "client_src_components_ui_schedulesessionmodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10842,7 +11144,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_hooks_usepatients",
+      "target": "client_src_components_ui_confirmdeletemodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10854,7 +11156,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_hooks_usedebounce",
+      "target": "client_src_hooks_usepatients",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10866,7 +11168,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_store_useuistore",
+      "target": "client_src_hooks_usedebounce",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10878,7 +11180,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_lib_utils",
+      "target": "client_src_store_useuistore",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10890,7 +11192,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_lib_sortutils",
+      "target": "client_src_lib_utils",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10902,7 +11204,7 @@
     },
     {
       "source": "client_src_app_patients_page",
-      "target": "client_src_types_index",
+      "target": "client_src_lib_sortutils",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10910,6 +11212,18 @@
       "context": "import",
       "source_file": "client/src/app/patients/page.tsx",
       "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_patients_page",
+      "target": "client_src_types_index",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/patients/page.tsx",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -10974,7 +11288,7 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_components_ui_schedulesessionmodal",
+      "target": "client_src_components_ui_skeleton",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10986,7 +11300,7 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_components_ui_confirmdeletemodal",
+      "target": "client_src_components_ui_schedulesessionmodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10998,7 +11312,7 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_hooks_usesessions",
+      "target": "client_src_components_ui_confirmdeletemodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11010,7 +11324,7 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_hooks_usedebounce",
+      "target": "client_src_hooks_usesessions",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11022,7 +11336,7 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_store_useuistore",
+      "target": "client_src_hooks_usedebounce",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11034,7 +11348,7 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_lib_utils",
+      "target": "client_src_store_useuistore",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11046,7 +11360,7 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_lib_sortutils",
+      "target": "client_src_lib_utils",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11058,7 +11372,7 @@
     },
     {
       "source": "client_src_app_sessions_page",
-      "target": "client_src_types_index",
+      "target": "client_src_lib_sortutils",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11066,6 +11380,18 @@
       "context": "import",
       "source_file": "client/src/app/sessions/page.tsx",
       "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_sessions_page",
+      "target": "client_src_types_index",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/app/sessions/page.tsx",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -11202,7 +11528,7 @@
     },
     {
       "source": "client_src_components_ui_assignedpatientsmodal",
-      "target": "client_src_hooks_usedoctors",
+      "target": "client_src_store_useuistore",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11214,7 +11540,7 @@
     },
     {
       "source": "client_src_components_ui_assignedpatientsmodal",
-      "target": "client_src_lib_utils",
+      "target": "client_src_hooks_usedoctors",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11226,7 +11552,7 @@
     },
     {
       "source": "client_src_components_ui_assignedpatientsmodal",
-      "target": "client_src_types_index",
+      "target": "client_src_lib_utils",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11234,6 +11560,18 @@
       "context": "import",
       "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
       "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_assignedpatientsmodal",
+      "target": "client_src_types_index",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -11274,7 +11612,7 @@
     },
     {
       "source": "client_src_components_ui_assignedpatientsmodal",
-      "target": "client_src_components_ui_confirmdeletemodal",
+      "target": "client_src_components_ui_skeleton",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -11286,14 +11624,14 @@
     },
     {
       "source": "client_src_components_ui_assignedpatientsmodal",
-      "target": "client_src_store_useuistore",
+      "target": "client_src_components_ui_confirmdeletemodal",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
-      "source_location": "L9",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -11846,6 +12184,18 @@
       "context": "import",
       "source_file": "client/src/components/ui/SelectDropdown.tsx",
       "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton",
+      "target": "client_src_lib_utils",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -13405,7 +13755,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/dashboard/page.tsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -13416,7 +13766,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/dashboard/page.tsx",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -13427,7 +13777,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -13438,7 +13788,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -13449,7 +13799,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -13515,7 +13865,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -13526,7 +13876,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L41",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -13537,7 +13887,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/patients/page.tsx",
-      "source_location": "L50",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -13548,7 +13898,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -13559,7 +13909,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L49",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -13570,7 +13920,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -13581,7 +13931,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/sessions/page.tsx",
-      "source_location": "L68",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -13691,7 +14041,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/components/ui/AssignedPatientsModal.tsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -13967,6 +14317,94 @@
       "confidence_score": 1.0,
       "source_file": "client/src/components/ui/SelectDropdown.tsx",
       "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton",
+      "target": "client_src_components_ui_skeleton_chartskeleton",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L121",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton",
+      "target": "client_src_components_ui_skeleton_skeleton",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton",
+      "target": "client_src_components_ui_skeleton_donutskeleton",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L142",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton",
+      "target": "client_src_components_ui_skeleton_tableskeletonprops",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton",
+      "target": "client_src_components_ui_skeleton_tableskeleton",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton",
+      "target": "client_src_components_ui_skeleton_skeletonprops",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton",
+      "target": "client_src_components_ui_skeleton_cardlistskeletonprops",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_ui_skeleton",
+      "target": "client_src_components_ui_skeleton_cardlistskeleton",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "client/src/components/ui/Skeleton.tsx",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -17160,5 +17598,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c1842fcdbdd0de2170bff2e398f2e1945f8947bb"
+  "built_at_commit": "432133f2a5c7ec098b4c36fcff30078009f5c0cf"
 }
