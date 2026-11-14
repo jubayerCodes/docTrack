@@ -41,7 +41,7 @@ export const PaginationBar: React.FC<PaginationBarProps> = ({
   }
 
   return (
-    <div className={cn('flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-border', className)}>
+    <div className={cn('flex flex-col sm:flex-row items-center justify-between gap-3', className)}>
       <p className="text-xs text-textMuted">
         Showing <span className="font-semibold text-ink">{startItem}</span> to{' '}
         <span className="font-semibold text-ink">{endItem}</span> of{' '}

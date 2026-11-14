@@ -13,6 +13,7 @@ import {
   Loader2,
   ArrowUpNarrowWide,
   ArrowDownNarrowWide,
+  RotateCcw,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { SelectDropdown } from '@/components/ui/SelectDropdown';
@@ -76,6 +77,18 @@ export default function DoctorsPage() {
   const doctors = data?.data || [];
   const meta = data?.meta || { page: 1, limit: 8, total: 0, totalPages: 1 };
 
+  const handleResetFilters = () => {
+    setSearchQuery('');
+    setSelectedSpecialty('All Specializations');
+    setSelectedSort('newest');
+    setCurrentPage(1);
+  };
+
+  const hasActiveFilters =
+    searchQuery.trim() !== '' ||
+    selectedSpecialty !== 'All Specializations' ||
+    selectedSort !== 'newest';
+
   const handleConfirmDelete = async () => {
     if (!doctorToDelete) return;
     try {
@@ -113,13 +126,13 @@ export default function DoctorsPage() {
       </div>
 
       {/* Filter & Search Toolbar */}
-      <div className="p-3.5 rounded-card bg-surface border border-border shadow-card flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+      <div className="p-3.5 sm:p-4 rounded-card bg-surface border border-border shadow-card flex flex-col xl:flex-row xl:items-center justify-between gap-3">
         {/* Search Input */}
-        <div className="relative w-full md:w-80">
+        <div className="relative w-full xl:w-72 2xl:w-80 flex-shrink-0">
           {isSearching ? (
-            <Loader2 className="w-3.5 h-3.5 text-primary animate-spin absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Loader2 className="w-4 h-4 text-primary animate-spin absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           ) : (
-            <Search className="w-3.5 h-3.5 text-textMuted absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-4 h-4 text-textMuted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           )}
           <input
             type="text"
@@ -129,12 +142,12 @@ export default function DoctorsPage() {
               setSearchQuery(e.target.value);
               setCurrentPage(1); // Reset to page 1 on new search
             }}
-            className="w-full h-9 pl-9 pr-3 rounded-control bg-surface-subtle border border-border text-xs text-ink placeholder:text-textSubtle focus:outline-none focus:border-primary focus:bg-white transition-all"
+            className="w-full h-10 pl-10 pr-3.5 text-xs rounded-control bg-surface-subtle border border-border text-ink placeholder:text-textSubtle focus:outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all"
           />
         </div>
 
-        {/* Dropdowns */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto">
+        {/* Dropdowns & Filter Controls */}
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 w-full xl:w-auto">
           <div className="w-full sm:w-48">
             <SelectDropdown
               options={SPECIALIZATION_FILTERS}
@@ -162,7 +175,7 @@ export default function DoctorsPage() {
                   ? 'Ascending order (Click to switch to Descending)'
                   : 'Descending order (Click to switch to Ascending)'
               }
-              className="h-9 px-2 rounded-control border border-border bg-surface hover:bg-surface-subtle text-textSecondary hover:text-ink flex items-center justify-center transition-colors flex-shrink-0"
+              className="h-10 w-10 rounded-control border border-border bg-surface hover:bg-surface-subtle text-textSecondary hover:text-ink flex items-center justify-center transition-colors flex-shrink-0"
             >
               {isSortAscending(selectedSort) ? (
                 <ArrowUpNarrowWide className="w-4 h-4 text-primary" />
@@ -171,6 +184,19 @@ export default function DoctorsPage() {
               )}
             </button>
           </div>
+
+          {hasActiveFilters && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleResetFilters}
+              title="Reset all filters"
+              className="h-10 text-textMuted hover:text-ink px-3 rounded-control self-start sm:self-auto flex items-center gap-1.5"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Reset</span>
+            </Button>
+          )}
         </div>
       </div>
 
@@ -462,16 +488,18 @@ export default function DoctorsPage() {
         </div>
       </div>
 
-      {/* Pagination Controls (Shared for both mobile and desktop) */}
-      <div className="rounded-card bg-surface border border-border shadow-card p-3.5 sm:px-6">
-        <PaginationBar
-          currentPage={meta.page || 1}
-          totalPages={meta.totalPages || 1}
-          totalItems={meta.total || 0}
-          limit={meta.limit || 8}
-          onPageChange={(page) => setCurrentPage(page)}
-        />
-      </div>
+      {/* Pagination Controls — only shown when data is loaded and there are records */}
+      {!isLoading && doctors.length > 0 && (meta.total ?? 0) > 0 && (
+        <div className="rounded-card bg-surface border border-border shadow-card p-3.5 sm:px-6">
+          <PaginationBar
+            currentPage={meta.page || 1}
+            totalPages={meta.totalPages || 1}
+            totalItems={meta.total || 0}
+            limit={meta.limit || 8}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
+        </div>
+      )}
 
       {/* Modals */}
       <CreateDoctorModal />

@@ -585,7 +585,7 @@
       "file_type": "code",
       "norm_label": "doctorspage()",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L53"
+      "source_location": "L54"
     },
     {
       "id": "client_src_app_login_page_loginpage",
@@ -1615,7 +1615,7 @@
       "file_type": "code",
       "norm_label": "sort_options",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L44"
+      "source_location": "L45"
     },
     {
       "id": "client_src_app_doctors_page_specialization_filters",
@@ -1626,7 +1626,7 @@
       "file_type": "code",
       "norm_label": "specialization_filters",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L32"
+      "source_location": "L33"
     },
     {
       "id": "client_src_app_login_page",
@@ -6037,7 +6037,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L159",
+      "source_location": "L172",
       "weight": 1.0
     },
     {
@@ -6049,7 +6049,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L161",
+      "source_location": "L174",
       "weight": 1.0
     },
     {
@@ -6061,7 +6061,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L198",
+      "source_location": "L224",
       "weight": 1.0
     },
     {
@@ -6073,7 +6073,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L207",
+      "source_location": "L233",
       "weight": 1.0
     },
     {
@@ -6085,7 +6085,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L362",
+      "source_location": "L388",
       "weight": 1.0
     },
     {
@@ -6097,7 +6097,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L60",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -6109,7 +6109,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -6121,7 +6121,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L73",
+      "source_location": "L74",
       "weight": 1.0
     },
     {
@@ -6133,7 +6133,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L74",
+      "source_location": "L75",
       "weight": 1.0
     },
     {
@@ -7861,7 +7861,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -7873,7 +7873,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -7885,7 +7885,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -7897,7 +7897,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -7909,7 +7909,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -7921,7 +7921,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -7933,7 +7933,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -7945,7 +7945,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L24",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -7957,7 +7957,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -7969,7 +7969,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -7981,7 +7981,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -7993,7 +7993,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -8005,7 +8005,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -8017,7 +8017,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -8029,7 +8029,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -8041,7 +8041,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -8053,7 +8053,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -8065,7 +8065,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -10513,7 +10513,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -10525,7 +10525,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -10537,7 +10537,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -10549,7 +10549,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -10561,7 +10561,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -10573,7 +10573,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -10585,7 +10585,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -10597,7 +10597,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L24",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -10609,7 +10609,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -10621,7 +10621,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -10633,7 +10633,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -10645,7 +10645,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -10657,7 +10657,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -10669,7 +10669,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -13427,7 +13427,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -13438,7 +13438,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L44",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -13449,7 +13449,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "client/src/app/doctors/page.tsx",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -17160,5 +17160,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9c836533439f4cf8efb7d167eb58a37c700ca5ce"
+  "built_at_commit": "c1842fcdbdd0de2170bff2e398f2e1945f8947bb"
 }
