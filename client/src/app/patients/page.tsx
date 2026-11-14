@@ -40,12 +40,12 @@ const GENDER_OPTIONS = [
 ];
 
 const SORT_OPTIONS = [
-  { label: 'Registered: Newest First (Desc)', value: 'newest' },
-  { label: 'Registered: Oldest First (Asc)', value: 'oldest' },
-  { label: 'Name: A → Z (Asc)', value: 'name-asc' },
-  { label: 'Name: Z → A (Desc)', value: 'name-desc' },
-  { label: 'Age: Youngest First (Asc)', value: 'age-asc' },
-  { label: 'Age: Oldest First (Desc)', value: 'age-desc' },
+  { label: 'Registered: Newest First', value: 'newest' },
+  { label: 'Registered: Oldest First', value: 'oldest' },
+  { label: 'Name: A → Z', value: 'name-asc' },
+  { label: 'Name: Z → A', value: 'name-desc' },
+  { label: 'Age: Youngest First', value: 'age-asc' },
+  { label: 'Age: Oldest First', value: 'age-desc' },
 ];
 
 export default function PatientsPage() {
@@ -116,9 +116,9 @@ export default function PatientsPage() {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="p-3.5 sm:p-4 rounded-card bg-surface border border-border shadow-card flex flex-col xl:flex-row xl:items-center justify-between gap-3">
+      <div className="p-3.5 sm:p-4 rounded-card bg-surface border border-border shadow-card flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
         {/* Search input */}
-        <div className="relative w-full xl:w-72 2xl:w-80 flex-shrink-0">
+        <div className="relative w-full lg:max-w-xs xl:max-w-sm flex-1">
           {isSearching ? (
             <Loader2 className="w-4 h-4 text-primary animate-spin absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           ) : (
@@ -137,8 +137,8 @@ export default function PatientsPage() {
         </div>
 
         {/* Dropdowns */}
-        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 w-full xl:w-auto">
-          <div className="w-full sm:w-36">
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 w-full lg:w-auto lg:justify-end">
+          <div className="w-full sm:w-36 flex-shrink-0">
             <SelectDropdown
               options={GENDER_OPTIONS}
               value={selectedGender}
@@ -149,8 +149,8 @@ export default function PatientsPage() {
             />
           </div>
 
-          <div className="flex items-center gap-1.5 w-full sm:w-56">
-            <div className="flex-1">
+          <div className="flex items-center gap-1.5 w-full sm:w-auto flex-shrink-0">
+            <div className="w-full sm:w-60">
               <SelectDropdown
                 options={SORT_OPTIONS}
                 value={selectedSort}

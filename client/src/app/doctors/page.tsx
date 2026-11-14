@@ -44,12 +44,12 @@ const SPECIALIZATION_FILTERS = [
 ];
 
 const SORT_OPTIONS = [
-  { label: 'Date: Newest First (Desc)', value: 'newest' },
-  { label: 'Date: Oldest First (Asc)', value: 'oldest' },
-  { label: 'Name: A → Z (Asc)', value: 'name-asc' },
-  { label: 'Name: Z → A (Desc)', value: 'name-desc' },
-  { label: 'Caseload: High → Low (Desc)', value: 'patients-desc' },
-  { label: 'Caseload: Low → High (Asc)', value: 'patients-asc' },
+  { label: 'Date: Newest First', value: 'newest' },
+  { label: 'Date: Oldest First', value: 'oldest' },
+  { label: 'Name: A → Z', value: 'name-asc' },
+  { label: 'Name: Z → A', value: 'name-desc' },
+  { label: 'Caseload: High → Low', value: 'patients-desc' },
+  { label: 'Caseload: Low → High', value: 'patients-asc' },
 ];
 
 export default function DoctorsPage() {
@@ -127,9 +127,9 @@ export default function DoctorsPage() {
       </div>
 
       {/* Filter & Search Toolbar */}
-      <div className="p-3.5 sm:p-4 rounded-card bg-surface border border-border shadow-card flex flex-col xl:flex-row xl:items-center justify-between gap-3">
+      <div className="p-3.5 sm:p-4 rounded-card bg-surface border border-border shadow-card flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
         {/* Search Input */}
-        <div className="relative w-full xl:w-72 2xl:w-80 flex-shrink-0">
+        <div className="relative w-full lg:max-w-xs xl:max-w-sm flex-1">
           {isSearching ? (
             <Loader2 className="w-4 h-4 text-primary animate-spin absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           ) : (
@@ -148,8 +148,8 @@ export default function DoctorsPage() {
         </div>
 
         {/* Dropdowns & Filter Controls */}
-        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 w-full xl:w-auto">
-          <div className="w-full sm:w-48">
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 w-full lg:w-auto lg:justify-end">
+          <div className="w-full sm:w-48 flex-shrink-0">
             <SelectDropdown
               options={SPECIALIZATION_FILTERS}
               value={selectedSpecialty}
@@ -160,8 +160,8 @@ export default function DoctorsPage() {
             />
           </div>
 
-          <div className="w-full sm:w-56 flex items-center gap-1.5">
-            <div className="flex-1">
+          <div className="flex items-center gap-1.5 w-full sm:w-auto flex-shrink-0">
+            <div className="w-full sm:w-56">
               <SelectDropdown
                 options={SORT_OPTIONS}
                 value={selectedSort}
@@ -192,7 +192,7 @@ export default function DoctorsPage() {
               size="sm"
               onClick={handleResetFilters}
               title="Reset all filters"
-              className="h-10 text-textMuted hover:text-ink px-3 rounded-control self-start sm:self-auto flex items-center gap-1.5"
+              className="h-10 text-textMuted hover:text-ink px-3 rounded-control self-start sm:self-auto flex items-center gap-1.5 flex-shrink-0"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset</span>

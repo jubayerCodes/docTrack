@@ -68,7 +68,7 @@ export const PaginationBar: React.FC<PaginationBarProps> = ({
             className={cn(
               'h-8 min-w-[32px] px-2 rounded-control text-xs font-semibold transition-colors flex items-center justify-center',
               p === currentPage
-                ? 'bg-primary text-white shadow-primary'
+                ? 'bg-primary text-white shadow-sm'
                 : 'text-textSecondary hover:bg-surface-subtle hover:text-ink'
             )}
           >

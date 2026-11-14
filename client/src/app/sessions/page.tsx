@@ -56,14 +56,14 @@ const STATUS_OPTIONS = [
 ];
 
 const SORT_OPTIONS = [
-  { label: 'Date: Newest First (Desc)', value: 'date-desc' },
-  { label: 'Date: Oldest First (Asc)', value: 'date-asc' },
-  { label: 'Patient: A → Z (Asc)', value: 'patient-asc' },
-  { label: 'Patient: Z → A (Desc)', value: 'patient-desc' },
-  { label: 'Doctor: A → Z (Asc)', value: 'doctor-asc' },
-  { label: 'Doctor: Z → A (Desc)', value: 'doctor-desc' },
-  { label: 'Status: A → Z (Asc)', value: 'status-asc' },
-  { label: 'Status: Z → A (Desc)', value: 'status-desc' },
+  { label: 'Date: Newest First', value: 'date-desc' },
+  { label: 'Date: Oldest First', value: 'date-asc' },
+  { label: 'Patient: A → Z', value: 'patient-asc' },
+  { label: 'Patient: Z → A', value: 'patient-desc' },
+  { label: 'Doctor: A → Z', value: 'doctor-asc' },
+  { label: 'Doctor: Z → A', value: 'doctor-desc' },
+  { label: 'Status: A → Z', value: 'status-asc' },
+  { label: 'Status: Z → A', value: 'status-desc' },
 ];
 
 export default function SessionsPage() {
@@ -148,9 +148,9 @@ export default function SessionsPage() {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="p-3.5 sm:p-4 rounded-card bg-surface border border-border shadow-card flex flex-col xl:flex-row xl:items-center justify-between gap-3">
+      <div className="p-3.5 sm:p-4 rounded-card bg-surface border border-border shadow-card flex flex-col xl:flex-row xl:items-center justify-between gap-3 sm:gap-4">
         {/* Search input */}
-        <div className="relative w-full xl:w-72 2xl:w-80 flex-shrink-0">
+        <div className="relative w-full xl:max-w-xs 2xl:max-w-sm flex-1">
           {isSearching ? (
             <Loader2 className="w-4 h-4 text-primary animate-spin absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           ) : (
@@ -169,8 +169,8 @@ export default function SessionsPage() {
         </div>
 
         {/* Dropdowns */}
-        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 w-full xl:w-auto">
-          <div className="w-full sm:w-40">
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 w-full xl:w-auto xl:justify-end">
+          <div className="w-full sm:w-36 flex-shrink-0">
             <SelectDropdown
               options={CONDITION_OPTIONS}
               value={selectedCondition}
@@ -181,7 +181,7 @@ export default function SessionsPage() {
             />
           </div>
 
-          <div className="w-full sm:w-36">
+          <div className="w-full sm:w-32 flex-shrink-0">
             <SelectDropdown
               options={STATUS_OPTIONS}
               value={selectedStatus}
@@ -192,8 +192,8 @@ export default function SessionsPage() {
             />
           </div>
 
-          <div className="flex items-center gap-1.5 w-full sm:w-56">
-            <div className="flex-1">
+          <div className="flex items-center gap-1.5 w-full sm:w-auto flex-shrink-0">
+            <div className="w-full sm:w-56">
               <SelectDropdown
                 options={SORT_OPTIONS}
                 value={selectedSort}

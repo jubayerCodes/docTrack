@@ -1,7 +1,7 @@
 # Graph Report - DocTrack  (2026-11-14)
 
 ## Corpus Check
-- 87 files · ~40,716 words
+- 87 files · ~40,743 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f927ae4e`
+- Built from commit: `b9dceae0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,11 +20,11 @@
 - sendResponse
 - devDependencies
 - dependencies
+- app.ts
 - compilerOptions
 - compilerOptions
 - apiClient.ts
 - playwright.md
-- app.ts
 - run_8_test_cases.ts
 - extends
 - postcss.config.mjs
@@ -91,6 +91,10 @@ Nodes (25): devDependencies, eslint, eslint-config-next, postcss, tailwindcss, @
 Cohesion: 0.09
 Nodes (23): dependencies, clsx, lucide-react, next, react, react-dom, recharts, @supabase/ssr (+15 more)
 
+### Community 5 - "app.ts"
+Cohesion: 0.33
+Nodes (6): app, createApp(), connectDB(), errorHandler(), router, startServer()
+
 ### Community 6 - "compilerOptions"
 Cohesion: 0.08
 Nodes (25): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+17 more)
@@ -102,10 +106,6 @@ Nodes (18): dist, ES2022, src/**/*, compilerOptions, esModuleInterop, forceConsi
 ### Community 8 - "apiClient.ts"
 Cohesion: 0.16
 Nodes (13): metadata, viewport, QueryProvider(), AuthContext, AuthContextType, AuthProvider(), ApiClientError, getAccessToken() (+5 more)
-
-### Community 10 - "app.ts"
-Cohesion: 0.33
-Nodes (6): app, createApp(), connectDB(), errorHandler(), router, startServer()
 
 ### Community 11 - "run_8_test_cases.ts"
 Cohesion: 0.50
