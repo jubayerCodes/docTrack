@@ -11,8 +11,11 @@
 - **Backend REST API**: `http://localhost:5000/api/v1`
 - **API Health Endpoint**: `http://localhost:5000/api/health`
 - **Default Administrator Credentials**:
-  - **Email**: `admin@doctrack.health`
-  - **Password**: `AdminPassword123!`
+  - **Email**: `admin@doctrack.com`
+  - **Password**: `Password123!`
+  - *(Click "Autofill" on the `/login` portal page to load demo administrator credentials)*
+- **New User Registration**:
+  - Visit `http://localhost:3000/register` to create a new staff account with Name, Email, and Password. New accounts default to the **Standard User** role with access to `/dashboard`.
   - *Note: `DEV_MODE=true` is enabled by default in local configurations, providing safe automated mock administrative authentication for local development and integration testing.*
 
 ---
@@ -153,10 +156,10 @@ DocTrack follows a decoupled client-server architecture with strict separation b
 flowchart TD
     subgraph BrowserClient ["Frontend Client Layer (Next.js 14 App Router)"]
         direction TB
-        UI["React Server & Client Components\n(AppShell, Modals, Pickers, Recharts)"]
+        UI["React Server & Client Components\n(AppShell, Modals, Pickers, Recharts, ActionMenu)"]
         ZST["Zustand UI Store\n(Modals, Filters, Drawer Toggles)"]
-        TKQ["TanStack Query Cache Layer\n(useDoctors, usePatients, useAnalytics)"]
-        API_CLIENT["Axios / Fetch REST Client\n(withCredentials: true, Bearer Auth)"]
+        TKQ["TanStack Query Cache Layer\n(useDoctors, usePatients, useSessions, useUsers, useAnalytics)"]
+        API_CLIENT["REST API Client (Fetch)\n(credentials: include, Bearer Authorization)"]
         
         UI <--> ZST
         UI <--> TKQ
@@ -164,17 +167,17 @@ flowchart TD
     end
 
     subgraph Security ["Authentication & Security Layer"]
-        AUTH_MW["Next.js Route Guard Middleware\n(/dashboard, /doctors, /patients)"]
-        COOKIE["HttpOnly Session Cookie / Bearer Token"]
-        SB["Supabase Auth / Dev Middleware\n(JWT Verification & Role RBAC)"]
+        AUTH_MW["Next.js Edge Route Guard Middleware\n(/login, /register, /dashboard, /users)"]
+        COOKIE["Session Cookie / Bearer Token"]
+        SB["Supabase Auth & Admin SDK\n(User Management, JWT Verification, Role RBAC)"]
     end
 
     subgraph ExpressServer ["Backend REST API Server (Node.js & Express)"]
         direction TB
         EX_APP["Express Routing Core (/api/v1)"]
-        SEC_MW["Security Middleware\n(CORS, Helmet, RateLimiter, CookieParser)"]
-        CTRL["REST Controllers\n(catchAsync & sendResponse)"]
-        SERV["Domain Service Layer\n(doctorService, patientService, analyticsService)"]
+        SEC_MW["Security & RBAC Middleware\n(authenticate, authorizeRole('admin'), CORS, CookieParser)"]
+        CTRL["REST Controllers\n(auth, user, doctor, patient, session, analytics)"]
+        SERV["Domain Service Layer\n(doctorService, patientService, sessionService, analyticsService)"]
         SAN["Input Validation & Sanitization\n(escapeRegex, DTO Projections)"]
 
         EX_APP --> SEC_MW --> CTRL --> SAN --> SERV
@@ -191,20 +194,23 @@ flowchart TD
     end
 
     BrowserClient -- "HTTPS REST API (JSON)" --> EX_APP
-    BrowserClient -. "Session Validation" .-> AUTH_MW
-    AUTH_MW -. "Token Introspection" .-> SB
-    SEC_MW -. "Validate Token" .-> SB
+    BrowserClient -. "Edge Route Inspection" .-> AUTH_MW
+    AUTH_MW -. "Token Introspection & RBAC" .-> SB
+    SEC_MW -. "Validate Token & Role" .-> SB
 ```
 
 ---
 
 ### 4.2 Data Flow & Service Interactions
 
-1. **Authentication & Route Guard Flow**:
-   - The user signs in via `/login`.
-   - Credentials are verified by Supabase Auth (or development bypass in `DEV_MODE=true`), establishing an authenticated session.
-   - Next.js middleware inspects route cookies on incoming page requests to `/dashboard`, `/doctors`, and `/patients`, redirecting unauthenticated requests.
-   - Outgoing REST requests to the Express server pass session cookies and headers via `credentials: 'include'`. The server's `authMiddleware` verifies the JWT signature and injects the authenticated `user` context into `req.user`.
+1. **Authentication, Registration & RBAC Authorization Flow**:
+   - **Self-Service Registration**: New clinical staff register via `/register` with full name, email, and password. The backend `POST /api/v1/auth/register` provisions the account via the privileged Supabase Admin SDK with `email_confirm: true` and defaults the role to `'user'`. The client automatically completes session sign-in and routes to `/dashboard`.
+   - **Role-Based Navigation & Page Visibility**:
+     - **System Administrators (`admin`)**: Granted full access to **Overview** (`/dashboard`), **Doctors** (`/doctors`), **Patients** (`/patients`), **Sessions** (`/sessions`), and **User Management** (`/users`).
+     - **Standard Users (`user`)**: Navigation sidebar and quick actions restrict visibility strictly to the **Executive Analytics Dashboard** (`/dashboard`). Direct attempts to access `/doctors`, `/patients`, `/sessions`, or `/users` are intercepted by Next.js Edge Middleware and client guards, immediately redirecting back to `/dashboard`.
+   - **API-Level Role Authorization**: Sensitive routes (`/doctors`, `/patients`, `/sessions`, `/users`) enforce `authenticate` and `authorizeRole('admin')`. Non-admin requests receive a `403 Forbidden` response.
+   - **User Management & Privilege Elevation**: Administrators can view all registered staff on `/users`, promote standard users to `'admin'`, or demote administrators to `'user'` (`PATCH /api/v1/users/:id/role`). Accounts can be permanently deleted (`DELETE /api/v1/users/:id`). Built-in safeguards strictly prevent administrators from demoting or deleting their own active session account.
+   - **Token Invalidation**: Server-side in-memory token cache (`tokenCache`) provides immediate cache invalidation (`invalidateTokenCache`) upon role changes or account removals.
 
 2. **Read & Directory Query Flow (Debounced & Indexed)**:
    - When a user searches or filters doctors or patients, `useDebounce` holds requests for 300ms to eliminate redundant network traffic.
@@ -279,17 +285,35 @@ flowchart TD
 
 ---
 
+### Decision 3: Tiered Role-Based Access Control (RBAC) with Edge Middleware & API Guard Dual-Layer Enforcement
+
+- **Context**:  
+  Healthcare administration systems require strict principle-of-least-privilege access controls. While clinical supervisors and medical directors need full authority to manage doctor rosters, patient records, sessions, and staff accounts, standard medical staff members should only view aggregate executive capacity metrics without exposure to sensitive patient data or directory manipulation.
+
+- **Why Dual-Layer (Edge Middleware + API Guard) Enforcement?**  
+  - **Client-Side Hiding Alone is Insecure**: Merely hiding navigation links in the UI leaves applications vulnerable to direct URL manipulation (e.g., typing `/doctors` into the browser) or direct HTTP client access (e.g., curl/Postman).
+  - **Next.js Edge Middleware Protection**: Sits before any page rendering occurs. When an unauthenticated user or a standard user requests an admin route (`/doctors`, `/patients`, `/sessions`, `/users`), Edge Middleware evaluates the Supabase session token and redirects unauthorized requests to `/dashboard` before React components hydrate.
+  - **API-Level Express RBAC (`authorizeRole('admin')`)**: Even if a request bypasses the frontend, the backend Express REST API validates the JWT payload against `user.app_metadata.role` or `user.user_metadata.role`, rejecting unauthorized attempts with a standardized `403 Forbidden` response.
+
+- **Self-Lockout Safeguards**:  
+  - To prevent accidental administrative lockout, the backend `PATCH /api/v1/users/:id/role` and `DELETE /api/v1/users/:id` endpoints enforce strict identity checks (`req.user.id !== req.params.id`), rejecting self-demotion or self-deletion attempts with `400 Bad Request`.
+  - The frontend ActionMenu automatically disables demote/remove actions on the administrator's own row with clear visual indicators (`(You)` badge).
+
+---
+
 ## 6. Visual Evidence
 
 Below is a visual overview of DocTrack’s responsive user interface across Desktop, Tablet, and Mobile viewports:
 
 | Interface View | Viewport | Key Capabilities & Features Demonstrated |
 | :--- | :--- | :--- |
-| **Executive Analytics Dashboard** | Desktop (1440px) | 4 real-time KPI metric cards, Recharts practitioner caseload bar chart, specialty breakdown donut chart, and 14-day encounter area trend. |
-| **Doctor Directory & Caseloads** | Desktop (1440px) | Paginated doctor roster, 300ms debounced search, specialty filters, initials avatar badges, active patient badges (`N Patients →`), and action menus. |
-| **Caseload Inspection Modal** | Desktop Modal | Slide-over inspection modal displaying all active patient encounters under a selected doctor with individual disassociate controls. |
-| **Workflow 4.1 Encounter Scheduler** | Desktop Modal | Dual-tab modal: Tab 1 links existing patients with custom `DatePicker` & 30-min slot `TimePicker`; Tab 2 registers new patients inline atomically. |
-| **Master Patient Directory** | Desktop (1440px) | Complete patient registry with medical condition tags, attending physician badges, appointment timestamps, and edit/delete triggers. |
+| **Executive Analytics Dashboard** | Desktop (1440px) | 4 real-time KPI metric cards, Recharts practitioner caseload bar chart, specialty breakdown donut chart, and 14-day encounter area trend. Accessible to both Admins and Standard Users. |
+| **User Registration Portal** | Desktop & Mobile | Public `/register` view allowing clinical staff to register with Name, Email, and Password, featuring client-side matching validation and Edge-compliant eye toggles. |
+| **User Management & Identity Administration** | Desktop (1440px) | Admin-only `/users` dashboard with role distribution metrics, debounced search, role filter pills, and a 3-dot `ActionMenu` dropdown for promotion, demotion, and deletion. |
+| **Doctor Directory & Caseloads** | Desktop (1440px) | Paginated doctor roster, 300ms debounced search, specialty filters, initials avatar badges, active patient badges (`N Patients →`), and action menus (Admin only). |
+| **Caseload Inspection Modal** | Desktop Modal | Slide-over inspection modal displaying all active patient encounters under a selected doctor with individual disassociate controls (Admin only). |
+| **Workflow 4.1 Encounter Scheduler** | Desktop Modal | Dual-tab modal: Tab 1 links existing patients with custom `DatePicker` & 30-min slot `TimePicker`; Tab 2 registers new patients inline atomically (Admin only). |
+| **Master Patient Directory** | Desktop (1440px) | Complete patient registry with medical condition tags, attending physician badges, appointment timestamps, and edit/delete triggers (Admin only). |
 | **Responsive Tablet Layout** | Tablet (1024px) | Responsive multi-column grid adapting KPI cards and Recharts analytics with collapsible navigation. |
 | **Responsive Mobile Layout** | Mobile (390px) | Compact mobile layout featuring an off-canvas slide-out sidebar, full-width touch targets, stacked metric cards, and horizontal scroll tables. |
 
@@ -313,6 +337,9 @@ Below is a visual overview of DocTrack’s responsive user interface across Desk
 
 ### 7.2 Security Threat Mitigations
 
+- **Dual-Layer RBAC & Authorization**: All sensitive resource endpoints (`/doctors`, `/patients`, `/sessions`, `/users`) strictly require `authenticate` and `authorizeRole('admin')`. Standard users receive `403 Forbidden`.
+- **Self-Lockout Safeguards**: Built-in backend safeguards (`req.user.id !== targetId`) prevent administrators from accidentally demoting or deleting their own accounts.
+- **Browser-Native Pseudo-Element Suppression**: Global styles suppress `::-ms-reveal` and `::-ms-clear` to prevent Microsoft Edge / Chromium duplicate password reveal icons from conflicting with custom accessible controls.
 - **Injection Prevention**: All user search queries pass through `escapeRegex()` before reaching MongoDB queries, neutralizing NoSQL injection and ReDoS vulnerabilities.
 - **XSS Sanitization**: React’s virtual DOM ensures all patient names, emails, and diagnosis notes are treated as encoded text nodes rather than executable markup.
 - **Strict DTO Projections**: Mongoose transformation rules strip `__v` and internal schema metadata before JSON serialization.
@@ -325,6 +352,6 @@ Below is a visual overview of DocTrack’s responsive user interface across Desk
 - **Frontend**: Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS, TanStack React Query v5, Zustand v5, Recharts, Lucide React.
 - **Backend**: Node.js, Express.js, TypeScript, Mongoose ODM v8, Cookie-Parser, CORS.
 - **Database**: MongoDB Atlas / MongoDB 7.0+ (Full Compound & Text Indexing).
-- **Authentication**: Supabase Auth (JWT cookie exchange) with secure fallback `DEV_MODE` for local development.
+- **Authentication & RBAC**: Supabase Auth (JWT cookie and Bearer token transport) with Supabase Admin SDK for user provisioning, role promotion, and RBAC enforcement.
 - **Architecture**: Decoupled Monorepo with independent Client and Server workspaces.
-- **Testing**: Node Test Runner, TypeScript compilation checks, and Playwright verification workflows.
+- **Testing**: Node Test Runner, TypeScript compilation checks, automated Auth/RBAC test suite (15 test assertions), and Playwright verification workflows.
